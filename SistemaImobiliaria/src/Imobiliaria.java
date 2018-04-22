@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/*Essa classe simula um banco de dados que sera posteriomente implementado*/
+/**Essa classe simula um banco de dados que será posteriomente implementado*/
 public class Imobiliaria {
 	
 	private ArrayList<Imovel> imoveis;
@@ -9,6 +9,8 @@ public class Imobiliaria {
 	private ArrayList<Proprietario> proprietarios;
 	
 	public Imobiliaria(){}
+	
+	/**Metodos de adição e remoção de infomações do banco de dados simulado*/
 	
 	public boolean adicionarImovel(Imovel imovel) {
 		for(int i=0;i<imoveis.size();i++) {

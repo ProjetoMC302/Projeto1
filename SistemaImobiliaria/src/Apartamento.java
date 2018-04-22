@@ -1,10 +1,15 @@
-
+/**Apartamento - essa classe representa a estrutura de um apartamento: 
+ * os atributos relevantes para um cliente que deseja um apartamento
+ * */
 public class Apartamento extends ImovelConstruido {
 
 	private boolean cobertura;
 	private int quantidadeTerraco;
+	// atributo que representa em qual andar o apartamento se situa
 	private int andar;
-	private boolean elevadorServico;
+	// atributo que representa a existencia de elevador de servicio no predio do apartamento
+	private boolean elevadorServico; 
+	// atributo que representa a existencia de elevador social no predio do apartamento
 	private boolean elevadorSocial;
 	
 	public Apartamento(int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
@@ -56,13 +61,12 @@ public class Apartamento extends ImovelConstruido {
 	public void setElevadorSocial(boolean elevadorSocial) {
 		this.elevadorSocial = elevadorSocial;
 	}
-
+	
+	//Chama o metodo toString da classe superclasse
 	@Override
 	public String toString() {
 		return "Apartamento ["+super.toString()+", Cobertura= " + isCobertura() + ", QuantidadeTerraco= " + getQuantidadeTerraco()
 				+ ", Andar= " + getAndar() + ", ElevadorServico= " + isElevadorServico()
 				+ ", ElevadorSocial= " + isElevadorSocial() + "]";
 	}
-
-	
 }

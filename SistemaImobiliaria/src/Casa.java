@@ -1,7 +1,12 @@
-
+/**Casa - essa classe representa a estrutura de uma casa: 
+ * os atributos relevantes para um cliente que deseja uma casa
+ * */
 public class Casa  extends ImovelConstruido {
+	//atributo que representa se a casa é de esquina
 	private boolean esquina;
+	//atributo que representa se a casa tem piscina
 	private boolean piscina;
+	//area do terreno em que a casa se situa
 	private double areaTerreno;
 	
 	public Casa(int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
@@ -36,10 +41,12 @@ public class Casa  extends ImovelConstruido {
 		this.areaTerreno = areaTerreno;
 	}
 
+	//Calcula a area do quintal da casa fazendo a subtração da area do terreno pela area da casa
 	public double calculaAreaQuintal() {
 		return getAreaTerreno() - getAreaConstruida();
 	}
 
+	//Chama o metodo toString da classe superclasse com a adição dos atributos especificos
 	@Override
 	public String toString() {
 		return "Casa [ "+ super.toString() + "Esquina= " + isEsquina() + ", Piscina= " + isPiscina() + ", AreaTerreno= "
