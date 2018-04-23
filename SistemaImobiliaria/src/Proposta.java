@@ -1,26 +1,32 @@
+import java.util.ArrayList;
+
 public class Proposta {
+	private static int geradorId;
 	
 	//Atributos
-	private final int idImovel;
+	private final int id;
+	private final Imovel imovel;
 	private final Cliente comprador;
 	private final Proprietario vendedor;
-	private final Corretor corretorResponsavel;
+	private Corretor corretorResponsavel;
 	private ArrayList<Pagamento> formaDePagamento;
 	private double precoProposta;
 	
 	//Construtores
-	public Proposta(int idImovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel) {
+	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel) {
+		id = ++geradorId;
 		formaDePagamento = new ArrayList<Pagamento>();
-		this.idImovel = idImovel;
+		this.imovel = imovel;
 		this.comprador = comprador;
 		this.vendedor = vendedor;
 		this.corretorResponsavel = corretorResponsavel;
 	}
 	
-	public Proposta(int idImovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel,
+	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel,
 			ArrayList<Pagamento> formaDePagamento, double precoProposta) {
 		formaDePagamento = new ArrayList<Pagamento>();
-		this.idImovel = idImovel;
+		id = ++geradorId;
+		this.imovel = imovel;
 		this.comprador = comprador;
 		this.vendedor = vendedor;
 		this.corretorResponsavel = corretorResponsavel;
@@ -29,6 +35,14 @@ public class Proposta {
 	}
 	
 	//Metodos
+	public static int getGeradorId() {
+		return geradorId;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
 	public ArrayList<Pagamento> getFormaDePagamento() {
 		return formaDePagamento;
 	}
@@ -36,7 +50,7 @@ public class Proposta {
 	public void setFormaDePagamento(ArrayList<Pagamento> formaDePagamento) {
 		this.formaDePagamento = formaDePagamento;
 	}
-
+	
 	public double getPrecoProposta() {
 		return precoProposta;
 	}
@@ -45,8 +59,8 @@ public class Proposta {
 		this.precoProposta = precoProposta;
 	}
 
-	public int getIdImovel() {
-		return idImovel;
+	public Imovel getImovel() {
+		return imovel;
 	}
 
 	public Cliente getComprador() {
@@ -61,13 +75,17 @@ public class Proposta {
 		return corretorResponsavel;
 	}
 	
-	private boolean verificarExistenciaPagamento(Pagamento p) { //Verifica se a forma de pagamento existe no arrayList
+	public void setCorretorResponsavel(Corretor corretor) {
+		this.corretorResponsavel = corretor;
+	}
+	
+	private boolean verificarExistenciaPagamento(Pagamento p) { //Verifica se a forma de pagamento existe no ArrayList
 		int i;
-		int flag = 0; // flag = 0 não há a forma de pagamento; flag = 1 há a forma de pagamento
+		int flag = 0; // flag = 0 nao ha a forma de pagamento; flag = 1 ha a forma de pagamento
 		for (i = 0; i < formaDePagamento.size(); i++) {
 			if (formaDePagamento.get(i).equals(p)) {
 				flag = 1; //Encontramos a forma de pagamento p no nosso arrayList
-				i = formaDePagamento.size(); //Para a execução do for
+				i = formaDePagamento.size(); //Para a execucao do for
 			}
 		}
 		if (flag == 1) {
