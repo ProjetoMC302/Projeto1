@@ -1,18 +1,20 @@
 import java.util.ArrayList;
 
-public class Corretor {
+public class Corretor extends Pessoa {
 	private String senha;
 	private String creci;
 	private ArrayList<Imovel> imoveis;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Proposta> propostasEmAberto;
 	private ArrayList<Proposta> propostasFinalizadas;
-	
-	public Corretor() { }
 
-	public Corretor(String senha, String creci, ArrayList<Imovel> imoveis, ArrayList<Cliente> clientes,
+	public Corretor(String nome, String telefone, String email) {
+		super(nome, telefone, email);
+	}
+
+	public Corretor(String nome, String telefone, String email, String senha, String creci, ArrayList<Imovel> imoveis, ArrayList<Cliente> clientes,
 			ArrayList<Proposta> propostasEmAberto, ArrayList<Proposta> propostasFinalizadas) {
-		super();
+		super(nome, telefone, email);
 		this.senha = senha;
 		this.creci = creci;
 		this.imoveis = imoveis;
@@ -21,8 +23,8 @@ public class Corretor {
 		this.propostasFinalizadas = propostasFinalizadas;
 	}
 
-	public Corretor(String senha, String creci) {
-		super();
+	public Corretor(String nome, String telefone, String email, String senha, String creci) {
+		super(nome, telefone, email);
 		this.senha = senha;
 		this.creci = creci;
 	}

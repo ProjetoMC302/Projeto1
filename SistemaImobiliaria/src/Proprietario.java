@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Proprietario extends Pessoa{
 	
 	//Atributos
@@ -5,25 +7,27 @@ public class Proprietario extends Pessoa{
 	private ArrayList<Imovel> imoveis;
 	
 	//Construtores
-	public Proprietario() {
+	public Proprietario(String nome, String telefone, String email) {
+		super(nome, telefone, email);
 		imoveis = new ArrayList<Imovel>();
 	}
 	
-	public Proprietario(boolean empresa) {
-		imoveis = new ArrayList<Imovel>();
+	public Proprietario(String nome, String telefone, String email, boolean empresa) {
+		super(nome, telefone, email);
 		this.empresa = empresa;
 	}
 	
-	public Proprietario(ArrayList<Imovel> im) {
+	public Proprietario(String nome, String telefone, String email, ArrayList<Imovel> im) {
+		super(nome, telefone, email);
 		imoveis = new ArrayList<Imovel>();
-		imoveis = im;
 	}
 	
-	public Proprietario(ArrayList<Imovel> im, boolean empresa) {
-		imoveis = new ArrayList<Imovel>();
+	public Proprietario(String nome, String telefone, String email, ArrayList<Imovel> im, boolean empresa) {
+		super(nome, telefone, email);
 		this.empresa = empresa;
 		imoveis = im;
 	}
+
 	//Metodos
 	public boolean getEmpresa() {
 		return empresa;

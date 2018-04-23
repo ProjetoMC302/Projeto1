@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 
-/**Essa classe simula um banco de dados que ser� posteriomente implementado*/
-/**Esta classe simula um banco de dados que sera posteriomente implementado*/
+/** Essa classe simula um banco de dados que sera posteriomente implementado*/
 public class Imobiliaria {
 	
 	private ArrayList<Imovel> imoveis;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Corretor> corretores;
 	private ArrayList<Proprietario> proprietarios;
-	/* as propostas precisam ser registradas para nao perder
-	 * 	o endereco delas, que sao agregadas ao corretor*/
+	/* 
+	 * As propostas precisam ser registradas para nao perder
+	 * o endereco delas, que sao agregadas ao corretor
+	 */ 
 	private ArrayList<Proposta> propostasEmAbertoSemCorretor;
 	private ArrayList<Proposta> propostasFinalizadasSemCorretor;
 	
@@ -22,26 +23,19 @@ public class Imobiliaria {
 		propostasFinalizadasSemCorretor = new ArrayList<Proposta>();
 	}
 	
-	/**Metodos de adi��o e remo��o de infoma��es do banco de dados simulado*/
 	/**Metodos de adicao e remocao de infomacoes do banco de dados simulado*/
 	
 	public boolean adicionarImovel(Imovel imovel) {
-		for(int i=0;i<imoveis.size();i++) {
-			if(imoveis.get(i)==imovel) {
-				//imovel ja existe no sistema
+		for (Imovel i : imoveis)
+			if (i.getId() == imovel.getId())
 				return false;
-			}
-		}
-		imoveis.add(imovel);
-		return true;
+		return imoveis.add(imovel);
 	}
+
 	public boolean removerImovel(int idImovel) {
-		for(int i=0;i<imoveis.size();i++) {
-			if(imoveis.get(i).getId()==idImovel) {
-				imoveis.remove(i);
-				return true;
-			}
-		}
+		for (Imovel i : imoveis)
+			if(i.getId() == idImovel) 
+				return imoveis.remove(i);
 		return false;
 	}
 	
@@ -66,8 +60,6 @@ public class Imobiliaria {
 		return false;
 	}
 	
-	
-	
 	public boolean adicionarCorretor(Corretor corretor) {
 		for(int i=0;i<corretores.size();i++) {
 			if(corretores.get(i)==corretor) {
@@ -78,6 +70,7 @@ public class Imobiliaria {
 		corretores.add(corretor);
 		return true;
 	}
+
 	public boolean removercorretor(int idCorretor) {
 		for(int i=0;i<corretores.size();i++) {
 			if(corretores.get(i).getId()==idCorretor){
@@ -106,6 +99,7 @@ public class Imobiliaria {
 		proprietarios.add(proprietario);
 		return true;
 	}
+
 	public boolean removerProprietario(int idProprietario) {
 		for(int i=0;i<proprietarios.size();i++) {
 			if(proprietarios.get(i).getId()==idProprietario) {

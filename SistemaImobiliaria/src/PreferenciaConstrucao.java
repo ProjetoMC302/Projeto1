@@ -14,7 +14,7 @@ public class PreferenciaConstrucao extends Preferencia {
 	}
 	
 	public PreferenciaConstrucao(boolean esquina, boolean condominio, Endereco endereco, double raio, 
-			TipoImovel tipoImovel, double areaMinimaTerreno, Restricao proposito, double areaMinimaCosntruida,
+			TipoImovel tipoImovel, double areaMinimaTerreno, Restricao proposito, double areaMinimaConstruida,
 			int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares, int quantidadeSuites) {
 		super(esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
 		this.areaMinimaConstruida = areaMinimaConstruida;

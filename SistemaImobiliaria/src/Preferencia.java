@@ -1,19 +1,30 @@
 
 public class Preferencia {
-	//haviamos esquecido de colocar o boolean para aluguel adicionaei no codigo e no diagrama de classes
+	// haviamos esquecido de colocar o boolean para aluguel adicionei no codigo e no diagrama de classes
 	private boolean aluguel;
 	private boolean esquina;
 	private boolean condominio;
 	private Endereco endereco;
-	private double raio; //O raio definirá a área ao redor do endereço dado que o cliente tem interesse
+	private double raio; // O raio define  a Ã¡rea ao redor do endereco dado que o cliente tem interesse
 	private TipoImovel tipoImovel;
 	private double areaMinimaTerreno;
 	private Restricao proposito;
 	
-	
 	public Preferencia(boolean aluguel,boolean esquina, boolean condominio, Endereco endereco, double raio,
 			TipoImovel tipoImovel,double areaMinimaTerreno, Restricao proposito) {
 		this.aluguel=aluguel;
+		this.esquina = esquina;
+		this.condominio = condominio;
+		this.endereco = endereco;
+		this.raio = raio;
+		this.tipoImovel = tipoImovel;
+		this.areaMinimaTerreno = areaMinimaTerreno;
+		this.proposito = proposito;
+	}
+
+	public Preferencia(boolean esquina, boolean condominio, Endereco endereco, double raio, TipoImovel tipoImovel,
+			double areaMinimaTerreno, Restricao proposito) {
+		super();
 		this.esquina = esquina;
 		this.condominio = condominio;
 		this.endereco = endereco;
@@ -32,8 +43,8 @@ public class Preferencia {
 		this.tipoImovel = tipoImovel;
 		this.areaMinimaTerreno = areaMinimaTerreno;
 		this.proposito = proposito;
-		if(this.tipoImovel==APARTAMENTO)
-		{
+
+		if(this.tipoImovel==TipoImovel.APARTAMENTO) {
 			this.condominio=true;
 		}
 	}
@@ -120,15 +131,15 @@ public class Preferencia {
 
 
 	public String toString() {
-		String preferencia;
-		preferencia=preferencia+"*Aluguel: "+getAluguel()+"\n";
-		preferencia=preferencia+"*Esquina: "+getEsquina()+"\n";
-		preferencia=preferencia+"*Condominio: "+getCondominio()+"\n";
-		preferencia=preferencia+"*Endereço de interesse:\n"+getEndereco().toString()+"\n";
-		preferencia=preferencia+"*Raio de interesse: "+getRaio()+"\n";
-		preferencia=preferencia+"*Tipo de imóvel procurado: "+getTipoImovel()+"\n";
-		preferencia=preferencia+"*Area minima do terreno: "+getAreaMinimaTerreno()+"\n";
-		preferencia=preferencia+"*Proposito do imóvel "+getProposito()+"\n";
+		String preferencia = "";
+		preferencia = preferencia + "*Aluguel: " + getAluguel() +"\n";
+		preferencia = preferencia + "*Esquina: " + getEsquina() +"\n";
+		preferencia = preferencia + "*Condominio: " + getCondominio() + "\n";
+		preferencia = preferencia + "*Endereco de interesse:\n" + getEndereco().toString() + "\n";
+		preferencia = preferencia + "*Raio de interesse: " + getRaio() + "\n";
+		preferencia = preferencia + "*Tipo de imovel procurado: " + getTipoImovel() + "\n";
+		preferencia = preferencia + "*Area minima do terreno: " + getAreaMinimaTerreno() + "\n";
+		preferencia = preferencia + "*Proposito do imovel " + getProposito() + "\n";
 		return preferencia;
 	}
 	
