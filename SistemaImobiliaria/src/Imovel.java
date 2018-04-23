@@ -186,5 +186,8 @@ public class Imovel {
 		this.tipoImovel = tipoImovel;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Imovel []";
+	}
 }
