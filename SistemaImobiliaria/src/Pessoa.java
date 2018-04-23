@@ -1,5 +1,6 @@
 
 public class Pessoa {
+	private int id;
 	private String nome;
 	private String telefone;
 	private String documento;
@@ -61,7 +62,7 @@ public class Pessoa {
 	public String toString() {
 		String pessoa="Nome: "+getNome()+"\n";
 		pessoa=pessoa+"Documento:"+getDocumento()+"\n";
-		pessoa=pessoa+"Endereço:\n"+getEndereco().toString()+"\n";
+		pessoa=pessoa+"Endereï¿½o:\n"+getEndereco().toString()+"\n";
 		pessoa=pessoa+"Email:"+getEmail()+"\n";
 	}
 	
