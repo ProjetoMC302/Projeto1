@@ -1,5 +1,6 @@
 
 public class Pessoa {
+	private static int geradorId;
 	private int id;
 	private String nome;
 	private String telefone;
@@ -9,12 +10,14 @@ public class Pessoa {
 	
 	public Pessoa(String nome, String telefone, String email) {
 		super();
+		id = ++geradorId;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 	}
 	
 	public Pessoa(String nome, String telefone, String documento, Endereco endereco, String email) {
+		id = ++geradorId;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.documento = documento;
@@ -24,6 +27,13 @@ public class Pessoa {
 	
 	
 	
+	public static int getGeradorId() {
+		return geradorId;
+	}
+	
+	public int getId() {
+		return id;
+	}
 	
 	public String getDocumento() {
 		return documento;
@@ -63,7 +73,10 @@ public class Pessoa {
 		String pessoa="Nome: "+getNome()+"\n";
 		pessoa=pessoa+"Documento:"+getDocumento()+"\n";
 		pessoa=pessoa+"Endere�o:\n"+getEndereco().toString()+"\n";
+		pessoa=pessoa+"Endereco:\n"+getEndereco().toString()+"\n";
 		pessoa=pessoa+"Email:"+getEmail()+"\n";
+		
+		return pessoa;
 	}
 	
 	
