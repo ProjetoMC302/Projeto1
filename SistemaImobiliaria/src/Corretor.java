@@ -10,21 +10,14 @@ public class Corretor extends Pessoa {
 
 	public Corretor(String nome, String telefone, String email) {
 		super(nome, telefone, email);
-	}
-
-	public Corretor(String nome, String telefone, String email, String senha, String creci, ArrayList<Imovel> imoveis, ArrayList<Cliente> clientes,
-			ArrayList<Proposta> propostasEmAberto, ArrayList<Proposta> propostasFinalizadas) {
-		super(nome, telefone, email);
-		this.senha = senha;
-		this.creci = creci;
-		this.imoveis = imoveis;
-		this.clientes = clientes;
-		this.propostasEmAberto = propostasEmAberto;
-		this.propostasFinalizadas = propostasFinalizadas;
+		imoveis = new ArrayList<Imovel>();
+		clientes = new ArrayList<Cliente>();
+		propostasEmAberto = new ArrayList<Proposta>();
+		propostasFinalizadas = new ArrayList<Proposta>();
 	}
 
 	public Corretor(String nome, String telefone, String email, String senha, String creci) {
-		super(nome, telefone, email);
+		this(nome, telefone, email);
 		this.senha = senha;
 		this.creci = creci;
 	}
@@ -33,8 +26,24 @@ public class Corretor extends Pessoa {
 		return imoveis.size();
 	}
 	
+	public boolean adicionarImovel(Imovel imovel) {
+		if ((!imoveis.contains(imovel)) && imovel.getCorretorResponsavel() == this) {
+			return imoveis.add(imovel);
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean removerImovel(Imovel imovel) {
+		return imoveis.remove(imovel);
+	}
+	
 	public boolean adicionarCliente(Cliente cliente) {
-		return clientes.add(cliente);
+		if (clientes.contains(cliente)) {
+			return false;
+		} else {
+			return clientes.add(cliente);
+		}
 	}
 	
 	public boolean removerCliente(Cliente cliente) {
@@ -42,7 +51,27 @@ public class Corretor extends Pessoa {
 	}
 	
 	public Proposta criarProposta(Cliente cliente, Proprietario vendedor, Imovel imovel) {
-		return new Proposta(imovel, cliente, vendedor, this);
+		Proposta proposta = new Proposta(imovel, cliente, vendedor, this);
+		propostasEmAberto.add(proposta);
+		return proposta;
+	}
+	
+	public boolean finalizarProposta(Proposta proposta) {
+		if ((propostasEmAberto.contains(proposta)) && (!propostasFinalizadas.contains(proposta))) {
+			propostasFinalizadas.add(proposta);
+		}
+		
+		return propostasEmAberto.remove(proposta);
+	}
+	
+	public boolean removerProposta(Proposta proposta) {
+		if (propostasEmAberto.contains(proposta)) {
+			return propostasEmAberto.remove(proposta);
+		} else if (propostasFinalizadas.contains(proposta)) {
+			return propostasFinalizadas.remove(proposta);
+		} else {
+			return false;
+		}
 	}
 
 	public String getSenha() {

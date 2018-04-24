@@ -1,6 +1,7 @@
 
 public class Pessoa {
 	private static int geradorId;
+	
 	private int id;
 	private String nome;
 	private String telefone;

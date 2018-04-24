@@ -23,9 +23,8 @@ public class Proposta {
 	}
 	
 	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel,
-			ArrayList<Pagamento> formaDePagamento, double precoProposta) {
+			        double precoProposta) {
 		this(imovel, comprador, vendedor, corretorResponsavel);
-		this.formaDePagamento = formaDePagamento;
 		this.precoProposta = precoProposta;
 	}
 	
