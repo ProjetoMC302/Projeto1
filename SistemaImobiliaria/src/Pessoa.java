@@ -69,7 +69,6 @@ public class Pessoa {
 	public String toString() {
 		String pessoa="Nome: "+getNome()+"\n";
 		pessoa=pessoa+"Documento:"+getDocumento()+"\n";
-		pessoa=pessoa+"Endere�o:\n"+getEndereco().toString()+"\n";
 		pessoa=pessoa+"Endereco:\n"+getEndereco().toString()+"\n";
 		pessoa=pessoa+"Email:"+getEmail()+"\n";
 		

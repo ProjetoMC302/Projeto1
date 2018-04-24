@@ -68,13 +68,12 @@ public class Imobiliaria {
 	}
 	
 	public boolean adicionarCorretor(Corretor corretor) {
-		for(Corretor cor : corretores) {
-			if(cor == corretor) {
-				//corretor ja existe no sistema
-				return false;
-			}
-		}
+		if (corretores.contains(corretor)) {
+			//corretor ja existe no sistema
+			return false;
+		} else {
 		return corretores.add(corretor);
+		}
 	}
 
 	/* Este metodo se mostrou necessario pois o corretor eh a unica classe com referencia para suas propostas,
@@ -106,13 +105,11 @@ public class Imobiliaria {
 	}
 	
 	public boolean adicionarProprietario(Proprietario proprietario) {
-		for(Proprietario pro : proprietarios) {
-			if(pro == proprietario) {
-				//imovel ja existe no sistema
+		if (proprietarios.contains(proprietario)) {
 				return false;
-			}
+		} else {
+			return proprietarios.add(proprietario);
 		}
-		return proprietarios.add(proprietario);
 	}
 
 	public boolean removerProprietario(int idProprietario) {
