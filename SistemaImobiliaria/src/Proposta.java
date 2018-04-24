@@ -81,8 +81,7 @@ public class Proposta {
 	public boolean adicionarPagamento(Pagamento p) {
 		if (verificarExistenciaPagamento(p)) {
 			return false;
-		}
-		else {
+		} else {
 			return formaDePagamento.add(p);
 		}
 	}

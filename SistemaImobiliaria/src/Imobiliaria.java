@@ -125,7 +125,7 @@ public class Imobiliaria {
 	}
 	
 	public boolean designarPropostaCorretor(Corretor corretor,
-										 Proposta propostaEmAberto) {
+										    Proposta propostaEmAberto) {
 		if (propostasEmAbertoSemCorretor.contains(propostaEmAberto)) {
 			Proposta proposta = propostaEmAberto;
 			proposta.setCorretorResponsavel(corretor);
@@ -134,6 +134,88 @@ public class Imobiliaria {
 		} else {
 			return false;
 		}
+	}
+	
+	public Imovel buscarImovel(Imovel imovel) {
+		if (imoveis.contains(imovel)) {
+			return imoveis.get(imoveis.indexOf(imovel));
+		}
+		
+		return null;
+	}
+	
+	public Imovel buscarImovel(int idImovel) {
+		for (Imovel imv : imoveis) {
+			if(imv.getId() == idImovel) {
+				return imv;
+			}
+		}
+
+		return null;
+	}
+	
+	public Corretor buscarCorretor(Corretor corretor) {
+		if (corretores.contains(corretor)) {
+			return corretores.get(corretores.indexOf(corretor));
+		}
+		
+		return null;
+	}
+	
+	public Corretor buscarCorretor(int idCorretor) {
+		for (Corretor cor : corretores) {
+			if(cor.getId() == idCorretor) {
+				return cor;
+			}
+		}
+
+		return null;
+	}
+	
+	public Corretor buscarCorretor(String creci) {
+		for (Corretor cor : corretores) {
+			if(cor.getCreci() == creci) {
+				return cor;
+			}
+		}
+
+		return null;
+	}
+	
+	public Proposta buscarProposta(Proposta proposta) {
+		for (Corretor cor : corretores) {
+			
+			if (cor.getPropostasEmAberto().contains(proposta)) {
+				return cor.getPropostasEmAberto()
+						  .get(cor.getPropostasEmAberto().indexOf(proposta));
+				
+			} if (cor.getPropostasFinalizadas().contains(proposta)) {
+				return cor.getPropostasFinalizadas()
+						  .get(cor.getPropostasFinalizadas().indexOf(proposta));
+			}
+		}
+		
+		return null;
+	}
+	
+	public Proposta buscarProposta(int idProposta) {
+		for (Corretor cor : corretores) {
+			
+			for (Proposta pro : cor.getPropostasEmAberto()) {
+				if (pro.getId() == idProposta) {
+					return pro;
+				}
+			}
+			
+			for (Proposta pro : cor.getPropostasFinalizadas()) {
+				if (pro.getId() == idProposta) {
+					return pro;
+				}
+			}
+			
+		}
+		
+		return null;
 	}
 
 	/* bloco de getters e setters */
