@@ -1,6 +1,6 @@
 \documentclass[a4paper,11pt,fleqn]{article}
 
-\usepackage[portuges]{babel}
+\usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{xspace}
 \usepackage{color}
@@ -15,9 +15,10 @@
 
 \title{Projeto Prático 1\\
 Programação Orientada a Objetos - MC302}
-\author{Alunos: Andre Papoti, Bruno , Lucas Ramos, Nicolas França, Sophia Estrela\\
-Professora: Esther Colombini\\
-Unicamp - Instituto de Computação}
+\author{Alunos: André Papoti, Bruno Falkenburg, Lucas Ramos, \\
+Nicolas França, Sophia Estrêla\\\\
+Professora: Esther Colombini\\\\
+Unicamp - Instituto de Computação\\}
 \date{Abril de 2018}
 
 \begin{document}
@@ -86,6 +87,87 @@ suficientemente longa de operações é $O(\log_2 n)$.
 \section{Cronograma de Atividades}
 \label{s:atividades-cronograma}
 
+\section{Ferramentas Utilizadas}
+\label{s:ferramentas}
+\subsection{Lagom}
+\label{ss:lagom}
+O Lagom Framework será utilizado para desenvolver serviços que serão consumidos pelo sistema.
+ Entende-se Framework como uma coletânea de códigos genéricos - ou seja, que podem ser utilizados em diversos
+  projetos - que têm por finalidade auxiliar o programador no desenvolvimento, servindo de esqueleto
+   para o código que será escrito. Ao contrário de bibliotecas, frameworks ditam o fluxo de controle da aplicação.
+
+
+O framework contém um conjunto de APIs que facilitam ao desenvolvedor o trabalho de escrever microserviços em Java, que
+ podem fazer uso de ferramentas já incluídas no Lagom, como servidores para permanência dos dados e compartilhamento de informações
+  com outros serviços. Todas as ferramentas utilizadas e os serviços desenvolvidos podem ser inicializados com um único
+   comando, ou separadamente.
+
+Microserviço é uma abordagem que visa construir um sistema como um conjunto de pequenos serviços, com funcionalidades
+ específicas e completas, e que se comunicam por meios leves, havendo baixa dependência entre os módulos. Este tipo
+  de arquitetura colabora com a manutenção da modularidade, permitindo que alterações em serviços específicos não alterem o resultado
+   do sistema como um todo. A estrutura dos serviços Lagom segue firmemente este modelo, fortalecido pela separação entre a declaração da interface do
+    serviço e a implementação em si.
+
+O Lagom oferece também a possibilidade dos microserviços nele construídos consumirem serviços externos, que não
+ precisam seguir a estrutura dos microserviços Lagom. Isto será utilizado, por exemplo, quando for preciso extrair dados de rotas utilizando a API do Google Maps
+  para descobrir uma boa rota entre os imóveis que um corretor deseja mostrar a um cliente.
+
+Das APIs que o Lagom fornece, podem-se destacar a Service API, útil para as declarações das interfaces dos serviços desenvolvidos, bem como sua
+ implementação, e a Persistence API, que auxilia no controle da persistência de dados. Apesar de não ser o banco de dados padrão, o Lagom
+  tem suporte ao PostgreSQL, que será futuramente utilizado.
+
+No momento, há escrito um conjunto de instruções básicas sobre as funcionalidades do Lagom, bem como instruções de instalação e configuração.
+ O texto está disponível no arquivo "DocumentacaoLagom.pdf" localizado no diretório raiz do primeiro projeto ("Projeto1/").
+
+
+\subsection{APIs do Google Maps}
+\label{ss:maps}
+
+A Google oferece alguns serviços para utilização do Maps por outros desenvolvedores. Dentre as APIs oferecidas, constam a Directions API,
+ cuja finalidade principal é a de encontrar direções entre diferentes localidades; a Distance Matrix API, que calcula tempo e distância entre
+  pontos em uma rota, e a Geocoding API, que transforma um endereço em coordenadas e vice-versa.
+
+Para facilitar o uso dessas APIs no código Java, está sendo utilizado o Java Client for Google Maps Services, uma biblioteca desenvolvida pela equipe do
+ Google Maps.
+
+Os serviços que a Google oferece serão utilizados para calcular, sob demanda do corretor, uma boa rota entre diversos imóveis que ele deseja mostrar ao
+ cliente.
+
+ Até o momento, foi utilizado o cliente Java do Google Maps para calcular uma rota entre dois endereços, e retornar as etapas do movimento em formato
+  JSON, para que o resultado possa ser facilmente utilizado em outras aplicações, como numa interface gráfica. Utilizou-se a Directions API, que possibilita
+   encontrar mais de uma rota para diversos meios de transporte. Entretanto, no exemplo optou-se por buscar apenas uma rota de carro, configuração que mais se assemelha
+    com o futuro uso dos serviços no sistema. Os códigos fonte podem ser encontrados em "Projeto1/Lagom/maps-sem-lagom/maps-testes/src/".
+
+\subsection{PostgreSQL}
+\label{ss:postgre}
+
+PostgreSQL é um SGBD (Sistema Gerenciador de Banco de Dados) objeto-relacional. Isso significa que os dados no banco são modelados como entidades relacionadas, semelhantes
+ a tabelas, acrescidos de estruturas típicas de orientação a objetos. A linguagem utilizada no PostgreSQL é a SQL.
+
+ Será utilizado para criação e gerenciamento de um banco de dados que armazenará os dados referentes às entidades do sistema.
+
+
+\subsection{GitHub}
+\label{ss:github}
+
+O GitHub é uma plataforma que permite hospedar e compartilhar arquivos, com foco em arquivos de código-fonte.
+
+Por utilizar o Git para controle de versão, os programadores podem trabalhar em ramificações locais do projeto e enviar ao repositório hospedado no GitHub os arquivos
+ em que trabalharam, registrando todas alterações e permitindo que outro desenvolvedor que esteja trabalhando no projeto possa permanecer atualizado sobre o progresso
+  do outro.
+
+Por conta dos benefícios que esta plataforma traz, o grupo está a utilizando para controle do código - garantindo que todos estejam com versões atualizadas
+ e possam com a mesma facilidade revisar e alterar o próprio código ou o de outro membro da equipe - e dos demais arquivos relacionados ao projeto. 
+
+\subsection{Trello}
+\label{ss:trello}
+Nicolas falará
+
+\subsection{draw.io}
+\label{ss:draw}
+
+Para a criação do Diagrama de Classes UML presente neste arquivo foi utilizado o draw.io, uma ferramenta online de criação e edição de diversos tipo de diagramas.
+ O site permite integração dos diagramas com o Google Drive, o que pode ser útil para compartilhamento dos diagramas e edição simultânea por mais de um membro.
 
 \bibliographystyle{plain}
 \bibliography{refs}
