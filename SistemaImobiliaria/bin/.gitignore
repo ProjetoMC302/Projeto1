@@ -10,9 +10,10 @@
 /Restricao.class
 /Terreno.class
 /TipoImovel.class
-/Cliente.class
 /Corretor.class
 /Imovel.class
+/InterfaceGrafica$1.class
+/InterfaceGrafica.class
 /Pagamento.class
 /Pessoa.class
 /Preferencia.class
