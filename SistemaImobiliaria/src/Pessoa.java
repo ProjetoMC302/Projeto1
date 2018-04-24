@@ -17,12 +17,9 @@ public class Pessoa {
 	}
 	
 	public Pessoa(String nome, String telefone, String documento, Endereco endereco, String email) {
-		id = ++geradorId;
-		this.nome = nome;
-		this.telefone = telefone;
+		this(nome, telefone, email);
 		this.documento = documento;
 		this.endereco = endereco;
-		this.email = email;
 	}
 	
 	

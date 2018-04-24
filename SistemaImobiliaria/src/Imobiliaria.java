@@ -26,98 +26,115 @@ public class Imobiliaria {
 	/**Metodos de adicao e remocao de infomacoes do banco de dados simulado*/
 	
 	public boolean adicionarImovel(Imovel imovel) {
-		for (Imovel i : imoveis)
-			if (i.getId() == imovel.getId())
-				return false;
-		return imoveis.add(imovel);
+		if (imoveis.contains(imovel)) {
+			return false;
+		} else {
+			return imoveis.add(imovel);
+		}
 	}
 
 	public boolean removerImovel(int idImovel) {
-		for (Imovel i : imoveis)
-			if(i.getId() == idImovel) 
+		for (Imovel i : imoveis) {
+			if(i.getId() == idImovel) { 
 				return imoveis.remove(i);
+			}
+		}
 		return false;
+	}
+	
+	public boolean removerImovel(Imovel imovel) {
+		return imoveis.remove(imovel);
 	}
 	
 	public boolean adicionarCliente(Cliente cliente) {
-		for(int i=0;i<clientes.size();i++) {
-			if(clientes.get(i)==cliente) {
-				//cliente ja existe no sistema
-				return false;
-			}
+		if (clientes.contains(cliente)) {
+			return false;
+		} else {
+			return clientes.add(cliente);
 		}
-		clientes.add(cliente);
-		return true;
 	}
 
 	public boolean removerCliente(int idCliente) {
-		for(int i=0;i<clientes.size();i++) {
-			if(clientes.get(i).getId()==idCliente) {
-				clientes.remove(i);
-				return true;
+		for(Cliente cli : clientes) {
+			if (cli.getId() == idCliente) {
+				return clientes.remove(cli);
 			}
 		}
 		return false;
 	}
 	
+	public boolean removerCliente(Cliente cli) {
+		return clientes.remove(cli);
+	}
+	
 	public boolean adicionarCorretor(Corretor corretor) {
-		for(int i=0;i<corretores.size();i++) {
-			if(corretores.get(i)==corretor) {
+		for(Corretor cor : corretores) {
+			if(cor == corretor) {
 				//corretor ja existe no sistema
 				return false;
 			}
 		}
-		corretores.add(corretor);
-		return true;
+		return corretores.add(corretor);
 	}
 
-	public boolean removercorretor(int idCorretor) {
-		for(int i=0;i<corretores.size();i++) {
-			if(corretores.get(i).getId()==idCorretor){
-				for (Proposta proposta : corretores.get(i)
-										.getPropostasEmAberto()) {
-					propostasEmAbertoSemCorretor.add(proposta);
-				}
-				for (Proposta proposta : corretores.get(i)
-										 .getPropostasFinalizadas()) {
-					propostasFinalizadasSemCorretor.add(proposta);
-				}
-				corretores.remove(i);
-				return true;
+	/* Este metodo se mostrou necessario pois o corretor eh a unica classe com referencia para suas propostas,
+	 * e nao eh desejavel que as propostas se percam na remocao de um corretor*/
+	private void copiarPropostasCorretor(Corretor corretor) {
+		for (Proposta proposta : corretor.getPropostasEmAberto()) {
+			propostasEmAbertoSemCorretor.add(proposta);
+		}
+		for (Proposta proposta : corretor.getPropostasFinalizadas()) {
+			propostasFinalizadasSemCorretor.add(proposta);
+		}
+	}
+	
+	public boolean removerCorretor(int idCorretor) {
+		for (Corretor cor : corretores) {
+			if (cor.getId() == idCorretor) {
+				copiarPropostasCorretor(cor);
+				return corretores.remove(cor);
 			}
 		}
 		return false;
 	}
 	
+	public boolean removerCorretor(Corretor corretor) {
+		if (corretores.contains(corretor)) {
+			copiarPropostasCorretor(corretor);
+		}
+		return corretores.remove(corretor);
+	}
+	
 	public boolean adicionarProprietario(Proprietario proprietario) {
-		for(int i=0;i<proprietarios.size();i++) {
-			if(proprietarios.get(i)==proprietario) {
+		for(Proprietario pro : proprietarios) {
+			if(pro == proprietario) {
 				//imovel ja existe no sistema
 				return false;
 			}
 		}
-		proprietarios.add(proprietario);
-		return true;
+		return proprietarios.add(proprietario);
 	}
 
 	public boolean removerProprietario(int idProprietario) {
-		for(int i=0;i<proprietarios.size();i++) {
-			if(proprietarios.get(i).getId()==idProprietario) {
-				proprietarios.remove(i);
-				return true;
+		for(Proprietario pro : proprietarios) {
+			if(pro.getId() == idProprietario) {
+				return proprietarios.remove(pro);
 			}
 		}
 		return false;
 	}
 	
-	public void designarPropostaCorretor(Corretor corretor,
+	public boolean designarPropostaCorretor(Corretor corretor,
 										 Proposta propostaEmAberto) {
-		Proposta proposta = propostaEmAberto;
-		proposta.setCorretorResponsavel(corretor);
-		corretor.getPropostasEmAberto().add(proposta);
-		propostasEmAbertoSemCorretor.remove(propostaEmAberto);
+		if (propostasEmAbertoSemCorretor.contains(propostaEmAberto)) {
+			Proposta proposta = propostaEmAberto;
+			proposta.setCorretorResponsavel(corretor);
+			corretor.getPropostasEmAberto().add(proposta);
+			return propostasEmAbertoSemCorretor.remove(propostaEmAberto);
+		} else {
+			return false;
+		}
 	}
-
 
 	/* bloco de getters e setters */
 	public ArrayList<Imovel> getImoveis() {
