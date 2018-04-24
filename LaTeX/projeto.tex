@@ -38,25 +38,8 @@ hipóteses e na seção~\ref{s:metodos} descrevemos a metodologia que será
 seção~\ref{s:atividades-cronograma} apresentamos as atividades e cronograma
 
 
-\section{Conceitos e Definições}
-\label{s:conceitos}
 
 
-\subsection{Isso é uma subseção}
-\label{ss:bst}
-
-: $8
-\rightarrow 3 \rightarrow 6 \rightarrow 4$. Dessa forma, com um algoritmo
-
-
-\begin{figure}[h!]
-  \begin{center}
-    \includegraphics[scale=0.5]{imagens/bst-example.png}
-  \end{center}
-  \caption{Exemplo de . Fonte:
-    \href{https://en.wg}{Wikipedia}.}
-  \label{f:bst}
-\end{figure}
 
 
 
@@ -147,27 +130,95 @@ PostgreSQL é um SGBD (Sistema Gerenciador de Banco de Dados) objeto-relacional.
  Será utilizado para criação e gerenciamento de um banco de dados que armazenará os dados referentes às entidades do sistema.
 
 
-\subsection{GitHub}
+\subsection{React}
+\label{ss:react}
+
+Durante a conclusão do nosso projeto, além do Lagom/Maps/PostgreSQL, queremos montar uma página web baseada no Framework Javascript chamado React.
+  O React foi criado pelo facebook principalmente para facilitar a criação de páginas que se atualizam a todo momento e que utilizam APIs externas a todo momento. Esse
+    tipo de trabalho sem o React precisa de tratamento de DOM e Ajax, que não é uma tarefa muito trivial.
+
+Dessa forma, o nosso Front-end vai utilizar um serviço externo, o Lagom vai gerar a API do Backend e o React vai consumir essa API e mostrar para o usuário final
+  através do navegador. Dessa forma, o cliente do nosso projeto vai usar um programa Backend em Java sem necessariamente precisar ter o Java instalado, trazendo
+    maior flexibilidade para o sistema.
+
+
+
+\subsection{Git e GitHub}
 \label{ss:github}
 
 O GitHub é uma plataforma que permite hospedar e compartilhar arquivos, com foco em arquivos de código-fonte.
 
 Por utilizar o Git para controle de versão, os programadores podem trabalhar em ramificações locais do projeto e enviar ao repositório hospedado no GitHub os arquivos
- em que trabalharam, registrando todas alterações e permitindo que outro desenvolvedor que esteja trabalhando no projeto possa permanecer atualizado sobre o progresso
+ que trabalharam, registrando todas alterações e permitindo que outro desenvolvedor que esteja trabalhando no projeto possa permanecer atualizado sobre o progresso
   do outro.
 
-Por conta dos benefícios que esta plataforma traz, o grupo está a utilizando para controle do código - garantindo que todos estejam com versões atualizadas
+Por conta dos benefícios que esta plataforma traz, o grupo está utilizando para controle do código - garantindo que todos estejam com versões atualizadas
  e possam com a mesma facilidade revisar e alterar o próprio código ou o de outro membro da equipe - e dos demais arquivos relacionados ao projeto. 
 
 \subsection{Trello}
 \label{ss:trello}
-Nicolas falará
+
+O Trello é o nosso organizador de projetos. Com ele temos um board, que tem um conjunto de listas. E cada lista tem é um conjunto de card.
+  Como usamos o método Kanban, os cards transitam entre lists até chegar a lista "Conclusão".
+
+A estrutura do nosso board pode ser vista na Figura~\ref{f:trello}.
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[scale=0.3]{imagens/trello.png}
+  \end{center}
+  \caption{Como o Trello é usado no nosso projeto}
+  \label{f:trello}
+\end{figure}
+
+O nosso board é dividido em 6 listas: Informações, Ideias, Objetivos, Execução, Revisão e Conclusão.
+
+Informações: Tem cards com informações gerais, links, recursos e descrições e documentações das ferramentas que estamos utilizando.
+
+Ideias: Lista para cards de ideias gerais.
+
+Objetivos: Lista com os objetivos futuros que estamos galgando.
+
+Execução: Lista com as tarefas que estão sendo executadas naquela fase do projeto.
+
+Revisão: Revisão das tarefas terminadas em Execução.
+
+Conclusão: Tarefas que foram em grande parte feitas.
+
+\subsection{Google Hangouts}
+\label{ss:google-hangouts}
+
+O Google Hangouts é o serviço padrão da Google para comunicação em tempo real.
+  Usamos muito durante nossas reuniões remotas. Normalmente nos encontramos mais online
+    do que fisicamente devido aos diferentes horários em comum entre os membros.
+
+Conseguimos com ele compartilhamento de tela compartilhamento de áudio e essas features são as mais usadas entre
+  nós.
+
+\subsection{Google Drive}
+\label{ss:google-drive}
+
+Usamos para ter os dados mais atualizados possível de forma sincronizada. O Trello e o draw.io tem integração com o Drive que
+  usamos constantemente entre nós.
 
 \subsection{draw.io}
 \label{ss:draw}
 
 Para a criação do Diagrama de Classes UML presente neste arquivo foi utilizado o draw.io, uma ferramenta online de criação e edição de diversos tipo de diagramas.
- O site permite integração dos diagramas com o Google Drive, o que pode ser útil para compartilhamento dos diagramas e edição simultânea por mais de um membro.
+ O site permite integração dos diagramas com o Google Drive, que é útil para compartilhamento dos diagramas e edição simultânea por mais de um membro.
+
+
+\subsection{Whatsapp}
+\label{ss:whatsapp}
+
+Usado para comunicação rápida entre os membros.
+
+\subsection{LaTeX}
+\label{ss:latex}
+
+O \LaTeX é utilizado para a formatação do nosso relatório final sobre o projeto. O arquivo lido atualmente foi compilado pelo LaTeX e
+  nos proporciona vários benefícios relacionados a escrita. É uma ferramenta com grande uso pela comunidade acadêmica.
+
 
 \bibliographystyle{plain}
 \bibliography{refs}
