@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+
+\bibitem{2009-cormen}
+T.H. Cormen, C.E. Leiserson, R.L. Rivest, and C.~Stein.
+\newblock {\em Introduction to Algorithms}.
+\newblock MIT Press, 2nd edition, 2009.
+
+\bibitem{pfaff2004full}
+Ben Pfaff.
+\newblock Performance analysis of bsts in system software.
+\newblock Available at https://benpfaff.org/papers/libavl.pdf.
+
+\bibitem{pfaff2004}
+Ben Pfaff.
+\newblock Performance analysis of bsts in system software.
+\newblock {\em SIGMETRICS Perform. Eval. Rev.}, 32(1):410--411, June 2004.
+
+\end{thebibliography}

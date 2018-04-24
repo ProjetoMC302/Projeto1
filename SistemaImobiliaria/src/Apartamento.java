@@ -15,11 +15,12 @@ public class Apartamento extends ImovelConstruido {
 	public Apartamento(int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
 			int quantidadeSuites, double areaConstruida) {
 		super(vagasAutomovel, quantidadeBanheiros, quantidadeQuartos, quantidadeAndares, quantidadeSuites, areaConstruida);
-		this.cobertura = cobertura;
+		/*this.cobertura = cobertura;
 		this.quantidadeTerraco = quantidadeTerraco;
 		this.andar = andar;
 		this.elevadorServico = elevadorServico;
 		this.elevadorSocial = elevadorSocial;
+		*/
 	}
 
 	public boolean isCobertura() {
