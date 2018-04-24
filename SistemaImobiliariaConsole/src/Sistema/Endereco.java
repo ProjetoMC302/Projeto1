@@ -119,10 +119,11 @@ public class Endereco {
 	@Override
 	public String toString(){
 		String out;
-		out = rua + ", "+ numero + " - "  + bairro + "\n";
-		out += cidade + " - " + estado + "\n";
-		out += "Complemento: " + complemento + "\n";
-		out += cep;
+		out = "  *Estado: "+ estado + 
+			  "\n  *Bairro: "+ bairro +
+			  "\n  *Rua: "+ rua + 
+			  "\n  *Numero: " +numero+ 
+			  "\n  *Cep: " +cep;
 		return out;
 	}
 }
