@@ -1,5 +1,4 @@
 package Entidades;
-
 /**
  * Esta classe armazena informacoes referentes a um condominio
  * 	em que um imovel pode fazer parte.
@@ -55,7 +54,7 @@ public class Condominio {
 	 * @return - true caso a opcao exista e foi removida.
 	 * 		   - false se a opcao nao existia na lista.
 	 */
-	public boolean removerLazer(Lazer lazer){
+	public boolean removerLazer(Lazer lazer) {
 		if (this.lazer.contains(lazer)) {
 			return this.lazer.remove(lazer);
 		}
@@ -69,39 +68,39 @@ public class Condominio {
 	 * @return - true se a opcao estiver presente.
 	 * 		   - false se nao estiver presente.
 	 */
-	public boolean contemAcademia(){
+	public boolean contemAcademia() {
 		return lazer.contains(Lazer.ACADEMIA);
 	}
 	
-	public boolean contemLago(){
+	public boolean contemLago() {
 		return lazer.contains(Lazer.LAGO);
 	}
 	
-	public boolean contemPiscina(){
+	public boolean contemPiscina() {
 		return lazer.contains(Lazer.PISCINA);
 	}
 	
-	public boolean contemQuadraDeEsportes(){
+	public boolean contemQuadraDeEsportes() {
 		return lazer.contains(Lazer.QUADRADEESPORTES);
 	}
 	
-	public boolean contemSalaoDeJogos(){
+	public boolean contemSalaoDeJogos() {
 		return lazer.contains(Lazer.SALAODEJOGOS);
 	}
 	
-	public boolean contemSalaoDeFesta(){
+	public boolean contemSalaoDeFesta() {
 		return lazer.contains(Lazer.SALAODEFESTA);
 	}
 	
-	public boolean contemChurrasqueira(){
+	public boolean contemChurrasqueira() {
 		return lazer.contains(Lazer.CHURRASQUEIRA);
 	}
 	
-	public boolean contemSauna(){
+	public boolean contemSauna() {
 		return lazer.contains(Lazer.SAUNA);
 	}
 	
-	public boolean contemParquinho(){
+	public boolean contemParquinho() {
 		return lazer.contains(Lazer.PARQUINHO);
 	}
 
@@ -131,19 +130,26 @@ public class Condominio {
 	public int getId() {
 		return id;
 	}
+	
+	private String auxiliarValorCondominio() {
+		return "R$" + String.format("%.2f", valorCondominio);
+	}
+	
+	private String auxiliarLazer() {
+		String out = "";
+		for (Lazer lz : lazer) {
+			out += "  -" + lz + "\n";
+		}
+		
+		return out;
+	}
 
 	@Override
-	public String toString(){
-		String out;
-		out = "id do condominio: " + id + "\nValor: " +  valorCondominio +
-				"\nOpcoes de lazer: ";
-		if (lazer.isEmpty()){
-			out += "VAZIO\n";
-		} else {
-			for (int i = 0; i < lazer.size(); i++) {
-				out += lazer.get(i) + "\n";
-			}
-		}
+	public String toString() {
+		String out = "";
+		out += "*Id do Condominio: " + id + "\n";
+		out += "*Valor: " + auxiliarValorCondominio() + "\n";
+		out += "*Opcoes de Lazer:\n" + auxiliarLazer();
 		
 		return out;
 	}

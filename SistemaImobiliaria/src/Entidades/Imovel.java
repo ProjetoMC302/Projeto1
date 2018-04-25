@@ -1,5 +1,4 @@
 package Entidades;
-
 import java.util.ArrayList;
 
 public class Imovel {
@@ -184,13 +183,67 @@ public class Imovel {
 		this.tipoImovel = tipoImovel;
 	}
 
+	private String auxiliarRestricoes() {
+		String out = "[ ";
+		for (Restricao r : restricoes) {
+			out += r + " ";
+		}
+		out += "]";
+		
+		return out;
+	}
+	
+	private String auxiliarDiferenciais() {
+		String out = "";
+		for (String dif : diferenciais) {
+			out += "  -" + dif + "\n";
+		}
+		
+		return out;
+	}
+	
+	private String auxiliarFormasPagamentoAceitas() {
+		String out = "";
+		for (FormaPagamento fp : formasPagamentoAceitas) {
+			out += " | " + fp;
+		}
+		out += " |";
+		
+		return out;
+	}
+	
+	private String auxiliarDinheiro(double valor) {
+		return "R$" + String.format("%.2f", valor);
+	}
+	
+	private String auxiliarAluguel() {
+		String out;
+		
+		if (aluguel) {
+			out = "sim";
+		} else {
+			out = "nao";
+		}
+		
+		return out;
+	}
+	
 	@Override
 	public String toString() {
-		return "Id= " + getId() + ", Endereco= " + getEndereco() + ", Restricoes= "
-				+ getRestricoes() + ", Condominio= " + getCondominio() + ", Proprietario= " + getProprietario()
-				+ ", CorretorResponsavel= " + getCorretorResponsavel() + ", Descricao= " + getDescricao()
-				+ ", Diferenciais= " + getDiferenciais() + ", FormasPagamentoAceitas= "
-				+ getFormasPagamentoAceitas() + ", Preco=" + getPreco() + ", Iptu= " + getIptu()
-				+ ", isAluguel= " + isAluguel() + ", TipoImovel= " + getTipoImovel() + "]";
+		String out = "";
+		out += "*Tipo de Imovel: " + tipoImovel + " - id: " + id + "\n";
+		out += "*Id do Proprietario: " + proprietario.getId() + "\n";
+		out += "*Id do Corretor Responsavel: " + corretorResponsavel.getId() + "\n";
+		out += "*Restricoes: " + auxiliarRestricoes() +"\n";
+		out += "*Endereco:\n" + endereco + "\n";
+		out += "*Condominio:\n" + condominio;
+		out += "*Descricao: " + descricao + "\n";
+		out += "*Diferenciais:\n" + auxiliarDiferenciais();
+		out += "*Preco: " + auxiliarDinheiro(preco) + "\n";
+		out += "*Formas de Pagamento Aceitas: " + auxiliarFormasPagamentoAceitas() + "\n";
+		out += "*IPTU: " + auxiliarDinheiro(iptu) + "\n";
+		out += "*Aceita aluguel: " + auxiliarAluguel() + "\n";
+		
+		return out;
 	}
 }

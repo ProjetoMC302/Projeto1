@@ -587,7 +587,7 @@ public class Main {
 					Cliente comprador = buscaCliente(corretor, getStringInput(scanner, "Digite o CPF do comprador: "));
 					Proprietario vendedor = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPF do vendedor: "));
 					Imovel imovel = imobiliaria.buscarImovel(getIntInput(scanner, "Digite o Id do imovel: "));
-					Proposta proposta = corretor.criarProposta(comprador, vendedor, imovel, getDoubleInput(scanner, "Digite o valor da compra: "));
+					Proposta proposta = corretor.criarProposta(comprador, imovel, getDoubleInput(scanner, "Digite o valor da compra: "));
 					System.out.println(proposta);
 					System.out.println("***************************************************************");
 				}else if(comando == telaProposta.getComando(listarTodasPropostasAbertas)){

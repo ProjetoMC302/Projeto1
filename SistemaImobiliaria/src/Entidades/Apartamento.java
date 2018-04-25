@@ -1,5 +1,4 @@
 package Entidades;
-
 /**Apartamento - essa classe representa a estrutura de um apartamento: 
  * os atributos relevantes para um cliente que deseja um apartamento
  * */
@@ -71,11 +70,28 @@ public class Apartamento extends ImovelConstruido {
 		this.elevadorSocial = elevadorSocial;
 	}
 	
-	//Chama o metodo toString da classe superclasse com a adi��o dos atributos especificos
+	private String auxiliarBooleano(boolean valor) {
+		String out;
+		
+		if (valor) {
+			out = "sim";
+		} else {
+			out = "nao";
+		}
+		
+		return out;
+	}
+	
+	//Chama o metodo toString da classe superclasse com a adicao dos atributos especificos
 	@Override
 	public String toString() {
-		return "APARTAMENTO:\n"+super.toString()+", Cobertura= " + isCobertura() + ", QuantidadeTerraco= " + getQuantidadeTerraco()
-				+ ", Andar= " + getAndar() + ", ElevadorServico= " + isElevadorServico()
-				+ ", ElevadorSocial= " + isElevadorSocial() + "]";
+		String out = super.toString();
+		out += "*Andar: " + andar + "\n";
+		out += "*Cobertura: " + auxiliarBooleano(cobertura) + "\n";
+		out += "*Elevador Social: " + auxiliarBooleano(elevadorSocial) + "\n";
+		out += "*Elevador de Servico: " + auxiliarBooleano(elevadorServico) + "\n";
+		out += "*Quantidade de Terraco(s): " + quantidadeTerraco + "\n";
+		
+		return out;
 	}
 }

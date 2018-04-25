@@ -1,5 +1,4 @@
 package Entidades;
-
 /**
  * Endereco eh uma classe que armazena informacoes
  * 	de endereco de um imovel.
@@ -20,7 +19,7 @@ public class Endereco {
 	private int numero;
 	private String complemento;
 	
-	public Endereco(){
+	public Endereco() {
 		id = ++geradorId; /* define valor de id e atualiza
 		 				   * o geradorId para o valor da proxima
 		 				   * instancia */
@@ -34,7 +33,7 @@ public class Endereco {
 	}
 	
 	public Endereco(int cep, String estado, String cidade,
-			String rua, String bairro, int numero){
+					String rua, String bairro, int numero){
 		this();
 		this.cep = cep;
 		this.estado = estado;
@@ -123,11 +122,12 @@ public class Endereco {
 	 */
 	@Override
 	public String toString(){
-		String out;
-		out = rua + ", "+ numero + " - "  + bairro + "\n";
-		out += cidade + " - " + estado + "\n";
-		out += "Complemento: " + complemento + "\n";
-		out += cep;
+		String out = "";
+		out += "*Rua: " + rua + "\n*Numero " + numero + "\n";
+		out += "*Complemento: " + complemento + "\n";
+		out += "*Cidade: " + cidade + "\n*Estado: " + estado + "\n";
+		out += "*Bairro" + bairro + "\n" + "*CEP: " + cep + "\n";
+
 		return out;
 	}
 	

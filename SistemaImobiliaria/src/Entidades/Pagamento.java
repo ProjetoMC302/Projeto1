@@ -24,10 +24,18 @@ public class Pagamento {
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
+	
+	private String auxiliarValorCombinado() {
+		return "R$" + String.format("%.2f", valorCombinado);
+	}
 
 	@Override
 	public String toString() {
-		return "Pagamento []";
+		String out = "";
+		out += "*Valor Combinado: " + auxiliarValorCombinado() + "\n";
+		out += "*Forma de Pagamento: " + formaPagamento + "\n";
+		
+		return out;
 	}
 
 	

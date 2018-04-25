@@ -41,11 +41,14 @@ public class Preferencia {
 					   Endereco endereco, double raio, TipoImovel tipoImovel,
 					   double areaMinimaTerreno, Restricao proposito) {
 		
-		this(esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
+		this(esquina, condominio, endereco, raio, 
+			 tipoImovel, areaMinimaTerreno, proposito);
 		this.aluguel = aluguel;
 	}
 
-	public Preferencia(boolean aluguel ,boolean esquina, boolean condominio, TipoImovel tipoImovel, double areaMinimaTerreno, Restricao proposito) {
+	public Preferencia(boolean aluguel ,boolean esquina, boolean condominio, 
+					   TipoImovel tipoImovel, double areaMinimaTerreno, 
+					   Restricao proposito) {
 		this.esquina = esquina;
 		this.condominio = condominio;
 		this.endereco = new Endereco();
@@ -133,18 +136,31 @@ public class Preferencia {
 		this.aluguel = aluguel;
 	}
 
+	private String auxiliarBooleano(boolean b) {
+		String out;
+		
+		if (b) {
+			out = "sim";
+		} else {
+			out = "nao";
+		}
+		
+		return out;
+	}
 
+	@Override
 	public String toString() {
-		String preferencia = "";
-		preferencia = preferencia + "*Aluguel: " + isAluguel() +"\n";
-		preferencia = preferencia + "*Esquina: " + isEsquina() +"\n";
-		preferencia = preferencia + "*Condominio: " + isCondominio() + "\n";
-		preferencia = preferencia + "*Endereco de interesse:\n" + getEndereco().toString() + "\n";
-		preferencia = preferencia + "*Raio de interesse: " + getRaio() + "\n";
-		preferencia = preferencia + "*Tipo de imovel procurado: " + getTipoImovel() + "\n";
-		preferencia = preferencia + "*Area minima do terreno: " + getAreaMinimaTerreno() + "\n";
-		preferencia = preferencia + "*Proposito do imovel " + getProposito() + "\n";
-		return preferencia;
+		String out = "";
+		out += "*Aluguel: " + auxiliarBooleano(aluguel) +"\n";
+		out += "*Esquina: " + auxiliarBooleano(esquina) +"\n";
+		out += "*Condominio: " + auxiliarBooleano(condominio) + "\n";
+		out += "*Endereco de Interesse:\n" + endereco + "\n";
+		out += "*Raio de Interesse: " + raio + "\n";
+		out += "*Tipo de Imovel Procurado: " + tipoImovel + "\n";
+		out += "*Area Minima do Terreno: " + areaMinimaTerreno + "\n";
+		out += "*Proposito do Imovel: " + proposito + "\n";
+		
+		return out;
 	}
 
 }

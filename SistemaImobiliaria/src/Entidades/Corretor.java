@@ -1,5 +1,4 @@
 package Entidades;
-
 import java.util.ArrayList;
 
 public class Corretor extends Pessoa {
@@ -56,8 +55,14 @@ public class Corretor extends Pessoa {
 		return clientes.remove(cliente);
 	}
 	
-	public Proposta criarProposta(Cliente comprador, Proprietario vendedor, Imovel imovel, double precoProposta) {
-		Proposta proposta = new Proposta(imovel, comprador, vendedor, this, precoProposta);
+	public Proposta criarProposta(Cliente cliente, Imovel imovel) {
+		Proposta proposta = new Proposta(imovel, cliente, this);
+		propostasEmAberto.add(proposta);
+		return proposta;
+	}
+	
+	public Proposta criarProposta(Cliente cliente, Imovel imovel, double precoProposta) {
+		Proposta proposta = new Proposta(imovel, cliente, this, precoProposta);
 		propostasEmAberto.add(proposta);
 		return proposta;
 	}
@@ -83,6 +88,21 @@ public class Corretor extends Pessoa {
 		
 		return false;
 	}
+	
+	public String listarPropostasCorretor() {
+		String out = "***Propostas Em Aberto***\n";
+		for (Proposta propos : propostasEmAberto) {
+			out += "****************";
+			out += propos;
+		}
+		out += "\n***Propostas Finalizadas***\n";
+		for (Proposta propos : propostasFinalizadas) {
+			out += "****************";
+			out += propos;
+		}		
+		return out;
+	}
+
 
 	public String getSenha() {
 		return senha;
@@ -131,16 +151,59 @@ public class Corretor extends Pessoa {
 	public void setPropostasFinalizadas(ArrayList<Proposta> propostasFinalizadas) {
 		this.propostasFinalizadas = propostasFinalizadas;
 	}
-
+	
+	private String auxiliadorImoveis() {
+		String out = "[ ";
+		for (Imovel imv : imoveis) {
+			out += imv.getId() + " ";
+		}
+		out += "]";
+		
+		return out;
+	}
+	
+	private String auxiliadorClientes() {
+		String out = "[ ";
+		for (Cliente cli : clientes) {
+			out += cli.getId() + " ";
+		}
+		out += "]";
+		
+		return out;
+	}
+	
+	private String auxiliadorPropostasEmAberto() {
+		String out = "[ ";
+		for (Proposta pro : propostasEmAberto) {
+			out += pro.getId() + " ";
+		}
+		out += "]";
+		
+		return out;
+	}
+	
+	private String auxiliadorPropostasFinalizadas() {
+		String out = "[ ";
+		for (Proposta pro : propostasFinalizadas) {
+			out += pro.getId() + " ";
+		}
+		out += "]";
+		
+		return out;
+	}
+	
 	@Override
 	public String toString() {
-		return "Corretor: \n"+
-				super.toString()+
-				"numeroDeImoveis= " + numeroDeImoveis() + 
-				"\nCreci= "+ getCreci() + 
-				"\nImoveis= " + getImoveis() + 
-				"\nClientes= " + getClientes()+ 
-				"\nPropostasEmAberto= " + getPropostasEmAberto() + 
-				"\nPropostasFinalizadas= " + getPropostasFinalizadas() + "]";
+		String out = "";
+		out += "**Corretor** \n";
+		out += 	super.toString();
+		out += "*Creci: "+ creci + "\n";
+		out += "*Quantidade de imoveis sob responsabilidade: " + numeroDeImoveis() +"\n"; 
+		out += "*Imoveis: " + auxiliadorImoveis() + "\n"; 
+		out += "*Clientes: " + auxiliadorClientes() + "\n"; 
+		out += "*Propostas Em Aberto: " + auxiliadorPropostasEmAberto() + "\n";
+		out += "\n*Propostas Finalizadas: " + auxiliadorPropostasFinalizadas() + "\n";
+	
+		return out;
 	}	
 }

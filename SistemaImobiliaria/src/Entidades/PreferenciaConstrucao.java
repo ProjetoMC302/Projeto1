@@ -1,5 +1,4 @@
 package Entidades;
-
 public class PreferenciaConstrucao extends Preferencia {
 	
 	//Atributos
@@ -72,6 +71,18 @@ public class PreferenciaConstrucao extends Preferencia {
 
 	public void setQuantidadeSuites(int quantidadeSuites) {
 		this.quantidadeSuites = quantidadeSuites;
+	}
+	
+	@Override
+	public String toString() {
+		String out = super.toString();
+		out += "*Area Minima Construida: " + areaMinimaConstruida + "\n";
+		out += "*Quantidade de Banheiros: " + quantidadeBanheiros + "\n";
+		out += "*Quantidade de Quartos: " + quantidadeQuartos + "\n";
+		out += "*Quantidade de Suites: " + quantidadeSuites + "\n";
+		out += "*Quantidade de andares: " + quantidadeAndares + "\n";
+		
+		return out;
 	}
 
 }

@@ -1,5 +1,4 @@
 package Entidades;
-
 import java.util.ArrayList;
 
 public class Proprietario extends Pessoa {
@@ -37,7 +36,7 @@ public class Proprietario extends Pessoa {
 		return imoveis.remove(imovel);
 	}
 	
-	// Cria instancia de Imovel e faz as conexoes necessarias
+	// Cria instância de Imovel e faz as conexoes necessarias
 	public Imovel publicarImovel(Endereco endereco, Condominio condominio, 
 								 Corretor corretorResponsavel, String descricao,
 								 double preco, double iptu, boolean aluguel,
@@ -66,6 +65,38 @@ public class Proprietario extends Pessoa {
 
 	public void setImoveis(ArrayList<Imovel> imoveis) {
 		this.imoveis = imoveis;
+	}
+	
+	private String auxiliarEmpresa() {
+		String out;
+		
+		if (empresa) {
+			out = "sim";
+		} else {
+			out = "nao";
+		}
+		
+		return out;
+	}
+	
+	private String auxiliarImoveis() {
+		String out = "[ ";
+		for (Imovel imv : imoveis) {
+			out += imv.getId() + " ";
+		}
+		out += "]";
+		
+		return out;
+	}
+	
+	@Override
+	public String toString() {
+		String out = "***Proprietario***";
+		out += super.toString();
+		out += "*Empresa: " + auxiliarEmpresa() + "\n";
+		out += "*Imoveis: " + auxiliarImoveis() + "\n";
+		
+		return out;
 	}
 	
 }

@@ -1,5 +1,4 @@
 package Entidades;
-
 import java.util.ArrayList;
 
 public class Proposta {
@@ -14,14 +13,19 @@ public class Proposta {
 	private ArrayList<Pagamento> formaDePagamento;
 	private double precoProposta;
 	
-	//Construtores	
-	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel, double precoProposta) {
+	//Construtores
+	public Proposta(Imovel imovel, Cliente comprador, Corretor corretorResponsavel) {
 		id = ++geradorId;
 		formaDePagamento = new ArrayList<Pagamento>();
 		this.imovel = imovel;
 		this.comprador = comprador;
-		this.vendedor = vendedor;
+		this.vendedor = imovel.getProprietario();
 		this.corretorResponsavel = corretorResponsavel;
+	}
+	
+	public Proposta(Imovel imovel, Cliente comprador,
+					Corretor corretorResponsavel, double precoProposta) {
+		this(imovel, comprador, corretorResponsavel);
 		this.precoProposta = precoProposta;
 	}
 	
@@ -87,5 +91,41 @@ public class Proposta {
 	
 	public boolean removerPagamento(Pagamento p) {
 		return formaDePagamento.remove(p);
+	}
+	
+	private String auxiliadorFormaDePagamento() {
+		String out = "";
+		
+		for (Pagamento p : formaDePagamento) {
+			out += "****************";
+			out += p;
+		}
+		
+		return out;
+	}
+	
+	private String auxiliadorPrecoProposta() {
+		return "R$" + String.format("%.2f", precoProposta);
+	}
+	
+	private String auxiliadorCorretorResponsavel() {
+		if (corretorResponsavel != null) {
+			return Integer.toString(corretorResponsavel.getId());
+		}
+		
+		return "nenhum";
+	}
+	
+	@Override
+	public String toString() {
+		String out = "*Proposta de Id: " + id + "\n";
+		out += "*Id do Imovel: " + imovel.getId() + "\n";
+		out += "*Id do Comprador: " + comprador.getId() + "\n";
+		out += "*Id do Corretor Responsavel: " + auxiliadorCorretorResponsavel() + "\n";
+		out += "*Id do Vendedor: " + vendedor.getId() + "\n";
+		out += "*Forma(s) de Pagamento:\n" + auxiliadorFormaDePagamento();
+		out += "*Preco da Proposta: " + auxiliadorPrecoProposta() + "\n";
+		
+		return out;
 	}
 }

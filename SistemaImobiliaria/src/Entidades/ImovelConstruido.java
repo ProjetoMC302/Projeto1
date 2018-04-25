@@ -1,10 +1,5 @@
 package Entidades;
-
-/**
- * ImovelConstruido - essa classe representa a estrutura de um imovel: 
- * imovel que tem em seu terreno alguma construcao habitavel
- *
- */
+/**ImovelConstruido - essa classe representa a estrutura de um imovel: imovel que tem em seu terreno alguma construcao habitavel*/
 public class ImovelConstruido extends Imovel {
 	//numero de vagas para automoveis ou motocicletas
 	private int vagasAutomovel;
@@ -81,10 +76,15 @@ public class ImovelConstruido extends Imovel {
 
 	@Override
 	public String toString() {
-		return  super.toString() + ", NumeroVagasAutomovel=" + getVagasAutomovel() + ", QuantidadeBanheiros="
-				+ getQuantidadeBanheiros() + ", QuantidadeQuartos=" + getQuantidadeQuartos()
-				+ ", QuantidadeAndares=" + getQuantidadeAndares() + ", QuantidadeSuites="
-				+ getQuantidadeSuites() + ", AreaConstruida= " + getAreaConstruida();
+		String out = super.toString();
+		out += "*Vagas para Automoveis: " + vagasAutomovel + "\n";
+		out += "*Quantidade de Banheiros: " + quantidadeBanheiros + "\n";
+		out += "*Quantidade de Quartos: " + quantidadeQuartos + "\n";
+		out += "*Quantidade de Andares: " + quantidadeAndares + "\n";
+		out += "*Quantidade de Suites: " + quantidadeSuites + "\n";
+		out += "*Area Construida: " + areaConstruida + "\n";
+		
+		return out;
 	}
 	
 	

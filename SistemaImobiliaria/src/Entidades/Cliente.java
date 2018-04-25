@@ -1,5 +1,4 @@
 package Entidades;
-
 import java.util.ArrayList;
 
 public class Cliente extends Pessoa {
@@ -22,8 +21,8 @@ public class Cliente extends Pessoa {
 		preferencias.add(preferencia);
 	}
 
-	public Cliente(String nome, String telefone,String documento, Endereco endereco, String email,
-				   double precoMax, Preferencia preferencia) {
+	public Cliente(String nome, String telefone,String documento, Endereco endereco, 
+				   String email, double precoMax, Preferencia preferencia) {
 		super(nome, telefone,documento,endereco, email);
 		this.precoMax = precoMax;
 		formasPagamentoDesejadas = new ArrayList<FormaPagamento>();
@@ -77,29 +76,35 @@ public class Cliente extends Pessoa {
 		return false;
 	}
 
-
-
-	public String toString() {
-		String cliente = "DADOS CLIENTE:\n" + super.toString();
-		cliente = cliente + "Preco maximo: " + getPrecoMax() + "\n";
-		cliente = cliente + "Formas de Pagamento desejadas: ";
-
-		for (int i = 0; i < formasPagamentoDesejadas.size(); i++) {
-			// Lógica simples para formatação no console
-			if (i != 0)
-				cliente = cliente + "," + formasPagamentoDesejadas.get(i);
-			else
-				cliente = cliente + formasPagamentoDesejadas.get(i);
+	private String auxiliarFormasPagamentoDesejadas() {
+		String out = "";
+		for (FormaPagamento fp : formasPagamentoDesejadas) {
+			out += " | " + fp;
 		}
-
-		cliente = cliente + "\nPREFERÊNCIAS DO CLIENTE: " + "\n";
-
-		for (int i = 0; i < this.preferencias.size(); i++) {
-			cliente = cliente + "Imovel " + i+1 + " :\n";
-			cliente = cliente + preferencias.get(i).toString();
-		}
+		out += " |";
+		
+		return out;
+	}
 	
-		return cliente;
+	private String auxiliarPreferencias() {
+		String out = "";
+		
+		for (Preferencia p : preferencias) {
+			out += "****************";
+			out += p;
+		}
+		
+		return out;
+	}
+
+	@Override
+	public String toString() {
+		String out = "**Cliente**";
+		out += super.toString();
+		out += "*Formas de Pagamento Desejadas: " + auxiliarFormasPagamentoDesejadas() + "\n";
+		out += "*Preferencias:\n" + auxiliarPreferencias();
+		
+		return out;
 	}  
 	
 }

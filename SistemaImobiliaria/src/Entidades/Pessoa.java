@@ -26,8 +26,6 @@ public class Pessoa {
 		this.email = email;
 	}
 	
-	
-	
 	public static int getGeradorId() {
 		return geradorId;
 	}
@@ -69,17 +67,16 @@ public class Pessoa {
 		this.email = email;
 	}
 	
-	
+	@Override
 	public String toString() {
 		
-		String pessoa;
-		pessoa="Id: "+getId()+"\n";
-		pessoa=pessoa+"Nome: "+getNome()+"\n";
-		pessoa=pessoa+"Documento:"+getDocumento()+"\n";
-		pessoa=pessoa+"Endereco:\n"+getEndereco()+"\n";
-		pessoa=pessoa+"Email:"+getEmail()+"\n";
+		String out = "";
+		out += "*Nome: " + nome + " - Id: " + id+"\n";
+		out += "*Documento:" + documento + "\n";
+		out += "*Endereco:\n" + endereco;
+		out += "*Email:" + email + "\n";
 		
-		return pessoa;
+		return out;
 	}
 	
 	

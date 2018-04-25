@@ -1,5 +1,4 @@
 package Entidades;
-
 /**Casa - essa classe representa a estrutura de uma casa: 
  * os atributos relevantes para um cliente que deseja uma casa
  * */
@@ -13,9 +12,10 @@ public class Casa  extends ImovelConstruido {
 	
 
 	public Casa(Endereco endereco, Condominio condominio, Proprietario proprietario,
-			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
-			TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos,
-			int quantidadeAndares, int quantidadeSuites, double areaConstruida, boolean esquina, boolean piscina, double areaTerreno) {
+			Corretor corretorResponsavel, String descricao, double preco, double iptu, 
+			boolean aluguel, TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, 
+			int quantidadeQuartos, int quantidadeAndares, int quantidadeSuites, 
+			double areaConstruida, boolean esquina, boolean piscina, double areaTerreno) {
 		
 		super(endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel,
 				vagasAutomovel, quantidadeBanheiros, quantidadeQuartos, quantidadeAndares, quantidadeSuites, areaConstruida);
@@ -52,16 +52,29 @@ public class Casa  extends ImovelConstruido {
 	public double calculaAreaQuintal() {
 		return getAreaTerreno() - getAreaConstruida();
 	}
+	
+	private String auxiliarBooleano(boolean valor) {
+		String out;
+		
+		if (valor) {
+			out = "sim";
+		} else {
+			out = "nao";
+		}
+		
+		return out;
+	}
 
 	//Chama o metodo toString da classe superclasse com a adi��o dos atributos especificos
 	@Override
 	public String toString() {
-		return "Casa [ "+ super.toString() + "Esquina= " + isEsquina() + ", Piscina= " + isPiscina() + ", AreaTerreno= "
-				+ getAreaTerreno() + ", calculaAreaQuintal= " + calculaAreaQuintal() + "]";
-	}
-	
-	
+		String out = super.toString();
+		out += "*Esquina: " + auxiliarBooleano(esquina) + "\n";
+		out += "*Piscina: " + auxiliarBooleano(piscina) + "\n";
+		out += "*Area do Terreno: " + areaTerreno + "\n";
+		out += "*Area do Quintal: " + calculaAreaQuintal() + "\n";
 
-	
+		return out;
+	}
 	
 }

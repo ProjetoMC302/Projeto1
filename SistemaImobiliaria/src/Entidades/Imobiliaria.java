@@ -1,5 +1,4 @@
 package Entidades;
-
 import java.util.ArrayList;
 
 /** Essa classe simula um banco de dados que sera posteriomente implementado*/
@@ -270,6 +269,73 @@ public class Imobiliaria {
 	public void setPropostasFinalizadasSemCorretor(
 			ArrayList<Proposta> propostasFinalizadasSemCorretor) {
 		this.propostasFinalizadasSemCorretor = propostasFinalizadasSemCorretor;
+	}
+	
+	private String auxiliadorProprietarios() {
+		String out = "";
+		
+		for (Proprietario pro : proprietarios) {
+			out += "****************";
+			out += pro;
+		}
+		
+		return out;
+	}
+	
+	private String auxiliadorClientes() {
+		String out = "";
+		
+		for (Cliente cli : clientes) {
+			out += "****************";
+			out += cli;
+		}
+		
+		return out;	
+	}
+	
+	private String auxiliadorCorretores() {
+		String out = "";
+		
+		for (Corretor cor : corretores) {
+			out += "****************";
+			out += cor;
+		}
+		
+		return out;
+	}
+	
+	private String auxiliadorPropostasEmAbertoSemCorretor() {
+		String out = "";
+		
+		for (Proposta propos : propostasEmAbertoSemCorretor) {
+			out += "****************";
+			out += propos;
+		}
+		
+		return out;
+	}
+	
+	private String auxiliadorPropostasFinalizadasSemCorretor() {
+		String out = "";
+		
+		for (Proposta propos : propostasFinalizadasSemCorretor) {
+			out += "****************";
+			out += propos;
+		}
+		
+		return out;
+	}
+	
+	@Override
+	public String toString() {
+		String out = "***Imobiliaria***";
+		out += "*Proprietarios Cadastrados:\n" + auxiliadorProprietarios();
+		out += "*Clientes Cadastrados:\n" + auxiliadorClientes();
+		out += "*Corretores Cadastrados:\n" + auxiliadorCorretores();
+		out += "*Propostas Em Aberto Sem Corretor:\n" + auxiliadorPropostasEmAbertoSemCorretor();
+		out += "*Propostas Finalizadas Sem Corretor:\n" + auxiliadorPropostasFinalizadasSemCorretor();
+		
+		return out;
 	}
 	
 }
