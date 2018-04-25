@@ -1,7 +1,6 @@
 
 public class Pessoa {
 	private static int geradorId;
-	
 	private int id;
 	private String nome;
 	private String telefone;
@@ -18,9 +17,12 @@ public class Pessoa {
 	}
 	
 	public Pessoa(String nome, String telefone, String documento, Endereco endereco, String email) {
-		this(nome, telefone, email);
+		id = ++geradorId;
+		this.nome = nome;
+		this.telefone = telefone;
 		this.documento = documento;
 		this.endereco = endereco;
+		this.email = email;
 	}
 	
 	
@@ -68,9 +70,12 @@ public class Pessoa {
 	
 	
 	public String toString() {
-		String pessoa="Nome: "+getNome()+"\n";
+		
+		String pessoa;
+		pessoa="Id: "+getId()+"\n";
+		pessoa=pessoa+"Nome: "+getNome()+"\n";
 		pessoa=pessoa+"Documento:"+getDocumento()+"\n";
-		pessoa=pessoa+"Endereco:\n"+getEndereco().toString()+"\n";
+		pessoa=pessoa+"Endereco:\n"+getEndereco()+"\n";
 		pessoa=pessoa+"Email:"+getEmail()+"\n";
 		
 		return pessoa;

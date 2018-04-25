@@ -16,7 +16,7 @@ public class ImovelConstruido extends Imovel {
 			ArrayList<FormaPagamento> formasPagamentoAceitas, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel,int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
 			int quantidadeSuites, double areaConstruida) {
-		super(id, endereco, restricoes, condominio, proprietario, corretorResponsavel, descricao, diferenciais,
+		super(id,endereco, restricoes, condominio, proprietario, corretorResponsavel, descricao, diferenciais,
 				formasPagamentoAceitas, preco, iptu, aluguel, tipoImovel);
 		this.vagasAutomovel = vagasAutomovel;
 		this.quantidadeBanheiros = quantidadeBanheiros;
@@ -26,11 +26,11 @@ public class ImovelConstruido extends Imovel {
 		this.areaConstruida = areaConstruida;
 	}
 
-	public ImovelConstruido(int id, Endereco endereco, Condominio condominio, Proprietario proprietario,
+	public ImovelConstruido(Endereco endereco, Condominio condominio, Proprietario proprietario,
 			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel,int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
 			int quantidadeSuites, double areaConstruida) {
-		super(id, endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel);
+		super(endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel);
 		this.vagasAutomovel = vagasAutomovel;
 		this.quantidadeBanheiros = quantidadeBanheiros;
 		this.quantidadeQuartos = quantidadeQuartos;

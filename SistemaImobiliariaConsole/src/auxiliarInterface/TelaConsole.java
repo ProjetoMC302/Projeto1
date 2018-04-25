@@ -2,6 +2,8 @@ package auxiliarInterface;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 /**
  * TelaConsole - Representa uma tela no console
  * IMPORTANTE: A classe so funciona para um programa rodando com interface no console  
@@ -15,7 +17,7 @@ public class TelaConsole {
 	/*comandos - ArrayList de comandos aceito pela tela*/
 	private ArrayList<Integer> idComandos;
 	
-	/*mensagenss - ArrayList de mensagem que serão apresentadas na tela explicando a 
+	/*mensagenss - ArrayList de mensagem que serï¿½o apresentadas na tela explicando a 
 	 * funcionalidade de cada comando.
 	 * mensagens.get(i) - string explicando a funcionalidade do comando em comando.get(i) */
 	private ArrayList<String> comandos;
@@ -53,7 +55,7 @@ public class TelaConsole {
 	/**
 	 * show - metodo que mostra no console a tela criada. Mostra os comandos e suas funcionalidades
 	 * 
-	 * @return boolean se conseguiu ou não mostrar a tela no console
+	 * @return boolean se conseguiu ou nï¿½o mostrar a tela no console
 	 * */
 	public boolean show() {
 		//mostra no console a tela
@@ -65,7 +67,7 @@ public class TelaConsole {
 			//Apresenta na tela o comando e sua respectiva funcionalidade
 			System.out.println(idComandos.get(i) + " - "+ comandos.get(i));
 		}
-		System.out.print("Digite seu comando: ");
+		System.out.print("\nDigite seu comando: ");
 		ativa = true;
 		return true;
 	}
@@ -87,12 +89,24 @@ public class TelaConsole {
 	 * @return -1(menos 1) caso o comando seja invalido
 	 * */
 	public int getInput() {
-		int comando = scanner.nextInt();
-		if(idComandos.contains(comando)) {
-			return comando;
-		}else {
-			return COMANDO_INVALIDO;
+		boolean erro = true;
+		int comando=COMANDO_INVALIDO; 
+		while(erro) {
+			try{
+				erro =false;
+				comando = Integer.parseInt(scanner.nextLine());		
+				if(!idComandos.contains(comando)) {
+					erro = true;
+					System.out.println("Comando invalido");
+					System.out.print("Tente Novamente: ");
+				}
+			}catch (Exception e) {
+				erro = true;
+				System.out.println("Comando invalido");
+				System.out.print("Tente Novamente: ");
+			}
 		}
 		
+		return comando;
 	}
 }

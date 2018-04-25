@@ -36,7 +36,7 @@ public class Imovel {
 		this.tipoImovel = tipoImovel;
 	}
 
-	public Imovel(int id, Endereco endereco, Condominio condominio, Proprietario proprietario,
+	public Imovel(Endereco endereco, Condominio condominio, Proprietario proprietario,
 			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel) {
 		this.id = id;

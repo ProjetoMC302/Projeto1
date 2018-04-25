@@ -9,9 +9,22 @@ public class Corretor extends Pessoa {
 	private ArrayList<Proposta> propostasEmAberto;
 	private ArrayList<Proposta> propostasFinalizadas;
 // retirar proposta aberta e fechada e juntar tudo
+	
+	
+	
 	public Corretor(String nome, String telefone, String email) {
 		super(nome, telefone, email);
 		
+	}
+
+	public Corretor(String nome, String telefone, String documento, Endereco endereco, String email, String senha, String creci) {
+		super(nome, telefone, documento, endereco, email);
+		this.senha = senha;
+		this.creci = creci;
+		imoveis = new ArrayList<>();
+		clientes = new ArrayList<>();
+		propostasEmAberto = new ArrayList<>();
+		propostasFinalizadas = new ArrayList<>();
 	}
 
 	public Corretor(String nome, String telefone, String email, String senha, String creci, ArrayList<Imovel> imoveis, ArrayList<Cliente> clientes,
@@ -24,7 +37,7 @@ public class Corretor extends Pessoa {
 		this.propostasEmAberto = propostasEmAberto;
 		this.propostasFinalizadas = propostasFinalizadas;
 	}
-	//criar construtor que não recebe o array list ou seja um construtor inicializando o array
+	//criar construtor que nï¿½o recebe o array list ou seja um construtor inicializando o array
 
 	public Corretor(String nome, String telefone, String email, String senha, String creci) {
 		super(nome, telefone, email);
@@ -98,14 +111,18 @@ public class Corretor extends Pessoa {
 		this.propostasFinalizadas = propostasFinalizadas;
 	}
 
-	//criar função que leva a proposta de aberta para fechada 
+	//criar funï¿½ï¿½o que leva a proposta de aberta para fechada 
 	
 	
 	@Override
 	public String toString() {
-		return "Corretor ["+super.toString()+"numeroDeImoveis= " + numeroDeImoveis() + ", Creci= "
-				+ getCreci() + ", Imoveis= " + getImoveis() + ", Clientes= " + getClientes()
-				+ ", PropostasEmAberto= " + getPropostasEmAberto() + ", PropostasFinalizadas= "
-				+ getPropostasFinalizadas() + "]";
+		return "Corretor: \n"+
+				super.toString()+
+				"numeroDeImoveis= " + numeroDeImoveis() + 
+				"\nCreci= "+ getCreci() + 
+				"\nImoveis= " + getImoveis() + 
+				"\nClientes= " + getClientes()+ 
+				"\nPropostasEmAberto= " + getPropostasEmAberto() + 
+				"\nPropostasFinalizadas= " + getPropostasFinalizadas() + "]";
 	}	
 }

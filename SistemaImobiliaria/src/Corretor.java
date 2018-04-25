@@ -16,17 +16,15 @@ public class Corretor extends Pessoa {
 		propostasFinalizadas = new ArrayList<Proposta>();
 	}
 
-	public Corretor(String nome, String telefone, String email, String senha, String creci) {
-		this(nome, telefone, email);
+	public Corretor(String nome, String telefone, String documento, Endereco endereco, String email,String senha ,String creci) {
+		super(nome, telefone, documento, endereco, email);
 		this.senha = senha;
 		this.creci = creci;
+		clientes = new ArrayList<Cliente>();
+		propostasEmAberto = new ArrayList<Proposta>();
+		propostasFinalizadas = new ArrayList<Proposta>();
 	}
 
-	public Corretor(String nome, String telefone, String email, Endereco endereco, String senha, String creci) {
-		this(nome, telefone, email, senha, creci);
-		setEndereco(endereco);
-	}
-	
 	public int numeroDeImoveis() {
 		return imoveis.size();
 	}
@@ -129,10 +127,13 @@ public class Corretor extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "Corretor []";
-	}
-	
-	
-
-
+		return "Corretor: \n"+
+				super.toString()+
+				"numeroDeImoveis= " + numeroDeImoveis() + 
+				"\nCreci= "+ getCreci() + 
+				"\nImoveis= " + getImoveis() + 
+				"\nClientes= " + getClientes()+ 
+				"\nPropostasEmAberto= " + getPropostasEmAberto() + 
+				"\nPropostasFinalizadas= " + getPropostasFinalizadas() + "]";
+	}	
 }

@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 /**
  * TelaConsole - Representa uma tela no console
  * IMPORTANTE: A classe so funciona para um programa rodando com interface no console  
@@ -64,7 +66,7 @@ public class TelaConsole {
 			//Apresenta na tela o comando e sua respectiva funcionalidade
 			System.out.println(idComandos.get(i) + " - "+ comandos.get(i));
 		}
-		System.out.print("Digite seu comando: ");
+		System.out.print("\nDigite seu comando: ");
 		ativa = true;
 		return true;
 	}
@@ -86,12 +88,24 @@ public class TelaConsole {
 	 * @return -1(menos 1) caso o comando seja invalido
 	 * */
 	public int getInput() {
-		int comando = scanner.nextInt();
-		if(idComandos.contains(comando)) {
-			return comando;
-		}else {
-			return COMANDO_INVALIDO;
+		boolean erro = true;
+		int comando=COMANDO_INVALIDO; 
+		while(erro) {
+			try{
+				erro =false;
+				comando = Integer.parseInt(scanner.nextLine());		
+				if(!idComandos.contains(comando)) {
+					erro = true;
+					System.out.println("Comando invalido");
+					System.out.print("Tente Novamente: ");
+				}
+			}catch (Exception e) {
+				erro = true;
+				System.out.println("Comando invalido");
+				System.out.print("Tente Novamente: ");
+			}
 		}
 		
+		return comando;
 	}
 }

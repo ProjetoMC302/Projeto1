@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**Apartamento - essa classe representa a estrutura de um apartamento: 
  * os atributos relevantes para um cliente que deseja um apartamento
  * */
@@ -11,27 +13,21 @@ public class Apartamento extends ImovelConstruido {
 	private boolean elevadorServico; 
 	// atributo que representa a existencia de elevador social no predio do apartamento
 	private boolean elevadorSocial;
-	
-	public Apartamento(Endereco endereco, Condominio condominio, Proprietario proprietario,
-					   Corretor corretorResponsavel, String descricao, 
-					   double preco, double iptu, boolean aluguel,
-					   TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, 
-					   int quantidadeQuartos, int quantidadeAndares,
-					   int quantidadeSuites, double areaConstruida,
-					   boolean cobertura, int quantidadeTerraco, int andar,
-					   boolean elevadorServico, boolean elevadorSocial) {
-		super(endereco, condominio, proprietario,
-				  corretorResponsavel, descricao, 
-				  preco, iptu, aluguel,
-				  tipoImovel, vagasAutomovel, quantidadeBanheiros, 
-				  quantidadeQuartos, quantidadeAndares,
-				  quantidadeSuites, areaConstruida);
+
+	public Apartamento( Endereco endereco, Condominio condominio, Proprietario proprietario,
+			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
+			TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos,
+			int quantidadeAndares, int quantidadeSuites, double areaConstruida, boolean cobertura, int quantidadeTerraco, 
+			int quantidadeQuarto, int andar, boolean elevadorServico, boolean elevadorSocial) {
+		
+		super(endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel,
+				vagasAutomovel, quantidadeBanheiros, quantidadeQuartos, quantidadeAndares, quantidadeSuites, areaConstruida);
+		
 		this.cobertura = cobertura;
 		this.quantidadeTerraco = quantidadeTerraco;
 		this.andar = andar;
 		this.elevadorServico = elevadorServico;
 		this.elevadorSocial = elevadorSocial;
-		
 	}
 
 	public boolean isCobertura() {
@@ -60,6 +56,7 @@ public class Apartamento extends ImovelConstruido {
 
 	public boolean isElevadorServico() {
 		return elevadorServico;
+		
 	}
 
 	public void setElevadorServico(boolean elevadorServico) {
@@ -74,10 +71,10 @@ public class Apartamento extends ImovelConstruido {
 		this.elevadorSocial = elevadorSocial;
 	}
 	
-	//Chama o metodo toString da classe superclasse
+	//Chama o metodo toString da classe superclasse com a adição dos atributos especificos
 	@Override
 	public String toString() {
-		return "Apartamento ["+super.toString()+", Cobertura= " + isCobertura() + ", QuantidadeTerraco= " + getQuantidadeTerraco()
+		return "APARTAMENTO:\n"+super.toString()+", Cobertura= " + isCobertura() + ", QuantidadeTerraco= " + getQuantidadeTerraco()
 				+ ", Andar= " + getAndar() + ", ElevadorServico= " + isElevadorServico()
 				+ ", ElevadorSocial= " + isElevadorSocial() + "]";
 	}
