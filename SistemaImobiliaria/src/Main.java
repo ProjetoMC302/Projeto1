@@ -295,7 +295,7 @@ public class Main {
 					}
 					
 					
-					new Preferencia(aluguel, esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
+					Preferencia preferencia = new Preferencia(aluguel, esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
 					new Cliente(nome, telefone, documento, endereco, email, precoMax, preferencia);
 					System.out.println("***************************************************************");
 				}else if(comando == telaCliente.getComando(remover)) {

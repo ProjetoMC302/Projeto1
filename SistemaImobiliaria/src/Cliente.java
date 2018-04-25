@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Cliente extends Pessoa {
 /*
- *private RegiãoProcurada região Procurada;  
- * Ficamos de implementar região procurada na proxima etapa ?
+ *private Regiï¿½oProcurada regiï¿½o Procurada;  
+ * Ficamos de implementar regiï¿½o procurada na proxima etapa ?
  */
   private double precoMax;
   private ArrayList <FormaPagamento> formasPagamentoDesejadas;
@@ -19,7 +19,7 @@ public Cliente(String nome, String telefone, String email, double precoMax,Prefe
 }
 
 public Cliente(String nome, String telefone,String documento, Endereco endereco, String email,
-		double precoMax,Preferencia preferencia) {
+		double precoMax, Preferencia preferencia) {
 	super(nome, telefone,documento,endereco, email);
 	this.precoMax = precoMax;
 	this.formasPagamentoDesejadas = new ArrayList<FormaPagamento>();
@@ -90,7 +90,7 @@ public boolean removerPreferencia(Preferencia p) {
 public String toString()
 {
 	String cliente="DADOS CLIENTE:\n"+super.toString();
-	cliente=cliente+"Preço Maximo:"+getPrecoMax()+"\n";
+	cliente=cliente+"Preï¿½o Maximo:"+getPrecoMax()+"\n";
 	cliente=cliente+"Formas de Pagamento desejadas: ";
 	for(int i=0;i<this.formasPagamentoDesejadas.size();i++)
 	{
@@ -99,10 +99,10 @@ public String toString()
 		else
 			cliente=cliente+this.formasPagamentoDesejadas.get(i);
 	}
-	cliente=cliente+"\nPREFERÊNCIAS DO CLIENTE: "+"\n";
+	cliente=cliente+"\nPREFERï¿½NCIAS DO CLIENTE: "+"\n";
 	for(int i=0;i<this.preferencias.size();i++)
 	{
-		cliente=cliente+"Imóvel "+(i+1)+" :\n";
+		cliente=cliente+"Imï¿½vel "+(i+1)+" :\n";
 		cliente=cliente+this.preferencias.get(i).toString();
 	}
 	 return cliente;
