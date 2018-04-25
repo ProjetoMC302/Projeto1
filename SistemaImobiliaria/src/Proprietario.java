@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Proprietario extends Pessoa{
 	
 	//Atributos
-	private boolean empresa; //O proprietaro e uma empresa
+	private boolean empresa; //O proprietaro eh uma empresa
 	private ArrayList<Imovel> imoveis;
 	
 	//Construtores
@@ -13,28 +13,42 @@ public class Proprietario extends Pessoa{
 	}
 	
 	public Proprietario(String nome, String telefone, String email, boolean empresa) {
-		super(nome, telefone, email);
+		this(nome, telefone, email);
 		this.empresa = empresa;
-	}
-	
-	public Proprietario(String nome, String telefone, String email, ArrayList<Imovel> im) {
-		super(nome, telefone, email);
-		imoveis = new ArrayList<Imovel>();
-	}
-	
-	public Proprietario(String nome, String telefone, String email, ArrayList<Imovel> im, boolean empresa) {
-		super(nome, telefone, email);
-		this.empresa = empresa;
-		imoveis = im;
 	}
 
 	public Proprietario(String nome, String telefone, String documento, Endereco endereco, String email, boolean empresa) {
 		super(nome, telefone, documento, endereco, email);
 		this.empresa = empresa;
 	}
+	
+	public boolean adicionarImovel(Imovel imovel) {
+		if (!imoveis.contains(imovel)) {
+			return imoveis.add(imovel);
+		}
+		
+		return false;
+	}
+	
+	public boolean removerImovel(Imovel imovel) {
+		return imoveis.remove(imovel);
+	}
+	
+	/* public Imovel publicarImovel(Endereco endereco, Condominio condominio, 
+								 Corretor corretorResponsavel, String descricao,
+								 double preco, double iptu, boolean aluguel,
+								 TipoImovel tipoImovel, Imobiliaria imobiliaria) {
+		Imovel imovel = new Imovel(endereco, condominio, this, 
+								   corretorResponsavel, descricao, 
+								   preco, iptu, aluguel, tipoImovel);
+		imobiliaria.adicionarImovel(imovel);
+		this.adicionarImovel(imovel);
+		
+		return imovel;
+	} */
 
 	//Metodos
-	public boolean getEmpresa() {
+	public boolean isEmpresa() {
 		return empresa;
 	}
 
