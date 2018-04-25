@@ -31,12 +31,6 @@ public class Condominio {
 		this.lazer.add(lazer);
 	}
 	
-	public Condominio(double valorCondominio, ArrayList<Lazer> lazer){
-		id = ++geradorId;
-		this.valorCondominio = valorCondominio;
-		this.lazer = lazer;
-	}
-	
 	/**
 	 * Este metodo adiciona uma opcao de lazer
 	 * 	na lista de opcoes que um condominio proporciona.
@@ -46,11 +40,10 @@ public class Condominio {
 	 */
 	public boolean adicionarLazer(Lazer lazer){
 		if (!this.lazer.contains(lazer)) {
-			this.lazer.add(lazer);
-			return true;
-		} else {
-			return false;
+			return this.lazer.add(lazer);
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -62,11 +55,10 @@ public class Condominio {
 	 */
 	public boolean removerLazer(Lazer lazer){
 		if (this.lazer.contains(lazer)) {
-			this.lazer.remove(lazer);
-			return true;
-		} else {
-			return false;
+			return this.lazer.remove(lazer);
 		}
+		
+		return false;
 	}
 	
 	/**

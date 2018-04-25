@@ -22,8 +22,8 @@ public class Proposta {
 		this.corretorResponsavel = corretorResponsavel;
 	}
 	
-	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel,
-			        double precoProposta) {
+	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, 
+					Corretor corretorResponsavel, double precoProposta) {
 		this(imovel, comprador, vendedor, corretorResponsavel);
 		this.precoProposta = precoProposta;
 	}
