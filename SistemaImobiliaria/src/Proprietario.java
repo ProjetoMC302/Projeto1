@@ -35,7 +35,8 @@ public class Proprietario extends Pessoa{
 		return imoveis.remove(imovel);
 	}
 	
-	/* public Imovel publicarImovel(Endereco endereco, Condominio condominio, 
+	// Cria instância de Imovel e faz as conexoes necessarias
+	public Imovel publicarImovel(Endereco endereco, Condominio condominio, 
 								 Corretor corretorResponsavel, String descricao,
 								 double preco, double iptu, boolean aluguel,
 								 TipoImovel tipoImovel, Imobiliaria imobiliaria) {
@@ -46,7 +47,7 @@ public class Proprietario extends Pessoa{
 		this.adicionarImovel(imovel);
 		
 		return imovel;
-	} */
+	}
 
 	//Metodos
 	public boolean isEmpresa() {
