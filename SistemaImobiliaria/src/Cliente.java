@@ -1,16 +1,18 @@
 import java.util.ArrayList;
 
 public class Cliente extends Pessoa {
+
 /*
  * private RegiaoProcurada regiao Procurada;  
  * Ficamos de implementar regiao procurada na proxima etapa ?
  */
-  private double precoMax;
-  private ArrayList <FormaPagamento> formasPagamentoDesejadas;
-  private ArrayList <Preferencia> preferencias;
+
+private double precoMax;
+private ArrayList <FormaPagamento> formasPagamentoDesejadas;
+private ArrayList <Preferencia> preferencias;
 
 
-public Cliente(String nome, String telefone, String email, double precoMax,Preferencia preferencia) {
+public Cliente(String nome, String telefone, String email, double precoMax, Preferencia preferencia) {
 	super(nome, telefone, email);
 	this.precoMax = precoMax;
 	this.formasPagamentoDesejadas = new ArrayList<FormaPagamento>();
@@ -43,69 +45,56 @@ public ArrayList<Preferencia> getPreferencias() {
 	return preferencias;
 }
 
-
-
-
-
 public boolean adicionarFormaPagamentoDesejada(FormaPagamento f) {
-	if(!formasPagamentoDesejadas.contains(f))
-	{
-		this.formasPagamentoDesejadas.add(f);
-		return true;
-	}
+	if (!formasPagamentoDesejadas.contains(f))
+		return formasPagamentoDesejadas.add(f);
+
 	return false;
 }
 
 
 public boolean adicionarPreferencia(Preferencia p) {
-	if(!preferencias.contains(p))
-	{
-		this.preferencias.add(p);
-		return true;
-	}
-	return false;
+	if (preferencias.contains(p))
+		return false;
+	return preferencias.add(p);
 }
 
 public boolean removerFormaPagamentoDesejada(FormaPagamento f) {
-	if(formasPagamentoDesejadas.contains(f))
-	{
-		this.formasPagamentoDesejadas.remove(f);
-		return true;
-	}
+	if (formasPagamentoDesejadas.contains(f))
+		return formasPagamentoDesejadas.remove(f);
 	return false;
 }
 
 
 public boolean removerPreferencia(Preferencia p) {
 	if(preferencias.contains(p))
-	{
-		this.preferencias.remove(p);
-		return true;
-	}
+		return preferencias.remove(p);
 	return false;
 }
 
 
 
-public String toString()
-{
-	String cliente="DADOS CLIENTE:\n"+super.toString();
-	cliente=cliente+"Pre�o Maximo:"+getPrecoMax()+"\n";
-	cliente=cliente+"Formas de Pagamento desejadas: ";
-	for(int i=0;i<this.formasPagamentoDesejadas.size();i++)
-	{
-		if(i!=0)
-			cliente=cliente+","+this.formasPagamentoDesejadas.get(i);
+public String toString() {
+	String cliente = "DADOS CLIENTE:\n" + super.toString();
+	cliente = cliente + "Preco maximo: " + getPrecoMax() + "\n";
+	cliente = cliente + "Formas de Pagamento desejadas: ";
+
+	for (int i = 0; i < formasPagamentoDesejadas.size(); i++) {
+		// Lógica simples para formatação no console
+		if (i != 0)
+			cliente = cliente + "," + formasPagamentoDesejadas.get(i);
 		else
-			cliente=cliente+this.formasPagamentoDesejadas.get(i);
+			cliente = cliente + formasPagamentoDesejadas.get(i);
 	}
-	cliente=cliente+"\nPREFER�NCIAS DO CLIENTE: "+"\n";
-	for(int i=0;i<this.preferencias.size();i++)
-	{
-		cliente=cliente+"Im�vel "+(i+1)+" :\n";
-		cliente=cliente+this.preferencias.get(i).toString();
+
+	cliente = cliente + "\nPREFERÊNCIAS DO CLIENTE: " + "\n";
+
+	for (int i = 0; i < this.preferencias.size(); i++) {
+		cliente = cliente + "Imovel " + i+1 + " :\n";
+		cliente = cliente + preferencias.get(i).toString();
 	}
-	 return cliente;
+	
+	return cliente;
 }
 
 

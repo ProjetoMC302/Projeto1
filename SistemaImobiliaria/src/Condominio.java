@@ -137,7 +137,8 @@ public class Condominio {
 	public int getId() {
 		return id;
 	}
-	
+
+	@Override
 	public String toString(){
 		String out;
 		out = "id do condominio: " + id + "\nValor: " + 
