@@ -16,10 +16,11 @@ public class Corretor extends Pessoa {
 		propostasFinalizadas = new ArrayList<Proposta>();
 	}
 
-	public Corretor(String nome, String telefone, String documento, Endereco endereco, String email,String senha ,String creci) {
+	public Corretor(String nome, String telefone, String documento, Endereco endereco, String email, String senha ,String creci) {
 		super(nome, telefone, documento, endereco, email);
 		this.senha = senha;
 		this.creci = creci;
+		imoveis = new ArrayList<Imovel>();
 		clientes = new ArrayList<Cliente>();
 		propostasEmAberto = new ArrayList<Proposta>();
 		propostasFinalizadas = new ArrayList<Proposta>();
@@ -44,9 +45,9 @@ public class Corretor extends Pessoa {
 	public boolean adicionarCliente(Cliente cliente) {
 		if (clientes.contains(cliente)) {
 			return false;
-		} else {
-			return clientes.add(cliente);
 		}
+		
+		return clientes.add(cliente);
 	}
 	
 	public boolean removerCliente(Cliente cliente) {
@@ -60,7 +61,9 @@ public class Corretor extends Pessoa {
 	}
 	
 	public boolean finalizarProposta(Proposta proposta) {
-		if ((propostasEmAberto.contains(proposta)) && (!propostasFinalizadas.contains(proposta))) {
+		// caso a proposta exista como propostaEmAberto e não esteja no AL de propostasFinalizadas
+		boolean logica = propostasEmAberto.contains(proposta) && !propostasFinalizadas.contains(proposta);
+		if (logica) {
 			propostasFinalizadas.add(proposta);
 		}
 		
@@ -70,11 +73,13 @@ public class Corretor extends Pessoa {
 	public boolean removerProposta(Proposta proposta) {
 		if (propostasEmAberto.contains(proposta)) {
 			return propostasEmAberto.remove(proposta);
-		} else if (propostasFinalizadas.contains(proposta)) {
-			return propostasFinalizadas.remove(proposta);
-		} else {
-			return false;
 		}
+		
+		if (propostasFinalizadas.contains(proposta)) {
+			return propostasFinalizadas.remove(proposta);
+		}
+		
+		return false;
 	}
 
 	public String getSenha() {
