@@ -12,15 +12,26 @@ public class Apartamento extends ImovelConstruido {
 	// atributo que representa a existencia de elevador social no predio do apartamento
 	private boolean elevadorSocial;
 	
-	public Apartamento(int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
-			int quantidadeSuites, double areaConstruida) {
-		super(vagasAutomovel, quantidadeBanheiros, quantidadeQuartos, quantidadeAndares, quantidadeSuites, areaConstruida);
-		/*this.cobertura = cobertura;
+	public Apartamento(Endereco endereco, Condominio condominio, Proprietario proprietario,
+					   Corretor corretorResponsavel, String descricao, 
+					   double preco, double iptu, boolean aluguel,
+					   TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, 
+					   int quantidadeQuartos, int quantidadeAndares,
+					   int quantidadeSuites, double areaConstruida,
+					   boolean cobertura, int quantidadeTerraco, int andar,
+					   boolean elevadorServico, boolean elevadorSocial) {
+		super(endereco, condominio, proprietario,
+				  corretorResponsavel, descricao, 
+				  preco, iptu, aluguel,
+				  tipoImovel, vagasAutomovel, quantidadeBanheiros, 
+				  quantidadeQuartos, quantidadeAndares,
+				  quantidadeSuites, areaConstruida);
+		this.cobertura = cobertura;
 		this.quantidadeTerraco = quantidadeTerraco;
 		this.andar = andar;
 		this.elevadorServico = elevadorServico;
 		this.elevadorSocial = elevadorSocial;
-		*/
+		
 	}
 
 	public boolean isCobertura() {
