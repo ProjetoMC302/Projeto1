@@ -1,3 +1,5 @@
+package Entidades;
+
 /**
  * Endereco eh uma classe que armazena informacoes
  * 	de endereco de um imovel.

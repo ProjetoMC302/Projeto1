@@ -1,12 +1,18 @@
+package InterfaceConsole;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
+
+import Entidades.*;
+
 /**
  * TelaConsole - Representa uma tela no console
  * IMPORTANTE: A classe so funciona para um programa rodando com interface no console  
- * */
+ *
+ */
+
 public class TelaConsole {
 	private boolean ativa;
 	private Scanner scanner;

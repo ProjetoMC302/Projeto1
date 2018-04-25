@@ -1,3 +1,5 @@
+package Entidades;
+
 /**Casa - essa classe representa a estrutura de uma casa: 
  * os atributos relevantes para um cliente que deseja uma casa
  * */

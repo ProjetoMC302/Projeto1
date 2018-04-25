@@ -1,6 +1,10 @@
+package InterfaceGrafica;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
+import Entidades.*;
 
 public class InterfaceGrafica {
 

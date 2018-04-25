@@ -1,5 +1,10 @@
+package InterfaceConsole;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Entidades.*;
+
 
 public class Main {
 

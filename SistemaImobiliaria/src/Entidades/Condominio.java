@@ -1,3 +1,5 @@
+package Entidades;
+
 /**
  * Esta classe armazena informacoes referentes a um condominio
  * 	em que um imovel pode fazer parte.

@@ -1,3 +1,5 @@
+package Entidades;
+
 import java.util.ArrayList;
 
 public class Corretor extends Pessoa {

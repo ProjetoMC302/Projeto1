@@ -1,6 +1,11 @@
-/**Terreno - essa classe representa a estrutura de um terreno: 
+package Entidades;
+
+/**
+ * Terreno - essa classe representa a estrutura de um terreno: 
  * os atributos relevantes para um cliente que deseja um terreno
- * */
+ *
+ */
+
 public class Terreno extends Imovel {
 	private double areaTerreno;
 	//atributo que representa se o terreno eh de esquina

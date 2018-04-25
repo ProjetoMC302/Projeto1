@@ -1,3 +1,5 @@
+package Entidades;
+
 public class PreferenciaConstrucao extends Preferencia {
 	
 	//Atributos

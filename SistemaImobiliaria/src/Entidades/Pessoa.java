@@ -1,3 +1,4 @@
+package Entidades;
 
 public class Pessoa {
 	private static int geradorId;

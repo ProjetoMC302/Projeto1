@@ -1,3 +1,5 @@
+package Entidades;
+
 import java.util.ArrayList;
 
 /** Essa classe simula um banco de dados que sera posteriomente implementado*/

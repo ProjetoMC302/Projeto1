@@ -1,3 +1,4 @@
+package Entidades;
 
 public class Pagamento {
 	private double valorCombinado;

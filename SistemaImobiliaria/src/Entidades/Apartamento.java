@@ -1,3 +1,5 @@
+package Entidades;
+
 /**Apartamento - essa classe representa a estrutura de um apartamento: 
  * os atributos relevantes para um cliente que deseja um apartamento
  * */
