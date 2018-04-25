@@ -1,5 +1,5 @@
-/**ImovelConstruido - essa classe representa a estrutura de um imovel: imovel que tem em seu terreno alguma construção habitavel*/
-public class ImovelConstruido /*TODO: uncomment this - extends Imovel*/ {
+/**ImovelConstruido - essa classe representa a estrutura de um imovel: imovel que tem em seu terreno alguma construcao habitavel*/
+public class ImovelConstruido extends Imovel {
 	//numero de vagas para automoveis ou motocicletas
 	private int vagasAutomovel;
 	private int quantidadeBanheiros;
@@ -8,10 +8,15 @@ public class ImovelConstruido /*TODO: uncomment this - extends Imovel*/ {
 	private int quantidadeSuites;
 	private double areaConstruida;
 	
-	//TODO: add to the constructor the structure of the super class Imovel
-	public ImovelConstruido(int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
-			int quantidadeSuites, double areaConstruida) {
-		//super(Atibutes of super class);
+
+	public ImovelConstruido(Endereco endereco, Condominio condominio, Proprietario proprietario,
+							Corretor corretorResponsavel, String descricao, 
+							double preco, double iptu, boolean aluguel,
+							TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, 
+							int quantidadeQuartos, int quantidadeAndares,
+							int quantidadeSuites, double areaConstruida) {
+		super(endereco, condominio, proprietario, corretorResponsavel,
+			  descricao, preco, iptu, aluguel, tipoImovel);
 		this.vagasAutomovel = vagasAutomovel;
 		this.quantidadeBanheiros = quantidadeBanheiros;
 		this.quantidadeQuartos = quantidadeQuartos;
