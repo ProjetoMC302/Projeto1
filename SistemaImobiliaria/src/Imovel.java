@@ -182,6 +182,11 @@ public class Imovel {
 
 	@Override
 	public String toString() {
-		return "Imovel []";
+		return "Id= " + getId() + ", Endereco= " + getEndereco() + ", Restricoes= "
+				+ getRestricoes() + ", Condominio= " + getCondominio() + ", Proprietario= " + getProprietario()
+				+ ", CorretorResponsavel= " + getCorretorResponsavel() + ", Descricao= " + getDescricao()
+				+ ", Diferenciais= " + getDiferenciais() + ", FormasPagamentoAceitas= "
+				+ getFormasPagamentoAceitas() + ", Preco=" + getPreco() + ", Iptu= " + getIptu()
+				+ ", isAluguel= " + isAluguel() + ", TipoImovel= " + getTipoImovel() + "]";
 	}
 }

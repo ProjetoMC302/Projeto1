@@ -19,10 +19,10 @@ public class Terreno extends Imovel{
 		this.esquina = esquina;
 	}
 
-	public Terreno(int id, Endereco endereco, Condominio condominio, Proprietario proprietario,
+	public Terreno( Endereco endereco, Condominio condominio, Proprietario proprietario,
 			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel, double areaTerreno, boolean esquina) {
-		super(id, endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel);
+		super(endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel);
 		this.areaTerreno = areaTerreno;
 		this.esquina = esquina;
 	}

@@ -111,7 +111,11 @@ public class Imobiliaria {
 			return proprietarios.add(proprietario);
 		}
 	}
-
+	
+	public boolean removerProprietario(Proprietario proprietario) {
+		return proprietarios.remove(proprietario);
+	}
+	
 	public boolean removerProprietario(int idProprietario) {
 		for(Proprietario pro : proprietarios) {
 			if(pro.getId() == idProprietario) {

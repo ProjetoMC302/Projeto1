@@ -11,6 +11,18 @@ public class Preferencia {
 	private double areaMinimaTerreno;
 	private Restricao proposito;
 	
+	public Preferencia(boolean aluguel,boolean esquina, boolean condominio,
+			TipoImovel tipoImovel,double areaMinimaTerreno, Restricao proposito) {
+		this.aluguel=aluguel;
+		this.esquina = esquina;
+		this.condominio = condominio;
+		this.endereco = new Endereco();
+		this.raio = 0;
+		this.tipoImovel = tipoImovel;
+		this.areaMinimaTerreno = areaMinimaTerreno;
+		this.proposito = proposito;
+	}
+	
 	public Preferencia(boolean aluguel,boolean esquina, boolean condominio, Endereco endereco, double raio,
 			TipoImovel tipoImovel,double areaMinimaTerreno, Restricao proposito) {
 		this.aluguel=aluguel;

@@ -28,6 +28,11 @@ public class Proprietario extends Pessoa{
 		imoveis = im;
 	}
 
+	public Proprietario(String nome, String telefone, String documento, Endereco endereco, String email, boolean empresa) {
+		super(nome, telefone, documento, endereco, email);
+		this.empresa = empresa;
+	}
+
 	//Metodos
 	public boolean getEmpresa() {
 		return empresa;

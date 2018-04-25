@@ -76,7 +76,7 @@ public class Pessoa {
 		pessoa="Id: "+getId()+"\n";
 		pessoa=pessoa+"Nome: "+getNome()+"\n";
 		pessoa=pessoa+"Documento:"+getDocumento()+"\n";
-		pessoa=pessoa+"Endereco:\n"+getEndereco().toString()+"\n";
+		pessoa=pessoa+"Endereco:\n"+getEndereco()+"\n";
 		pessoa=pessoa+"Email:"+getEmail()+"\n";
 		
 		return pessoa;

@@ -33,13 +33,13 @@ public class Apartamento extends ImovelConstruido {
 		this.elevadorSocial = elevadorSocial;
 	}
 
-	public Apartamento(int id, Endereco endereco, Condominio condominio, Proprietario proprietario,
+	public Apartamento( Endereco endereco, Condominio condominio, Proprietario proprietario,
 			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos,
 			int quantidadeAndares, int quantidadeSuites, double areaConstruida, boolean cobertura, int quantidadeTerraco, 
 			int quantidadeQuarto, int andar, boolean elevadorServico, boolean elevadorSocial) {
 		
-		super(id, endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel,
+		super(endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel,
 				vagasAutomovel, quantidadeBanheiros, quantidadeQuartos, quantidadeAndares, quantidadeSuites, areaConstruida);
 		
 		this.cobertura = cobertura;

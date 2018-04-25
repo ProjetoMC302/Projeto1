@@ -26,12 +26,12 @@ public class Casa  extends ImovelConstruido {
 		this.areaTerreno = areaTerreno;
 	}
 
-	public Casa(int id, Endereco endereco, Condominio condominio, Proprietario proprietario,
+	public Casa(Endereco endereco, Condominio condominio, Proprietario proprietario,
 			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel, int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos,
 			int quantidadeAndares, int quantidadeSuites, double areaConstruida, boolean esquina, boolean piscina, double areaTerreno) {
 		
-		super(id, endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel,
+		super(endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel,
 				vagasAutomovel, quantidadeBanheiros, quantidadeQuartos, quantidadeAndares, quantidadeSuites, areaConstruida);
 		this.esquina = esquina;
 		this.piscina = piscina;
