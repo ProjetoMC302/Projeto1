@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**Apartamento - essa classe representa a estrutura de um apartamento: 
  * os atributos relevantes para um cliente que deseja um apartamento
  * */
@@ -71,7 +69,7 @@ public class Apartamento extends ImovelConstruido {
 		this.elevadorSocial = elevadorSocial;
 	}
 	
-	//Chama o metodo toString da classe superclasse com a adição dos atributos especificos
+	//Chama o metodo toString da classe superclasse com a adiï¿½ï¿½o dos atributos especificos
 	@Override
 	public String toString() {
 		return "APARTAMENTO:\n"+super.toString()+", Cobertura= " + isCobertura() + ", QuantidadeTerraco= " + getQuantidadeTerraco()
