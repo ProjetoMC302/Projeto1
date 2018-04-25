@@ -2,16 +2,25 @@
  * os atributos relevantes para um cliente que deseja uma casa
  * */
 public class Casa  extends ImovelConstruido {
-	//atributo que representa se a casa é de esquina
+	//atributo que representa se a casa eh de esquina
 	private boolean esquina;
 	//atributo que representa se a casa tem piscina
 	private boolean piscina;
 	//area do terreno em que a casa se situa
 	private double areaTerreno;
 	
-	public Casa(int vagasAutomovel, int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
-			int quantidadeSuites, double areaConstruida, boolean esquina, boolean piscina, double areaTerreno) {
-		super(vagasAutomovel, quantidadeBanheiros, quantidadeQuartos, quantidadeAndares, quantidadeSuites, areaConstruida);
+	public Casa(Endereco endereco, Condominio condominio, Proprietario proprietario,
+				Corretor corretorResponsavel, String descricao, double preco, 
+				double iptu, boolean aluguel, TipoImovel tipoImovel, int vagasAutomovel, 
+				int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares,
+				int quantidadeSuites, double areaConstruida, boolean esquina,
+				boolean piscina, double areaTerreno) {
+		super(endereco, condominio, proprietario,
+			  corretorResponsavel, descricao, 
+			  preco, iptu, aluguel,
+			  tipoImovel, vagasAutomovel, quantidadeBanheiros, 
+			  quantidadeQuartos, quantidadeAndares,
+			  quantidadeSuites, areaConstruida);
 		this.esquina = esquina;
 		this.piscina = piscina;
 		this.areaTerreno = areaTerreno;
@@ -41,12 +50,12 @@ public class Casa  extends ImovelConstruido {
 		this.areaTerreno = areaTerreno;
 	}
 
-	//Calcula a area do quintal da casa fazendo a subtração da area do terreno pela area da casa
+	//Calcula a area do quintal da casa fazendo a subtracao da area do terreno pela area da casa
 	public double calculaAreaQuintal() {
-		return getAreaTerreno() - getAreaConstruida();
+		return areaTerreno - getAreaConstruida();
 	}
 
-	//Chama o metodo toString da classe superclasse com a adição dos atributos especificos
+	//Chama o metodo toString da classe superclasse com a adiï¿½ï¿½o dos atributos especificos
 	@Override
 	public String toString() {
 		return "Casa [ "+ super.toString() + "Esquina= " + isEsquina() + ", Piscina= " + isPiscina() + ", AreaTerreno= "
