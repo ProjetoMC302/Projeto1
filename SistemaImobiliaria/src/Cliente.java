@@ -46,9 +46,10 @@ public class Cliente extends Pessoa {
 	}
 
 	public boolean adicionarFormaPagamentoDesejada(FormaPagamento f) {
-		if (!formasPagamentoDesejadas.contains(f))
+		if (!formasPagamentoDesejadas.contains(f)) {
 			return formasPagamentoDesejadas.add(f);
-
+		}
+		
 		return false;
 	}
 
