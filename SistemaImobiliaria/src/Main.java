@@ -99,7 +99,7 @@ public class Main {
 					String estado = getStringInput(scanner,"Digite o estado da sua residencia: ");
 					String cidade = getStringInput(scanner,"Digite a cidade da sua residencia: ");
 					String bairro = getStringInput(scanner,"Digite o bairro da sua residencia: ");
-					String rua = getStringInput(scanner,"Digite a cidade da sua residencia: ");
+					String rua = getStringInput(scanner,"Digite a rua da sua residencia: ");
 					int numero = getIntInput(scanner, "Digite o numero da sua residencia: ");
 					int cep = getIntInput(scanner, "Digite o cep da sua residencia: ");
 					String complemento = getStringInput(scanner,"Digite o complemento da sua residencia: ");
@@ -197,7 +197,7 @@ public class Main {
 					String documento = getStringInput(scanner, "Digite o CPF do proprietario do imovel: ");
 					Proprietario proprietario = buscaProprietario(imobiliaria,documento);
 					if(proprietario==null) {
-						System.out.println("Proprietrario com documento: "+documento+" ,não existe");
+						System.out.println("Proprietrario com documento: "+documento+" ,nï¿½o existe");
 						System.out.println("Por favor primeiro cadastre o proprietario dono do imovel na tela: Proprietario.");
 						continue;
 					}
@@ -280,7 +280,7 @@ public class Main {
 //						corretor.removerImovel(imovel);
 						imobiliaria.removerImovel(imovel);
 					}else {
-						System.out.println("Imovel não existe");
+						System.out.println("Imovel nï¿½o existe");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == imovelTela.getComando(atualizar)) {
@@ -375,7 +375,7 @@ public class Main {
 						corretor.removerCliente(clienteRemover);
 						imobiliaria.removerCliente(clienteRemover);
 					}else {
-						System.out.println("Cliente não existe no sistema");
+						System.out.println("Cliente nï¿½o existe no sistema");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaCliente.getComando(atualizar)) {
@@ -426,7 +426,7 @@ public class Main {
 					int numero = getIntInput(scanner, "Digite o numero do proprietario: ");
 					int cep = getIntInput(scanner, "Digite o cep do proprietario: ");
 					String complemento = getStringInput(scanner,"Digite o complemento do proprietario: ");
-					boolean empresa = getBooleanInput(scanner, "do proprietario é uma empresa ? ");
+					boolean empresa = getBooleanInput(scanner, "do proprietario ï¿½ uma empresa ? ");
 					
 					Endereco endereco = new Endereco(cep, estado, cidade, rua, bairro, numero, complemento);
 					Proprietario proprietario = new Proprietario(nome, telefone, documento, endereco, email, empresa);
@@ -440,7 +440,7 @@ public class Main {
 					if(proprietario!=null) {
 						imobiliaria.removerProprietario(proprietario);
 					}else {
-						System.out.println("Proprietario não existe");
+						System.out.println("Proprietario nï¿½o existe");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaProprietario.getComando(atualizar)) {
@@ -463,7 +463,7 @@ public class Main {
 					if(proprietario!=null) {
 						System.out.println(proprietario);
 					}else {
-						System.out.println("Proprietario não existe");
+						System.out.println("Proprietario nï¿½o existe");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaProprietario.getComando(voltar)) {

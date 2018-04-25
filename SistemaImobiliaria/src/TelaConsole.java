@@ -54,7 +54,7 @@ public class TelaConsole {
 	/**
 	 * show - metodo que mostra no console a tela criada. Mostra os comandos e suas funcionalidades
 	 * 
-	 * @return boolean se conseguiu ou n�o mostrar a tela no console
+	 * @return boolean se conseguiu ou nao mostrar a tela no console
 	 * */
 	public boolean show() {
 		//mostra no console a tela

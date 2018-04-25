@@ -1,6 +1,5 @@
 
 public class Preferencia {
-	// haviamos esquecido de colocar o boolean para aluguel adicionei no codigo e no diagrama de classes
 	private boolean aluguel;
 	private boolean esquina;
 	private boolean condominio;

@@ -8,15 +8,22 @@ public class PreferenciaConstrucao extends Preferencia {
 	private int quantidadeSuites;
 	
 	// Construtores
-	public PreferenciaConstrucao(boolean esquina, boolean condominio, Endereco endereco, double raio, 
-								TipoImovel tipoImovel, double areaMinimaTerreno, Restricao proposito) {
-		super(esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
+	public PreferenciaConstrucao(boolean esquina, boolean condominio, 
+							     Endereco endereco, double raio, 
+							     TipoImovel tipoImovel, double areaMinimaTerreno, 
+							     Restricao proposito) {
+		super(esquina, condominio, endereco, raio, tipoImovel, 
+			  areaMinimaTerreno, proposito);
 	}
 	
-	public PreferenciaConstrucao(boolean esquina, boolean condominio, Endereco endereco, double raio, 
-			TipoImovel tipoImovel, double areaMinimaTerreno, Restricao proposito, double areaMinimaConstruida,
-			int quantidadeBanheiros, int quantidadeQuartos, int quantidadeAndares, int quantidadeSuites) {
-		super(esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
+	public PreferenciaConstrucao(boolean esquina, boolean condominio, 
+								 Endereco endereco, double raio, 
+								 TipoImovel tipoImovel, double areaMinimaTerreno, 
+								 Restricao proposito, double areaMinimaConstruida,
+								 int quantidadeBanheiros, int quantidadeQuartos, 
+								 int quantidadeAndares, int quantidadeSuites) {
+		this(esquina, condominio, endereco, raio, tipoImovel, 
+			 areaMinimaTerreno, proposito);
 		this.areaMinimaConstruida = areaMinimaConstruida;
 		this.quantidadeBanheiros = quantidadeBanheiros;
 		this.quantidadeQuartos = quantidadeQuartos;
