@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Cliente extends Pessoa {
 /*
- *private Regi�oProcurada regi�o Procurada;  
- * Ficamos de implementar regi�o procurada na proxima etapa ?
+ * private RegiaoProcurada regiao Procurada;  
+ * Ficamos de implementar regiao procurada na proxima etapa ?
  */
   private double precoMax;
   private ArrayList <FormaPagamento> formasPagamentoDesejadas;

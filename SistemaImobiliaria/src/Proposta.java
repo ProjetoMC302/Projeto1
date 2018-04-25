@@ -78,11 +78,14 @@ public class Proposta {
 	}
 	
 	public boolean adicionarPagamento(Pagamento p) {
-		if (verificarExistenciaPagamento(p)) {
-			return false;
-		} else {
+		boolean logica = !verificarExistenciaPagamento(p) && imovel
+			.getFormasPagamentoAceitas()
+			.contains(p.getFormaPagamento());
+
+		if (logica)
 			return formaDePagamento.add(p);
-		}
+		
+		return false;
 	}
 	
 	public boolean removerPagamento(Pagamento p) {
