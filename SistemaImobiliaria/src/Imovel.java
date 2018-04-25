@@ -44,9 +44,9 @@ public class Imovel {
 	public boolean adicionarFormaPagamento(FormaPagamento fp) {
 		if (!formasPagamentoAceitas.contains(fp)) {
 			return formasPagamentoAceitas.add(fp);
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 	
 	public boolean removerFormaPagamento(FormaPagamento fp) {
@@ -56,9 +56,9 @@ public class Imovel {
 	public boolean adicionarRestricao(Restricao restricao) {
 		if (!restricoes.contains(restricao)) {
 			return restricoes.add(restricao);
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 	
 	public boolean removerRestricao(Restricao restricao) {
@@ -68,9 +68,9 @@ public class Imovel {
 	public boolean adicionarDiferencial(String diferencial) {
 		if (!diferenciais.contains(diferencial)) {
 			return diferenciais.add(diferencial);
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 	
 	public boolean removerDiferencial(String diferencial) {
