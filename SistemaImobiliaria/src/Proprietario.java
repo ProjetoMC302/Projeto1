@@ -19,6 +19,7 @@ public class Proprietario extends Pessoa{
 
 	public Proprietario(String nome, String telefone, String documento, Endereco endereco, String email, boolean empresa) {
 		super(nome, telefone, documento, endereco, email);
+		imoveis = new ArrayList<Imovel>();
 		this.empresa = empresa;
 	}
 	
