@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Proprietario extends Pessoa{
+public class Proprietario extends Pessoa {
 	
 	//Atributos
 	private boolean empresa; //O proprietaro eh uma empresa
