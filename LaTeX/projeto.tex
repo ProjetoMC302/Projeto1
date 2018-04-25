@@ -57,18 +57,99 @@ suficientemente longa de operações é $O(\log_2 n)$.
 
 % Uma árvore B é uma árvore que pode ter $\ell$ elementos em cada nó, e entre
 % cada nó temos ponteiros para outros nós com $\ell$ elementos.
-\section{Objetivos}
-\label{s:questoes-hipoteses}
+\section{Resumo}
+\label{s:resumo}
 
 
-\section{Métodos}
-\label{s:metodos}
+O projeto foi pensado para ser um sistema interno de uma imobiliária ou seja,é um sistema feito para corretores e a imobiliária em si, gerenciarem imóveis, clientes, proprietários e propostas.
+
+È importante destacar que no caso o usuário final são os corretores e outros possíveis funcionários da imobiliária o sistema foi pensado para facilitar a busca destes por imóveis de agrado do cliente, assim como servir como um banco de dados para coisas como os dados do cliente e do proprietário em si, o sistema não foi feito para acesso direto de terceiros como compradores e proprietários pois os dados contidos nesse são sigilosos.
+
+A nossa ambição, é que em sua etapa final ,o próprio sistema dê sugestões de imóveis do agrado do cliente cruzando suas preferências com os imóveis disponíveis.O sistema foi pensado consultando uma corretora de forma que este se adapte às principais necessidades do usuário final na vida real.Este também trará o benefício de tornar processos do dia a dia de uma imobiliaria, como a oficialização de uma proposta ,mais fáceis e rápidos.
+
+
+\section{Funcionalidades}
+\label{s:funcionalidades}
+
+\subsection{Funcionalidades Implementadas}
+\label{ss:func-impl}
+
+
+Foram implementadas as seguintes funcionalidades nesta etapa do projeto:
+
+Adição de novos Imoveis;
+
+Adição de novos Corretores
+
+Adição de novos Clientes;
+
+Adição de Propostas;
+
+Adição de Proprietários dos imóveis;
+
+Remoção de Imoveis;
+
+Remoção de Corretores
+
+Remoção de Clientes;
+
+Remoção de Propostas;
+
+Finalização de Propostas: propostas pode estar ativas ou não;
+
+Listagem dos Imoveis disponíveis no sistema como um todo;
+
+Listagem dos Imoveis cujo corretor responsável é o usuário;
+
+Listagem das Propostas da Imobiliaria;
+
+Listagem das Propostas cujo o usuário (Corretor) foi intermediário;
+
+Listagem dos Clientes cujo responsável é o Corretor;
+
+Listagem dos Proprietarios de todos os Imoveis disponíveis no sistema;
+
+Alteração dos dados do Imovel;
+
+Alteração dos dados do Corretor;
+
+Alteração dos dados do Proprietario;
+
+Busca por um Imovel dado sua respectiva id ou objeto;
+
+Busca por um Proposta dado sua respectiva id ou objeto;
+
+Busca por um Corretor dado seu respectivo id ou objeto ou creci;
 
 
 
 
-\section{Cronograma de Atividades}
-\label{s:atividades-cronograma}
+\subsection{Funcionalidades a Implementar}
+\label{ss:func-faltando}
+
+
+Pretendemos que na segunda parte do projeto o sistema :
+
+Correlacione as preferências do cliente e as características dos imóveis para dar dicas para o corretor automaticamente com a adição de um novo cliente;
+
+Possua a funcionalidade Visita ,para agendamento de visitas a imóveis;
+
+Possua uma classe Administrador (administrador da imobiliária com maior acesso que o Corretor);
+
+Tenha a lista de imóveis ordenada conforme o número de visitas agendadas de forma que os mais visitados tenham destaque;
+
+Tenha um banco de dados a fim de que os dados não sejam perdidos;
+
+Possua algoritmos mais avançados em termos de busca;
+
+Utilize uma API de mapas para busca de imóveis no raio de preferência do cliente; 
+
+O sistema rodando em um site;
+
+Tenha um mecanismo de login;
+
+
+
 
 \section{Ferramentas Utilizadas}
 \label{s:ferramentas}
@@ -218,6 +299,12 @@ Usado para comunicação rápida entre os membros.
 
 O \LaTeX é utilizado para a formatação do nosso relatório final sobre o projeto. O arquivo lido atualmente foi compilado pelo LaTeX e
   nos proporciona vários benefícios relacionados a escrita. É uma ferramenta com grande uso pela comunidade acadêmica.
+
+\subsection{WindowsBuilder}
+\label{ss:windows-builder}
+
+O WindowsBuilder é um plugin para Eclipse para facilitar a criação de interfaces gráficas (GUI). Nessa fase do projeto essa
+  ferramenta vai nos ajudar a entregar um projeto com uma interface gráfica simples. Vamos ter a estrutura de um CRUD (mas sem banco de dados).
 
 
 \bibliographystyle{plain}
