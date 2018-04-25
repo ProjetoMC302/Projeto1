@@ -27,7 +27,9 @@ public class Imovel {
 		diferenciais = new ArrayList<String>();
 		this.endereco = endereco;
 		this.condominio = condominio;
+		
 		this.proprietario = proprietario;
+		proprietario.adicionarImovel(this);
 		
 		this.corretorResponsavel = corretorResponsavel;
 		corretorResponsavel.adicionarImovel(this);
