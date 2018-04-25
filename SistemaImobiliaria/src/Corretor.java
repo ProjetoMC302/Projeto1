@@ -21,6 +21,11 @@ public class Corretor extends Pessoa {
 		this.senha = senha;
 		this.creci = creci;
 	}
+
+	public Corretor(String nome, String telefone, String email, Endereco endereco, String senha, String creci) {
+		this(nome, telefone, email, senha, creci);
+		setEndereco(endereco);
+	}
 	
 	public int numeroDeImoveis() {
 		return imoveis.size();
