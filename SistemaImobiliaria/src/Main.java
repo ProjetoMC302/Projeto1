@@ -1,7 +1,5 @@
-import java.awt.image.DataBufferShort;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class Main {
 
@@ -9,6 +7,7 @@ public class Main {
 		//instancia scanner para entrada de dados
 		Scanner scanner = new Scanner(System.in);
 		
+		//Corretor logado
 		Corretor corretor = null;
 		
 		//criar banco de dados simulado
@@ -76,8 +75,17 @@ public class Main {
 		
 		//telaProposta
 		TelaConsole telaProposta = new TelaConsole(scanner);
-		
-		//TODO: create last screen (auxiliar to dashborad)
+		final String criarProposta = "Criar proposta";
+		final String listarTodasPropostasAbertas = "Listar todas propostas abertas";
+		final String listarTodasPropostasFinalizadas = "Listar todas propostas Finalizadas";
+		final String finalizarProposta = "Finalizar proposta";
+		final String removerProposta = "Remover proposta";
+		telaProposta.adicionaComando(1, criarProposta);
+		telaProposta.adicionaComando(2, listarTodasPropostasAbertas);
+		telaProposta.adicionaComando(3, listarTodasPropostasFinalizadas);
+		telaProposta.adicionaComando(4, finalizarProposta);
+		telaProposta.adicionaComando(5, removerProposta);
+		telaProposta.adicionaComando(6, voltar);
 		
 		//cria comando
 		int comando; 
@@ -167,6 +175,7 @@ public class Main {
 					System.out.println("***************************************************************");
 					System.out.println("Indo para Proposta Menu");
 					System.out.println("***************************************************************");
+					TelaConsole.replace(dashboard, telaProposta);
 				}else if(comando == dashboard.getComando(deletarConta)) {
 					//deletar conta
 					System.out.println("***************************************************************");
@@ -197,7 +206,7 @@ public class Main {
 					String documento = getStringInput(scanner, "Digite o CPF do proprietario do imovel: ");
 					Proprietario proprietario = buscaProprietario(imobiliaria,documento);
 					if(proprietario==null) {
-						System.out.println("Proprietrario com documento: "+documento+" ,n�o existe");
+						System.out.println("Proprietrario com documento: "+documento+" ,nao existe");
 						System.out.println("Por favor primeiro cadastre o proprietario dono do imovel na tela: Proprietario.");
 						continue;
 					}
@@ -269,7 +278,7 @@ public class Main {
 								tipoImovel, areaTerreno, esquina);
 						
 					}
-//					corretor.adicionarImovel(imovel);
+					corretor.adicionarImovel(imovel);
 					imobiliaria.adicionarImovel(imovel);
 					System.out.println("***************************************************************");
 				} else if (comando == imovelTela.getComando(remover)) {
@@ -277,16 +286,54 @@ public class Main {
 					System.out.println("***************************************************************");
 					Imovel imovel = buscaImovel(imobiliaria,getIntInput(scanner, "Digite o id do imovel que deseja remover: "));
 					if(imovel!=null) {
-//						corretor.removerImovel(imovel);
+						corretor.removerImovel(imovel);
 						imobiliaria.removerImovel(imovel);
 					}else {
-						System.out.println("Imovel n�o existe");
+						System.out.println("Imovel nao existe");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == imovelTela.getComando(atualizar)) {
 					//atualizar
 					System.out.println("***************************************************************");
-					System.out.println("atualizar imovel");	
+					Imovel imovel = buscaImovel(imobiliaria,getIntInput(scanner, "Digite o id do imovel que deseja atualizar: "));
+					switch (getIntInput(scanner, "Qual atributo deseja atualizar \n"
+												+ "1 - Restricoes"
+												+ "2 - Forma de PagamentoAceitas"
+												+ "3 - Diferenciais")) {
+					case 1:
+						Restricao restricao;
+						if(getBooleanInput(scanner, "Qual restricao deseja adicionar (1- Residencial/ 0-Comercial)")) {
+							restricao = Restricao.RESIDENCIAL;
+						}else {
+							restricao = Restricao.COMERCIAL;
+						}
+						imovel.adicionarRestricao(restricao);
+						break;
+					case 2:
+						//adiciona forma de pagamento
+						FormaPagamento formaPagamento = null;
+						int input = getIntInput(scanner, "Qual forma de pagamento deseja adicionar ?(1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
+						if(input==1){
+							formaPagamento=FormaPagamento.AVISTA;
+						}else if(input==2) {
+							formaPagamento=FormaPagamento.PERMUTA;
+						}else if(input==3) {
+							formaPagamento=FormaPagamento.FINANCIAMENTO;
+						}
+						if(formaPagamento!=null) {
+							imovel.adicionarFormaPagamento(formaPagamento);
+						}else {
+							System.out.println("Comando invalido");
+						}
+						
+						break;
+					case 3:
+						//Adiciona diferencias
+						imovel.adicionarDiferencial(getStringInput(scanner, "Difite o Diferencial: "));
+						break;
+					default:
+						break;
+					}
 					System.out.println("***************************************************************");
 				}else if(comando == imovelTela.getComando(listarTodos)) {
 					//listar todos
@@ -299,6 +346,7 @@ public class Main {
 					//buscar
 					System.out.println("***************************************************************");
 					Imovel imovel = buscaImovel(imobiliaria,getIntInput(scanner, "Digite o id do imovel que deseja acessar: "));
+					System.out.println(imovel);
 					System.out.println("***************************************************************");
 				}else if(comando == imovelTela.getComando(voltar)) {
 					//voltar
@@ -369,19 +417,55 @@ public class Main {
 					//remover cliente
 					System.out.println("***************************************************************");
 					System.out.println("Digite o CPF do cliente que deseja remover: ");
-					String documento = scanner.nextLine();
-					Cliente clienteRemover = buscaCliente(corretor,documento);
+					Cliente clienteRemover = buscaCliente(corretor,getStringInput(scanner, "Digite o CPF do cliente que deseja remover: "));
 					if(clienteRemover!=null) {
 						corretor.removerCliente(clienteRemover);
 						imobiliaria.removerCliente(clienteRemover);
 					}else {
-						System.out.println("Cliente n�o existe no sistema");
+						System.out.println("Cliente nao existe no sistema");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaCliente.getComando(atualizar)) {
 					//atualizar
 					System.out.println("***************************************************************");
-					System.out.println("atualizar Cliente");	
+					Cliente clienteAtualizar = buscaCliente(corretor,getStringInput(scanner, "Digite o CPF do cliente que deseja atualizar: "));
+					
+					FormaPagamento formaPagamento = null;
+					int input;
+					
+					switch (getIntInput(scanner, "O que deseja: "
+												+ "\n1 - Adicionar forma de Pagameto"
+												+ "\n2 - Remover forma de Pagameto")) {
+					case 1: 
+						//adiciona forma de pagamento
+						input = getIntInput(scanner, "Qual forma de pagamento deseja adicionar ?(1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
+						if(input==1){
+							formaPagamento=FormaPagamento.AVISTA;
+						}else if(input==2) {
+							formaPagamento=FormaPagamento.PERMUTA;
+						}else if(input==3) {
+							formaPagamento=FormaPagamento.FINANCIAMENTO;
+						}
+						
+						clienteAtualizar.adicionarFormaPagamentoDesejada(formaPagamento);
+						
+					break;
+					case 2: 
+						//remover forma de pagamento
+						input = getIntInput(scanner, "Qual forma de pagamento deseja adicionar ?(1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
+						if(input==1){
+							formaPagamento=FormaPagamento.AVISTA;
+						}else if(input==2) {
+							formaPagamento=FormaPagamento.PERMUTA;
+						}else if(input==3) {
+							formaPagamento=FormaPagamento.FINANCIAMENTO;
+						}
+						
+						break;
+					default:
+						System.out.println("Comando invalido");
+						break;
+					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaCliente.getComando(listarTodos)) {
 					//listar todos
@@ -440,13 +524,26 @@ public class Main {
 					if(proprietario!=null) {
 						imobiliaria.removerProprietario(proprietario);
 					}else {
-						System.out.println("Proprietario n�o existe");
+						System.out.println("Proprietario nao existe");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaProprietario.getComando(atualizar)) {
 					//atualizar
 					System.out.println("***************************************************************");
-					System.out.println("atualizar Proprietario");	
+					Proprietario proprietario = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPF do proprietario que deseja atualizar: "));
+					switch (getIntInput(scanner, "O que deseja: "
+												+ "\n1 - Atualizar Email"
+												+ "\n2 - Atualizar Telefone")) {
+					case 1:
+						proprietario.setEmail(getStringInput(scanner, "Qaul novo email do proprietario ? "));
+						break;
+					case 2:
+						proprietario.setTelefone(getStringInput(scanner, "Qaul novo telefone do Proprietario ? "));
+						break;
+					default:
+						System.out.println("Comando invalido");
+						break;
+					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaProprietario.getComando(listarTodos)) {
 					//listar todos
@@ -459,11 +556,11 @@ public class Main {
 					//buscar
 					System.out.println("***************************************************************");
 					System.out.println("***************************************************************");
-					Proprietario proprietario = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPFdo proprietario que deseja remover: "));
+					Proprietario proprietario = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPF do proprietario que deseja remover: "));
 					if(proprietario!=null) {
 						System.out.println(proprietario);
 					}else {
-						System.out.println("Proprietario n�o existe");
+						System.out.println("Proprietario nao existe");
 					}
 					System.out.println("***************************************************************");
 				}else if(comando == telaProprietario.getComando(voltar)) {
@@ -472,6 +569,48 @@ public class Main {
 					System.out.println("voltando ao menu anterior...");
 					System.out.println("***************************************************************");
 					TelaConsole.replace(telaProprietario, dashboard);
+				}
+			}
+			
+			if(telaProposta.isAtiva()) {
+				System.out.println("*TelaProposta* \n");
+				telaProposta.show();
+				comando = telaProposta.getInput();
+				
+				if(comando == telaProposta.getComando(criarProposta)) {
+					System.out.println("***************************************************************");
+					Cliente comprador = buscaCliente(corretor, getStringInput(scanner, "Digite o CPF do comprador: "));
+					Proprietario vendedor = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPF do vendedor: "));
+					Imovel imovel = imobiliaria.buscarImovel(getIntInput(scanner, "Digite o Id do imovel: "));
+					Proposta proposta = corretor.criarProposta(comprador, vendedor, imovel, getDoubleInput(scanner, "Digite o valor da compra: "));
+					System.out.println(proposta);
+					System.out.println("***************************************************************");
+				}else if(comando == telaProposta.getComando(listarTodasPropostasAbertas)){
+					System.out.println("***************************************************************");
+					for (Proposta pr : corretor.getPropostasEmAberto()) {
+						System.out.println(pr);
+					}
+					System.out.println("***************************************************************");
+				}else if(comando == telaProposta.getComando(listarTodasPropostasFinalizadas)){
+					System.out.println("***************************************************************");
+					for (Proposta pr : corretor.getPropostasFinalizadas()) {
+						System.out.println(pr);
+					}
+					System.out.println("***************************************************************");
+				}else if(comando == telaProposta.getComando(finalizarProposta)){
+					System.out.println("***************************************************************");
+					Proposta proposta = imobiliaria.buscarProposta(getIntInput(scanner, "Digite o id da Proposta: "));
+					corretor.finalizarProposta(proposta);
+					System.out.println("***************************************************************");
+				}else if(comando == telaProposta.getComando(removerProposta)){
+					System.out.println("***************************************************************");
+					Proposta proposta = imobiliaria.buscarProposta(getIntInput(scanner, "Digite o id da Proposta: "));
+					corretor.removerProposta(proposta);
+					System.out.println("***************************************************************");
+				}else if(comando == telaProposta.getComando(voltar)){
+					System.out.println("***************************************************************");
+					TelaConsole.replace(telaProposta, dashboard);
+					System.out.println("***************************************************************");
 				}
 			}
 		}	

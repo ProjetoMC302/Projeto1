@@ -54,8 +54,8 @@ public class Corretor extends Pessoa {
 		return clientes.remove(cliente);
 	}
 	
-	public Proposta criarProposta(Cliente cliente, Proprietario vendedor, Imovel imovel) {
-		Proposta proposta = new Proposta(imovel, cliente, vendedor, this);
+	public Proposta criarProposta(Cliente comprador, Proprietario vendedor, Imovel imovel, double precoProposta) {
+		Proposta proposta = new Proposta(imovel, comprador, vendedor, this, precoProposta);
 		propostasEmAberto.add(proposta);
 		return proposta;
 	}

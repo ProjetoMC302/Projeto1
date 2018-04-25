@@ -133,8 +133,7 @@ public class Condominio {
 	@Override
 	public String toString(){
 		String out;
-		out = "id do condominio: " + id + "\nValor: " + 
-				String.format("%.2f", valorCondominio) +
+		out = "id do condominio: " + id + "\nValor: " +  valorCondominio +
 				"\nOpcoes de lazer: ";
 		if (lazer.isEmpty()){
 			out += "VAZIO\n";

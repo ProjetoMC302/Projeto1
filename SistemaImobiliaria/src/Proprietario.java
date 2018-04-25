@@ -35,7 +35,7 @@ public class Proprietario extends Pessoa {
 		return imoveis.remove(imovel);
 	}
 	
-	// Cria instância de Imovel e faz as conexoes necessarias
+	// Cria instancia de Imovel e faz as conexoes necessarias
 	public Imovel publicarImovel(Endereco endereco, Condominio condominio, 
 								 Corretor corretorResponsavel, String descricao,
 								 double preco, double iptu, boolean aluguel,

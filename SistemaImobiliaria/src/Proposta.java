@@ -12,19 +12,14 @@ public class Proposta {
 	private ArrayList<Pagamento> formaDePagamento;
 	private double precoProposta;
 	
-	//Construtores
-	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel) {
+	//Construtores	
+	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, Corretor corretorResponsavel, double precoProposta) {
 		id = ++geradorId;
 		formaDePagamento = new ArrayList<Pagamento>();
 		this.imovel = imovel;
 		this.comprador = comprador;
 		this.vendedor = vendedor;
 		this.corretorResponsavel = corretorResponsavel;
-	}
-	
-	public Proposta(Imovel imovel, Cliente comprador, Proprietario vendedor, 
-					Corretor corretorResponsavel, double precoProposta) {
-		this(imovel, comprador, vendedor, corretorResponsavel);
 		this.precoProposta = precoProposta;
 	}
 	
