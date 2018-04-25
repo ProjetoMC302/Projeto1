@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class Imovel {
-	private int id;
 	private static int numeroImoveis;
+	private static int geradorId;
+	
+	private final int id;
 	private Endereco endereco;
 	private ArrayList<Restricao> restricoes;
 	private Condominio condominio;
-	private Proprietario proprietario;
+	private final Proprietario proprietario;
 	private Corretor corretorResponsavel;
 	private String descricao;
 	private ArrayList<String> diferenciais;
@@ -16,33 +18,20 @@ public class Imovel {
 	private boolean aluguel;
 	private TipoImovel tipoImovel;
 	
-	public Imovel(int id, Endereco endereco, ArrayList<Restricao> restricoes, Condominio condominio,
-			Proprietario proprietario, Corretor corretorResponsavel, String descricao, ArrayList<String> diferenciais,
-			ArrayList<FormaPagamento> formasPagamentoAceitas, double preco, double iptu, boolean aluguel,
-			TipoImovel tipoImovel) {
-		this.id = id;
-		this.endereco = endereco;
-		this.restricoes = restricoes;
-		this.condominio = condominio;
-		this.proprietario = proprietario;
-		this.corretorResponsavel = corretorResponsavel;
-		this.descricao = descricao;
-		this.diferenciais = diferenciais;
-		this.formasPagamentoAceitas = formasPagamentoAceitas;
-		this.preco = preco;
-		this.iptu = iptu;
-		this.aluguel = aluguel;
-		this.tipoImovel = tipoImovel;
-	}
-
-	public Imovel(int id, Endereco endereco, Condominio condominio, Proprietario proprietario,
+	public Imovel(Endereco endereco, Condominio condominio, Proprietario proprietario,
 			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel) {
-		this.id = id;
+		id = ++geradorId;
+		formasPagamentoAceitas = new ArrayList<FormaPagamento>();
+		restricoes = new ArrayList<Restricao>();
+		diferenciais = new ArrayList<String>();
 		this.endereco = endereco;
 		this.condominio = condominio;
 		this.proprietario = proprietario;
+		
 		this.corretorResponsavel = corretorResponsavel;
+		corretorResponsavel.adicionarImovel(this);
+		
 		this.descricao = descricao;
 		this.preco = preco;
 		this.iptu = iptu;
@@ -90,10 +79,6 @@ public class Imovel {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public static int getNumeroImoveis() {
 		return numeroImoveis;
 	}
@@ -130,9 +115,6 @@ public class Imovel {
 		return proprietario;
 	}
 
-	public void setProprietario(Proprietario proprietario) {
-		this.proprietario = proprietario;
-	}
 
 	public Corretor getCorretorResponsavel() {
 		return corretorResponsavel;
