@@ -10,43 +10,39 @@ public class Preferencia {
 	private double areaMinimaTerreno;
 	private Restricao proposito;
 	
-	public Preferencia(boolean aluguel,boolean esquina, boolean condominio, Endereco endereco, double raio,
-			TipoImovel tipoImovel,double areaMinimaTerreno, Restricao proposito) {
-		this.aluguel=aluguel;
-		this.esquina = esquina;
-		this.condominio = condominio;
-		this.endereco = endereco;
-		this.raio = raio;
-		this.tipoImovel = tipoImovel;
-		this.areaMinimaTerreno = areaMinimaTerreno;
-		this.proposito = proposito;
-	}
-
-	public Preferencia(boolean esquina, boolean condominio, Endereco endereco, double raio, TipoImovel tipoImovel,
-			double areaMinimaTerreno, Restricao proposito) {
-		super();
-		this.esquina = esquina;
-		this.condominio = condominio;
-		this.endereco = endereco;
-		this.raio = raio;
-		this.tipoImovel = tipoImovel;
-		this.areaMinimaTerreno = areaMinimaTerreno;
-		this.proposito = proposito;
-	}
-
-
-	public Preferencia(boolean aluguel,Endereco endereco, double raio, TipoImovel tipoImovel, 
-			double areaMinimaTerreno,Restricao proposito) {
-		this.aluguel=aluguel;
+	public Preferencia(boolean aluguel, Endereco endereco, double raio, 
+					   TipoImovel tipoImovel, double areaMinimaTerreno,
+					   Restricao proposito) {
+		this.aluguel = aluguel;
 		this.endereco = endereco;
 		this.raio = raio;
 		this.tipoImovel = tipoImovel;
 		this.areaMinimaTerreno = areaMinimaTerreno;
 		this.proposito = proposito;
 
-		if(this.tipoImovel==TipoImovel.APARTAMENTO) {
-			this.condominio=true;
+		if (this.tipoImovel == TipoImovel.APARTAMENTO) {
+			this.condominio = true;
 		}
+	}
+	
+	public Preferencia(boolean esquina, boolean condominio, Endereco endereco, 
+					   double raio, TipoImovel tipoImovel, double areaMinimaTerreno,
+					   Restricao proposito) {
+		this.esquina = esquina;
+		this.condominio = condominio;
+		this.endereco = endereco;
+		this.raio = raio;
+		this.tipoImovel = tipoImovel;
+		this.areaMinimaTerreno = areaMinimaTerreno;
+		this.proposito = proposito;
+	}
+	
+	public Preferencia(boolean aluguel,boolean esquina, boolean condominio, 
+					   Endereco endereco, double raio, TipoImovel tipoImovel,
+					   double areaMinimaTerreno, Restricao proposito) {
+		
+		this(esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
+		this.aluguel = aluguel;
 	}
 
 	public Preferencia(boolean aluguel ,boolean esquina, boolean condominio, TipoImovel tipoImovel, double areaMinimaTerreno, Restricao proposito) {
@@ -58,7 +54,7 @@ public class Preferencia {
 		this.areaMinimaTerreno = areaMinimaTerreno;
 		this.proposito = proposito;
 	}
-	public boolean getEsquina() {
+	public boolean isEsquina() {
 		return esquina;
 	}
 
@@ -68,7 +64,7 @@ public class Preferencia {
 	}
 
 
-	public boolean getCondominio() {
+	public boolean isCondominio() {
 		return condominio;
 	}
 
@@ -128,7 +124,7 @@ public class Preferencia {
 	}
 	
 	
-	public boolean getAluguel() {
+	public boolean isAluguel() {
 		return aluguel;
 	}
 
@@ -140,9 +136,9 @@ public class Preferencia {
 
 	public String toString() {
 		String preferencia = "";
-		preferencia = preferencia + "*Aluguel: " + getAluguel() +"\n";
-		preferencia = preferencia + "*Esquina: " + getEsquina() +"\n";
-		preferencia = preferencia + "*Condominio: " + getCondominio() + "\n";
+		preferencia = preferencia + "*Aluguel: " + isAluguel() +"\n";
+		preferencia = preferencia + "*Esquina: " + isEsquina() +"\n";
+		preferencia = preferencia + "*Condominio: " + isCondominio() + "\n";
 		preferencia = preferencia + "*Endereco de interesse:\n" + getEndereco().toString() + "\n";
 		preferencia = preferencia + "*Raio de interesse: " + getRaio() + "\n";
 		preferencia = preferencia + "*Tipo de imovel procurado: " + getTipoImovel() + "\n";
@@ -150,11 +146,5 @@ public class Preferencia {
 		preferencia = preferencia + "*Proposito do imovel " + getProposito() + "\n";
 		return preferencia;
 	}
-	
-	
-	
-	
-	
-	
 
 }

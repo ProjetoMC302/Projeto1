@@ -1,16 +1,17 @@
 /**Terreno - essa classe representa a estrutura de um terreno: 
  * os atributos relevantes para um cliente que deseja um terreno
  * */
-public class Terreno extends Imovel{
+public class Terreno extends Imovel {
 	private double areaTerreno;
-	//atributo que representa se o terreno � de esquina
+	//atributo que representa se o terreno eh de esquina
 	private boolean esquina;
 	
 
 	public Terreno( Endereco endereco, Condominio condominio, Proprietario proprietario,
 			Corretor corretorResponsavel, String descricao, double preco, double iptu, boolean aluguel,
 			TipoImovel tipoImovel, double areaTerreno, boolean esquina) {
-		super(endereco, condominio, proprietario, corretorResponsavel, descricao, preco, iptu, aluguel, tipoImovel);
+		super(endereco, condominio, proprietario, corretorResponsavel,
+			  descricao, preco, iptu, aluguel, tipoImovel);
 		this.areaTerreno = areaTerreno;
 		this.esquina = esquina;
 	}
@@ -36,6 +37,4 @@ public class Terreno extends Imovel{
 	public String toString() {
 		return "Terreno ["+super.toString()+", AreaTerreno= " + getAreaTerreno() + ", Esquina()= " + isEsquina() + "]";
 	}
-	
-	
 }

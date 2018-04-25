@@ -65,4 +65,5 @@ public class Proprietario extends Pessoa {
 	public void setImoveis(ArrayList<Imovel> imoveis) {
 		this.imoveis = imoveis;
 	}
+	
 }
