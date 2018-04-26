@@ -3,10 +3,9 @@ package InterfaceConsole;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
+//import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
-import Entidades.*;
-
+//import Entidades.*;
 /**
  * TelaConsole - Representa uma tela no console
  * IMPORTANTE: A classe so funciona para um programa rodando com interface no console  
@@ -17,12 +16,12 @@ public class TelaConsole {
 	private boolean ativa;
 	private Scanner scanner;
 	
-	private static int COMANDO_INVALIDO = -1;
+	private final static int COMANDO_INVALIDO = -1;
 	
 	/*comandos - ArrayList de comandos aceito pela tela*/
 	private ArrayList<Integer> idComandos;
 	
-	/*mensagenss - ArrayList de mensagem que ser�o apresentadas na tela explicando a 
+	/*mensagens - ArrayList de mensagem que serao apresentadas na tela explicando a 
 	 * funcionalidade de cada comando.
 	 * mensagens.get(i) - string explicando a funcionalidade do comando em comando.get(i) */
 	private ArrayList<String> comandos;
@@ -51,7 +50,7 @@ public class TelaConsole {
 	}
 
 	public int getComando(String comando) {
-		if(comandos.contains(comando)&&idComandos.size()==comandos.size()) {
+		if ((comandos.contains(comando)) && (idComandos.size() == comandos.size())) {
 			return idComandos.get(comandos.indexOf(comando));
 		}
 		 return COMANDO_INVALIDO;
@@ -64,7 +63,7 @@ public class TelaConsole {
 	 * */
 	public boolean show() {
 		//mostra no console a tela
-		if(idComandos.size()!=comandos.size()) {
+		if (idComandos.size() != comandos.size()) {
 			//numero diferente de mensagem e comando erro
 			return false;
 		}
@@ -81,8 +80,8 @@ public class TelaConsole {
 		ativa = false;
 	}
 	
-	public boolean adicionaComando(int comando,String mensagem) {
-		if(idComandos.add(comando) && comandos.add(mensagem)) {
+	public boolean adicionaComando(int comando, String mensagem) {
+		if (idComandos.add(comando) && comandos.add(mensagem)) {
 			return true;
 		}
 		return false;
@@ -95,17 +94,17 @@ public class TelaConsole {
 	 * */
 	public int getInput() {
 		boolean erro = true;
-		int comando=COMANDO_INVALIDO; 
-		while(erro) {
+		int comando = COMANDO_INVALIDO; 
+		while (erro) {
 			try{
-				erro =false;
+				erro = false;
 				comando = Integer.parseInt(scanner.nextLine());		
-				if(!idComandos.contains(comando)) {
+				if (!idComandos.contains(comando)) {
 					erro = true;
 					System.out.println("Comando invalido");
 					System.out.print("Tente Novamente: ");
 				}
-			}catch (Exception e) {
+			} catch (Exception e) {
 				erro = true;
 				System.out.println("Comando invalido");
 				System.out.print("Tente Novamente: ");
