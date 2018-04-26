@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.24)  26 APR 2018 10:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.24)  26 APR 2018 11:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -610,9 +610,9 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 102.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 109.
+(babel)             in language  on input line 108.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 109.
+(babel)             in language  on input line 108.
  [2]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 119.
@@ -687,9 +687,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 279.
  (./projeto.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 279.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 279.
-Package rerunfilecheck Info: File `projeto.out' has not changed.
-(rerunfilecheck)             Checksum: F4819A9A6BBF9D263FB410BD100AF2C9;1031.
 
+
+Package rerunfilecheck Warning: File `projeto.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `projeto.out':
+(rerunfilecheck)             Before: F4819A9A6BBF9D263FB410BD100AF2C9;1031
+(rerunfilecheck)             After:  56308B3F3563ECE66D5A51A02F01F2A0;1030.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -702,7 +708,7 @@ Here is how much of TeX's memory you used:
  9425 multiletter control sequences out of 15000+600000
  9157 words of font info for 32 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 29i,7n,32p,302b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,7n,32p,302b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
@@ -710,7 +716,7 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti10.pfb>
-Output written on projeto.pdf (7 pages, 1192645 bytes).
+Output written on projeto.pdf (7 pages, 1192692 bytes).
 PDF statistics:
  190 PDF objects out of 1000 (max. 8388607)
  170 compressed objects within 2 object streams
