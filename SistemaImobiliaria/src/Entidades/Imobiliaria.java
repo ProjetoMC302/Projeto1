@@ -271,7 +271,7 @@ public class Imobiliaria {
 		this.propostasFinalizadasSemCorretor = propostasFinalizadasSemCorretor;
 	}
 	
-	private String auxiliadorProprietarios() {
+	private String auxiliadorToStringProprietarios() {
 		String out = "";
 		
 		for (Proprietario pro : proprietarios) {
@@ -282,7 +282,7 @@ public class Imobiliaria {
 		return out;
 	}
 	
-	private String auxiliadorClientes() {
+	private String auxiliadorToStringClientes() {
 		String out = "";
 		
 		for (Cliente cli : clientes) {
@@ -293,7 +293,7 @@ public class Imobiliaria {
 		return out;	
 	}
 	
-	private String auxiliadorCorretores() {
+	private String auxiliadorToStringCorretores() {
 		String out = "";
 		
 		for (Corretor cor : corretores) {
@@ -304,7 +304,7 @@ public class Imobiliaria {
 		return out;
 	}
 	
-	private String auxiliadorPropostasEmAbertoSemCorretor() {
+	private String auxiliadorToStringPropostasEmAbertoSemCorretor() {
 		String out = "";
 		
 		for (Proposta propos : propostasEmAbertoSemCorretor) {
@@ -315,7 +315,7 @@ public class Imobiliaria {
 		return out;
 	}
 	
-	private String auxiliadorPropostasFinalizadasSemCorretor() {
+	private String auxiliadorToStringPropostasFinalizadasSemCorretor() {
 		String out = "";
 		
 		for (Proposta propos : propostasFinalizadasSemCorretor) {
@@ -329,11 +329,11 @@ public class Imobiliaria {
 	@Override
 	public String toString() {
 		String out = "***Imobiliaria***";
-		out += "*Proprietarios Cadastrados:\n" + auxiliadorProprietarios();
-		out += "*Clientes Cadastrados:\n" + auxiliadorClientes();
-		out += "*Corretores Cadastrados:\n" + auxiliadorCorretores();
-		out += "*Propostas Em Aberto Sem Corretor:\n" + auxiliadorPropostasEmAbertoSemCorretor();
-		out += "*Propostas Finalizadas Sem Corretor:\n" + auxiliadorPropostasFinalizadasSemCorretor();
+		out += "*Proprietarios Cadastrados:\n" + auxiliadorToStringProprietarios();
+		out += "*Clientes Cadastrados:\n" + auxiliadorToStringClientes();
+		out += "*Corretores Cadastrados:\n" + auxiliadorToStringCorretores();
+		out += "*Propostas Em Aberto Sem Corretor:\n" + auxiliadorToStringPropostasEmAbertoSemCorretor();
+		out += "*Propostas Finalizadas Sem Corretor:\n" + auxiliadorToStringPropostasFinalizadasSemCorretor();
 		
 		return out;
 	}

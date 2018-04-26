@@ -93,7 +93,7 @@ public class Proposta {
 		return formaDePagamento.remove(p);
 	}
 	
-	private String auxiliadorFormaDePagamento() {
+	private String auxiliadorToStringFormaDePagamento() {
 		String out = "";
 		
 		for (Pagamento p : formaDePagamento) {
@@ -104,11 +104,11 @@ public class Proposta {
 		return out;
 	}
 	
-	private String auxiliadorPrecoProposta() {
+	private String auxiliadorToStringPrecoProposta() {
 		return "R$" + String.format("%.2f", precoProposta);
 	}
 	
-	private String auxiliadorCorretorResponsavel() {
+	private String auxiliadorToStringCorretorResponsavel() {
 		if (corretorResponsavel != null) {
 			return Integer.toString(corretorResponsavel.getId());
 		}
@@ -121,10 +121,10 @@ public class Proposta {
 		String out = "*Proposta de Id: " + id + "\n";
 		out += "*Id do Imovel: " + imovel.getId() + "\n";
 		out += "*Id do Comprador: " + comprador.getId() + "\n";
-		out += "*Id do Corretor Responsavel: " + auxiliadorCorretorResponsavel() + "\n";
+		out += "*Id do Corretor Responsavel: " + auxiliadorToStringCorretorResponsavel() + "\n";
 		out += "*Id do Vendedor: " + vendedor.getId() + "\n";
-		out += "*Forma(s) de Pagamento:\n" + auxiliadorFormaDePagamento();
-		out += "*Preco da Proposta: " + auxiliadorPrecoProposta() + "\n";
+		out += "*Forma(s) de Pagamento:\n" + auxiliadorToStringFormaDePagamento();
+		out += "*Preco da Proposta: " + auxiliadorToStringPrecoProposta() + "\n";
 		
 		return out;
 	}

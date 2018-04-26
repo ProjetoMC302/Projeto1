@@ -34,7 +34,7 @@ public class Terreno extends Imovel {
 		this.esquina = esquina;
 	}
 	
-	private String auxiliarEsquina() {
+	private String auxiliadorToStringEsquina() {
 		String out;
 		
 		if (esquina) {
@@ -50,7 +50,7 @@ public class Terreno extends Imovel {
 	@Override
 	public String toString() {
 		String out = super.toString();
-		out += "*Esquina: " + auxiliarEsquina() + "\n";
+		out += "*Esquina: " + auxiliadorToStringEsquina() + "\n";
 		out += "*Area do Terreno: " + areaTerreno + "\n";
 		
 		return out;

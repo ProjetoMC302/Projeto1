@@ -70,7 +70,7 @@ public class Apartamento extends ImovelConstruido {
 		this.elevadorSocial = elevadorSocial;
 	}
 	
-	private String auxiliarBooleano(boolean valor) {
+	private String auxiliadorToStringBooleano(boolean valor) {
 		String out;
 		
 		if (valor) {
@@ -87,9 +87,9 @@ public class Apartamento extends ImovelConstruido {
 	public String toString() {
 		String out = super.toString();
 		out += "*Andar: " + andar + "\n";
-		out += "*Cobertura: " + auxiliarBooleano(cobertura) + "\n";
-		out += "*Elevador Social: " + auxiliarBooleano(elevadorSocial) + "\n";
-		out += "*Elevador de Servico: " + auxiliarBooleano(elevadorServico) + "\n";
+		out += "*Cobertura: " + auxiliadorToStringBooleano(cobertura) + "\n";
+		out += "*Elevador Social: " + auxiliadorToStringBooleano(elevadorSocial) + "\n";
+		out += "*Elevador de Servico: " + auxiliadorToStringBooleano(elevadorServico) + "\n";
 		out += "*Quantidade de Terraco(s): " + quantidadeTerraco + "\n";
 		
 		return out;

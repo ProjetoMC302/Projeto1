@@ -76,7 +76,7 @@ public class Cliente extends Pessoa {
 		return false;
 	}
 
-	private String auxiliarFormasPagamentoDesejadas() {
+	private String auxiliadorToStringFormasPagamentoDesejadas() {
 		String out = "";
 		for (FormaPagamento fp : formasPagamentoDesejadas) {
 			out += " | " + fp;
@@ -86,7 +86,7 @@ public class Cliente extends Pessoa {
 		return out;
 	}
 	
-	private String auxiliarPreferencias() {
+	private String auxiliadorToStringPreferencias() {
 		String out = "";
 		
 		for (Preferencia p : preferencias) {
@@ -101,8 +101,8 @@ public class Cliente extends Pessoa {
 	public String toString() {
 		String out = "**Cliente**";
 		out += super.toString();
-		out += "*Formas de Pagamento Desejadas: " + auxiliarFormasPagamentoDesejadas() + "\n";
-		out += "*Preferencias:\n" + auxiliarPreferencias();
+		out += "*Formas de Pagamento Desejadas: " + auxiliadorToStringFormasPagamentoDesejadas() + "\n";
+		out += "*Preferencias:\n" + auxiliadorToStringPreferencias();
 		
 		return out;
 	}  

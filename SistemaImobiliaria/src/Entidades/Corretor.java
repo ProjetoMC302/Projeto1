@@ -152,7 +152,7 @@ public class Corretor extends Pessoa {
 		this.propostasFinalizadas = propostasFinalizadas;
 	}
 	
-	private String auxiliadorImoveis() {
+	private String auxiliadorToStringImoveis() {
 		String out = "[ ";
 		for (Imovel imv : imoveis) {
 			out += imv.getId() + " ";
@@ -162,7 +162,7 @@ public class Corretor extends Pessoa {
 		return out;
 	}
 	
-	private String auxiliadorClientes() {
+	private String auxiliadorToStringClientes() {
 		String out = "[ ";
 		for (Cliente cli : clientes) {
 			out += cli.getId() + " ";
@@ -172,7 +172,7 @@ public class Corretor extends Pessoa {
 		return out;
 	}
 	
-	private String auxiliadorPropostasEmAberto() {
+	private String auxiliadorToStringPropostasEmAberto() {
 		String out = "[ ";
 		for (Proposta pro : propostasEmAberto) {
 			out += pro.getId() + " ";
@@ -182,7 +182,7 @@ public class Corretor extends Pessoa {
 		return out;
 	}
 	
-	private String auxiliadorPropostasFinalizadas() {
+	private String auxiliadorToStringPropostasFinalizadas() {
 		String out = "[ ";
 		for (Proposta pro : propostasFinalizadas) {
 			out += pro.getId() + " ";
@@ -199,10 +199,10 @@ public class Corretor extends Pessoa {
 		out += 	super.toString();
 		out += "*Creci: "+ creci + "\n";
 		out += "*Quantidade de imoveis sob responsabilidade: " + numeroDeImoveis() +"\n"; 
-		out += "*Imoveis: " + auxiliadorImoveis() + "\n"; 
-		out += "*Clientes: " + auxiliadorClientes() + "\n"; 
-		out += "*Propostas Em Aberto: " + auxiliadorPropostasEmAberto() + "\n";
-		out += "\n*Propostas Finalizadas: " + auxiliadorPropostasFinalizadas() + "\n";
+		out += "*Imoveis: " + auxiliadorToStringImoveis() + "\n"; 
+		out += "*Clientes: " + auxiliadorToStringClientes() + "\n"; 
+		out += "*Propostas Em Aberto: " + auxiliadorToStringPropostasEmAberto() + "\n";
+		out += "\n*Propostas Finalizadas: " + auxiliadorToStringPropostasFinalizadas() + "\n";
 	
 		return out;
 	}	

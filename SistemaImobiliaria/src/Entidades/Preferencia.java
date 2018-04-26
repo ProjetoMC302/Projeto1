@@ -136,7 +136,7 @@ public class Preferencia {
 		this.aluguel = aluguel;
 	}
 
-	private String auxiliarBooleano(boolean b) {
+	private String auxiliadorToStringBooleano(boolean b) {
 		String out;
 		
 		if (b) {
@@ -151,9 +151,9 @@ public class Preferencia {
 	@Override
 	public String toString() {
 		String out = "";
-		out += "*Aluguel: " + auxiliarBooleano(aluguel) +"\n";
-		out += "*Esquina: " + auxiliarBooleano(esquina) +"\n";
-		out += "*Condominio: " + auxiliarBooleano(condominio) + "\n";
+		out += "*Aluguel: " + auxiliadorToStringBooleano(aluguel) +"\n";
+		out += "*Esquina: " + auxiliadorToStringBooleano(esquina) +"\n";
+		out += "*Condominio: " + auxiliadorToStringBooleano(condominio) + "\n";
 		out += "*Endereco de Interesse:\n" + endereco + "\n";
 		out += "*Raio de Interesse: " + raio + "\n";
 		out += "*Tipo de Imovel Procurado: " + tipoImovel + "\n";

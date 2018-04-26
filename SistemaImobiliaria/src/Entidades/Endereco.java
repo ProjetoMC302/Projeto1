@@ -116,10 +116,6 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 	
-	/**
-	 * O toString desta classe retorna o endereco num formato
-	 * 	semelhante ao de o encontrado em uma carta. 
-	 */
 	@Override
 	public String toString(){
 		String out = "";

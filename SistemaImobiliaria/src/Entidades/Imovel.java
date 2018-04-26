@@ -183,7 +183,7 @@ public class Imovel {
 		this.tipoImovel = tipoImovel;
 	}
 
-	private String auxiliarRestricoes() {
+	private String auxiliadorToStringRestricoes() {
 		String out = "[ ";
 		for (Restricao r : restricoes) {
 			out += r + " ";
@@ -193,7 +193,7 @@ public class Imovel {
 		return out;
 	}
 	
-	private String auxiliarDiferenciais() {
+	private String auxiliadorToStringDiferenciais() {
 		String out = "";
 		for (String dif : diferenciais) {
 			out += "  -" + dif + "\n";
@@ -202,7 +202,7 @@ public class Imovel {
 		return out;
 	}
 	
-	private String auxiliarFormasPagamentoAceitas() {
+	private String auxiliadorToStringFormasPagamentoAceitas() {
 		String out = "";
 		for (FormaPagamento fp : formasPagamentoAceitas) {
 			out += " | " + fp;
@@ -212,11 +212,11 @@ public class Imovel {
 		return out;
 	}
 	
-	private String auxiliarDinheiro(double valor) {
+	private String auxiliadorToStringDinheiro(double valor) {
 		return "R$" + String.format("%.2f", valor);
 	}
 	
-	private String auxiliarAluguel() {
+	private String auxiliadorToStringAluguel() {
 		String out;
 		
 		if (aluguel) {
@@ -234,15 +234,15 @@ public class Imovel {
 		out += "*Tipo de Imovel: " + tipoImovel + " - id: " + id + "\n";
 		out += "*Id do Proprietario: " + proprietario.getId() + "\n";
 		out += "*Id do Corretor Responsavel: " + corretorResponsavel.getId() + "\n";
-		out += "*Restricoes: " + auxiliarRestricoes() +"\n";
+		out += "*Restricoes: " + auxiliadorToStringRestricoes() +"\n";
 		out += "*Endereco:\n" + endereco + "\n";
 		out += "*Condominio:\n" + condominio;
 		out += "*Descricao: " + descricao + "\n";
-		out += "*Diferenciais:\n" + auxiliarDiferenciais();
-		out += "*Preco: " + auxiliarDinheiro(preco) + "\n";
-		out += "*Formas de Pagamento Aceitas: " + auxiliarFormasPagamentoAceitas() + "\n";
-		out += "*IPTU: " + auxiliarDinheiro(iptu) + "\n";
-		out += "*Aceita aluguel: " + auxiliarAluguel() + "\n";
+		out += "*Diferenciais:\n" + auxiliadorToStringDiferenciais();
+		out += "*Preco: " + auxiliadorToStringDinheiro(preco) + "\n";
+		out += "*Formas de Pagamento Aceitas: " + auxiliadorToStringFormasPagamentoAceitas() + "\n";
+		out += "*IPTU: " + auxiliadorToStringDinheiro(iptu) + "\n";
+		out += "*Aceita aluguel: " + auxiliadorToStringAluguel() + "\n";
 		
 		return out;
 	}

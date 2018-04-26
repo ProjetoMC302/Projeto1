@@ -25,14 +25,14 @@ public class Pagamento {
 		this.formaPagamento = formaPagamento;
 	}
 	
-	private String auxiliarValorCombinado() {
+	private String auxiliadorToStringValorCombinado() {
 		return "R$" + String.format("%.2f", valorCombinado);
 	}
 
 	@Override
 	public String toString() {
 		String out = "";
-		out += "*Valor Combinado: " + auxiliarValorCombinado() + "\n";
+		out += "*Valor Combinado: " + auxiliadorToStringValorCombinado() + "\n";
 		out += "*Forma de Pagamento: " + formaPagamento + "\n";
 		
 		return out;

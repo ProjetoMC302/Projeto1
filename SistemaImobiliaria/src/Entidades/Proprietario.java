@@ -67,7 +67,7 @@ public class Proprietario extends Pessoa {
 		this.imoveis = imoveis;
 	}
 	
-	private String auxiliarEmpresa() {
+	private String auxiliadorToStringEmpresa() {
 		String out;
 		
 		if (empresa) {
@@ -79,7 +79,7 @@ public class Proprietario extends Pessoa {
 		return out;
 	}
 	
-	private String auxiliarImoveis() {
+	private String auxiliadorToStringImoveis() {
 		String out = "[ ";
 		for (Imovel imv : imoveis) {
 			out += imv.getId() + " ";
@@ -93,8 +93,8 @@ public class Proprietario extends Pessoa {
 	public String toString() {
 		String out = "***Proprietario***";
 		out += super.toString();
-		out += "*Empresa: " + auxiliarEmpresa() + "\n";
-		out += "*Imoveis: " + auxiliarImoveis() + "\n";
+		out += "*Empresa: " + auxiliadorToStringEmpresa() + "\n";
+		out += "*Imoveis: " + auxiliadorToStringImoveis() + "\n";
 		
 		return out;
 	}

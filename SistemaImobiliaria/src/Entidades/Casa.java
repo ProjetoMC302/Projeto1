@@ -53,7 +53,7 @@ public class Casa  extends ImovelConstruido {
 		return getAreaTerreno() - getAreaConstruida();
 	}
 	
-	private String auxiliarBooleano(boolean valor) {
+	private String auxiliadorToStringBooleano(boolean valor) {
 		String out;
 		
 		if (valor) {
@@ -69,8 +69,8 @@ public class Casa  extends ImovelConstruido {
 	@Override
 	public String toString() {
 		String out = super.toString();
-		out += "*Esquina: " + auxiliarBooleano(esquina) + "\n";
-		out += "*Piscina: " + auxiliarBooleano(piscina) + "\n";
+		out += "*Esquina: " + auxiliadorToStringBooleano(esquina) + "\n";
+		out += "*Piscina: " + auxiliadorToStringBooleano(piscina) + "\n";
 		out += "*Area do Terreno: " + areaTerreno + "\n";
 		out += "*Area do Quintal: " + calculaAreaQuintal() + "\n";
 

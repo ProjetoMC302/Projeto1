@@ -131,11 +131,11 @@ public class Condominio {
 		return id;
 	}
 	
-	private String auxiliarValorCondominio() {
+	private String auxiliadorToStringValorCondominio() {
 		return "R$" + String.format("%.2f", valorCondominio);
 	}
 	
-	private String auxiliarLazer() {
+	private String auxiliadorToStringLazer() {
 		String out = "";
 		for (Lazer lz : lazer) {
 			out += "  -" + lz + "\n";
@@ -148,8 +148,8 @@ public class Condominio {
 	public String toString() {
 		String out = "";
 		out += "*Id do Condominio: " + id + "\n";
-		out += "*Valor: " + auxiliarValorCondominio() + "\n";
-		out += "*Opcoes de Lazer:\n" + auxiliarLazer();
+		out += "*Valor: " + auxiliadorToStringValorCondominio() + "\n";
+		out += "*Opcoes de Lazer:\n" + auxiliadorToStringLazer();
 		
 		return out;
 	}
