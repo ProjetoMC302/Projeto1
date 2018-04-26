@@ -2,7 +2,6 @@ package Entidades;
 import java.util.ArrayList;
 
 public class Imovel {
-	private static int numeroImoveis;
 	private static int geradorId;
 	
 	private final int id;
@@ -80,14 +79,6 @@ public class Imovel {
 
 	public int getId() {
 		return id;
-	}
-
-	public static int getNumeroImoveis() {
-		return numeroImoveis;
-	}
-
-	public static void setNumeroImoveis(int numeroImoveis) {
-		Imovel.numeroImoveis = numeroImoveis;
 	}
 
 	public Endereco getEndereco() {
