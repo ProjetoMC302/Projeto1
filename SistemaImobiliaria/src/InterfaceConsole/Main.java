@@ -1,6 +1,7 @@
 package InterfaceConsole;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import Entidades.*;
@@ -48,19 +49,17 @@ public class Main {
 	private static final String finalizarProposta = "Finalizar proposta";
 	private static final String removerProposta = "Remover proposta";
 	
-	// cria comando
-	private static int comando;
+	
+	private static int comando; // cria comando
 	
 	public static void main(String[] args) {
-		// instancia scanner para entrada de dados
-		construirMain();
 
-		// Armazenara corretor logado
-		Corretor corretor = null;
+		construirMain(); // instancia scanner para entrada de dados
+
+		Corretor corretor = null; // Armazenara corretor logado
 		
-		// criar banco de dados simulado
-		imobiliaria = new Imobiliaria();
-		
+		imobiliaria = new Imobiliaria(); // criar banco de dados simulado
+
 		// criando telas do sistema 
 		cadastrarComandosLogin(); // tela login
 		cadastrarComandosDashboard(); // telaCadastrar
@@ -69,9 +68,11 @@ public class Main {
 		cadastrarComandosProprietario(); // telaProprietario
 		cadastrarComandosProposta(); // telaProposta
 		
-		// settando telaLogin como ativa inicialmente
-		telaLogin.setAtiva(true);
-		System.out.println("Bem vindo !! \n");
+		telaLogin.setAtiva(true); // settando telaLogin como ativa inicialmente
+
+		// Mostrar bom dia, boa tarde, boa noite e boa madrugada.
+		apresentacaoPeloHorario();
+
 		while (true) {
 			if (telaLogin.isAtiva()) {
 				System.out.println("*TelaLogin* \n");
@@ -873,5 +874,21 @@ public class Main {
 	private static String getStringInput(Scanner scanner, String mensagem) {
 		System.out.print(mensagem);
 		return scanner.nextLine();
+	}
+	
+	private static void apresentacaoPeloHorario() {
+		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		
+		if (0 <= hour && 6 > hour) {
+			System.out.println("Boa madrugada!");
+		} else if (6 <= hour && 12 > hour) {
+			System.out.println("Bom dia!");
+		} else if (12 <= hour && 18 > hour) {
+			System.out.println("Boa tarde!");
+		} else if (18 <= hour) {
+			System.out.println("Boa noite!");
+		}
+		
+		System.out.println("Seja Bem-vindo!");
 	}
 }
