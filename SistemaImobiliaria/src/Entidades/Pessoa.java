@@ -2,7 +2,7 @@ package Entidades;
 
 public class Pessoa {
 	private static int geradorId;
-	private int id;
+	private final int id;
 	private String nome;
 	private String telefone;
 	private String documento;
