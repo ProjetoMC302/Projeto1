@@ -16,14 +16,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
-public class InterfaceGrafica {
+public class Login {
 
 	private JFrame frame;
 	private JTextField txtLogin;
 	private JTextField txtSenha;
 
 	/*
-	 * Essa é a nossa Interface Gráfica. :)
+	 * Essa é a nossa tela de login. :)
 	 *
 	 */
 	
@@ -31,7 +31,7 @@ public class InterfaceGrafica {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceGrafica window = new InterfaceGrafica();
+					Login window = new Login();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class InterfaceGrafica {
 	/**
 	 * Criando a Aplicação.
 	 */
-	public InterfaceGrafica() {
+	public Login() {
 		initialize();
 	}
 
