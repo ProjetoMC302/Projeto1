@@ -9,7 +9,7 @@ import Entidades.*;
 public class Main {
 
 	private static TelaConsole telaLogin;
-	private static final String  cadastrarComando = "Cadastrar Novo Corretor";
+	private static final String cadastrarComando = "Cadastrar Novo Corretor";
 	private static final String loginComando = "Login";
 	private static final String sairComando = "Sair";
 	
@@ -235,7 +235,7 @@ public class Main {
 					if (imovel != null) {
 						atualizarImovel(imovel);
 					} else {
-						System.out.println("Imovel não existente ou eh de responsabilidade de outro corretor");
+						System.out.println("Imovel nao existente ou eh de responsabilidade de outro corretor");
 					}
 					System.out.println("***************************************************************");
 				} else if (comando == telaImovel.getComando(listarTodos)) {
@@ -295,7 +295,7 @@ public class Main {
 					String estado = getStringInput(scanner, "Digite o estado da sua residencia: ");
 					String cidade = getStringInput(scanner, "Digite a cidade da sua residencia: ");
 					String bairro = getStringInput(scanner, "Digite o bairro da sua residencia: ");
-					String rua = getStringInput(scanner, "Digite a cidade da sua residencia: ");
+					String rua = getStringInput(scanner, "Digite a rua da sua residencia: ");
 					int numero = getIntInput(scanner, "Digite o numero da sua residencia: ");
 					int cep = getIntInput(scanner, "Digite o cep da sua residencia: ");
 					String complemento = getStringInput(scanner, "Digite o complemento da sua residencia: ");
@@ -451,9 +451,12 @@ public class Main {
 					System.out.println("***************************************************************");
 					Cliente comprador = buscaCliente(corretor, getStringInput(scanner, "Digite o CPF do comprador: "));
 					Imovel imovel = imobiliaria.buscarImovel(getIntInput(scanner, "Digite o Id do imovel: "));
-					Proposta proposta = adicionarProposta(corretor, comprador,
-							imovel);
-					System.out.println(proposta);
+					if(comprador==null || imovel ==null) {
+						System.out.println("Erro ao criar a proposta");
+					}else {
+						Proposta proposta = adicionarProposta(corretor, comprador,imovel);
+						System.out.println(proposta);
+					}
 					System.out.println("***************************************************************");
 				} else if (comando == telaProposta.getComando(listarTodasPropostasAbertas)){
 					System.out.println("***************************************************************");
@@ -820,6 +823,7 @@ public class Main {
 		return null;
 	}
 	
+	/*simula de forma simplificada a busca em um banco de dados pelas preferencias do cliente */
 	private static ArrayList<Imovel> buscaImovel(Corretor corretor, Cliente cliente) {
 		
 		ArrayList<Imovel> imoveisProximos = new ArrayList<>(); 
