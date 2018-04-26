@@ -8,12 +8,23 @@ import Entidades.*;
 
 public class Main {
 
+	private static Scanner scanner;
+	
+	private static Imobiliaria imobiliaria;
+
 	private static TelaConsole telaLogin;
-	private static final String  cadastrarComando = "Cadastrar Novo Corretor";
+	private static TelaConsole dashboard;
+	private static TelaConsole telaImovel;
+	private static TelaConsole telaCliente;
+	private static TelaConsole telaProprietario;
+	private static TelaConsole telaProposta;
+
+	// Util para a tela de login
+	private static final String cadastrarComando = "Cadastrar Novo Corretor";
 	private static final String loginComando = "Login";
 	private static final String sairComando = "Sair";
 	
-	private static TelaConsole dashboard;
+	// Util para o Dashboard
 	private static final String imovelComando = "Imoveis";
 	private static final String clienteComando = "Clientes";
 	private static final String proprietarioComando = "Proprietario";
@@ -21,7 +32,7 @@ public class Main {
 	private static final String deletarConta = "Excluir conta";
 	private static final String deslogarComando = "Logout";
 	
-	// uteis para as proximas telas
+	// Uteis para as proximas telas
 	private static final String cadastrar = "Cadastrar";
 	private static final String remover = "Remover";
 	private static final String atualizar = "Atualizar";
@@ -30,22 +41,12 @@ public class Main {
 	private static final String buscarParaCliente = "Buscar Para Cliente";
 	private static final String voltar = "Voltar ao menu anterior";
 
-	private static TelaConsole telaImovel;
-	
-	private static TelaConsole telaCliente;
-	
-	private static TelaConsole telaProprietario;
-		
-	private static TelaConsole telaProposta;
+	// Util para a tela de proposta	
 	private static final String criarProposta = "Criar proposta";
 	private static final String listarTodasPropostasAbertas = "Listar todas propostas abertas";
 	private static final String listarTodasPropostasFinalizadas = "Listar todas propostas Finalizadas";
 	private static final String finalizarProposta = "Finalizar proposta";
 	private static final String removerProposta = "Remover proposta";
-	
-	private static Scanner scanner;
-	
-	private static Imobiliaria imobiliaria;
 	
 	// cria comando
 	private static int comando;
@@ -61,25 +62,12 @@ public class Main {
 		imobiliaria = new Imobiliaria();
 		
 		// criando telas do sistema 
-		
-		// tela login
-		cadastrarComandosLogin();
-				
-		// telaCadastrar
-		cadastrarComandosDashboard();
-			
-		
-		// telaImovel
-		cadastrarComandosImovel();
-		
-		// telaCliente 
-		cadastrarComandosCliente();
-		
-		// telaProprietario
-		cadastrarComandosProprietario();
-		
-		// telaProposta
-		cadastrarComandosProposta();
+		cadastrarComandosLogin(); // tela login
+		cadastrarComandosDashboard(); // telaCadastrar
+		cadastrarComandosImovel(); // telaImovel
+		cadastrarComandosCliente(); // telaCliente
+		cadastrarComandosProprietario(); // telaProprietario
+		cadastrarComandosProposta(); // telaProposta
 		
 		// settando telaLogin como ativa inicialmente
 		telaLogin.setAtiva(true);
