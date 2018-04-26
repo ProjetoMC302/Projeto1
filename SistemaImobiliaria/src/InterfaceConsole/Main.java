@@ -47,6 +47,7 @@ public class Main {
 	
 	private static Imobiliaria imobiliaria;
 	
+	// cria comando
 	private static int comando;
 	
 	public static void main(String[] args) {
@@ -80,9 +81,7 @@ public class Main {
 		// telaProposta
 		cadastrarComandosProposta();
 		
-		// cria comando
-		// TODO int comando; 
-		// settando como ativa inicialmente
+		// settando telaLogin como ativa inicialmente
 		telaLogin.setAtiva(true);
 		System.out.println("Bem vindo !! \n");
 		while (true) {
@@ -123,7 +122,6 @@ public class Main {
 					corretor = loginCorretor(username, senha);
 				} else if (comando == telaLogin.getComando(sairComando)) {
 					System.out.println("Obrigado por usar nosso sistema, Tenha um bom dia");
-					corretor = null;
 					break;
 				}
 			}
@@ -161,7 +159,7 @@ public class Main {
 				} else if (comando == dashboard.getComando(deletarConta)) {
 					// deletar conta
 					System.out.println("***************************************************************");
-					if (getBooleanInput(scanner, "Certeza que deseja deletar se usuario do sistema? (1-Sim/0-Nao): ")) {
+					if (getBooleanInput(scanner, "Certeza que deseja deletar seu usuario do sistema? (1-Sim/0-Nao): ")) {
 						deletarCorretor(corretor);
 					}
 					System.out.println("***************************************************************");
@@ -169,6 +167,7 @@ public class Main {
 					// deslogar
 					System.out.println("***************************************************************");
 					System.out.println("Deslogando...");
+					corretor = null;
 					TelaConsole.replace(dashboard, telaLogin);
 					System.out.println("***************************************************************");
 				}
@@ -179,7 +178,6 @@ public class Main {
 				telaImovel.show();
 				comando = telaImovel.getInput();
 				
-				// TODO: create all the methods to show the auxiliar screen and perform the actions  
 				if (comando == telaImovel.getComando(cadastrar)) {
 					// cadastrar imovel
 					System.out.println("***************************************************************");
@@ -203,6 +201,7 @@ public class Main {
 					Endereco endereco = new Endereco(cep, estado, cidade, rua, bairro, numero, complemento);
 					
 					Condominio condominio;
+					
 					if (getBooleanInput(scanner, "O imovel se situa dentro de um condominio?(1-Sim /0-Nao): ")){
 						double valorCondominio = getDoubleInput(scanner, "Qual o valor do condominio ?: ");
 						condominio = new Condominio(valorCondominio);
@@ -225,19 +224,24 @@ public class Main {
 				} else if (comando == telaImovel.getComando(remover)) {
 					// remover imovel
 					System.out.println("***************************************************************");
-					Imovel imovel = buscaImovel(imobiliaria,getIntInput(scanner, "Digite o id do imovel que deseja remover: "));
+					Imovel imovel = buscaImovel(corretor, getIntInput(scanner, "Digite o id do imovel que deseja remover: "));
 					removerImovel(corretor, imovel);
 					System.out.println("***************************************************************");
 				} else if (comando == telaImovel.getComando(atualizar)) {
 					// atualizar
 					System.out.println("***************************************************************");
-					Imovel imovel = buscaImovel(imobiliaria, getIntInput(scanner, "Digite o id do imovel que deseja atualizar: "));
-					atualizarImovel(imovel);
+					Imovel imovel = buscaImovel(corretor, getIntInput(scanner, "Digite o id do imovel que deseja atualizar: "));
+					
+					if (imovel != null) {
+						atualizarImovel(imovel);
+					} else {
+						System.out.println("Imovel")
+					}
 					System.out.println("***************************************************************");
 				} else if (comando == telaImovel.getComando(listarTodos)) {
 					// listar todos
 					System.out.println("***************************************************************");
-					for (Imovel imovel : imobiliaria.getImoveis()) {
+					for (Imovel imovel : corretor.getImoveis()) {
 						System.out.println(imovel);
 					}
 					System.out.println("***************************************************************");
@@ -245,7 +249,7 @@ public class Main {
 					// buscar
 					System.out.println("***************************************************************");
 					int id = getIntInput(scanner, "Digite o id do imovel que deseja acessar: ");
-					Imovel imovel = buscaImovel(imobiliaria,id);
+					Imovel imovel = buscaImovel(corretor, id);
 					if (imovel != null) {
 						System.out.println(imovel);
 					} else {
@@ -308,7 +312,7 @@ public class Main {
 						tipoImovel = TipoImovel.CASA;
 					} else if (input==2) {
 						tipoImovel=TipoImovel.APARTAMENTO;
-					} else if (input==3) {
+					} else if (input == 3) {
 						tipoImovel=TipoImovel.TERRENO;
 					}
 					
@@ -316,11 +320,13 @@ public class Main {
 					
 					Restricao proposito = null;
 					boolean inputBool = getBooleanInput(scanner, "Qual o Proposito do imovel (1-Residencial/0-Comercial): ");
+					
 					if (inputBool){
-						proposito=Restricao.RESIDENCIAL;
+						proposito = Restricao.RESIDENCIAL;
 					} else {
 						proposito = Restricao.COMERCIAL;
 					}
+					
 					double precoMax = getDoubleInput(scanner, "Qual o preco maximo desejado: ");
 							
 					adicionarCliente(corretor, nome, telefone, documento,
@@ -331,15 +337,18 @@ public class Main {
 				} else if (comando == telaCliente.getComando(remover)) {
 					// remover cliente
 					System.out.println("***************************************************************");
-					Cliente clienteRemover = buscaCliente(corretor,getStringInput(scanner, "Digite o CPF do cliente que deseja remover: "));
+					Cliente clienteRemover = buscaCliente(corretor, getStringInput(scanner, "Digite o CPF do cliente que deseja remover: "));
 					removerCliente(corretor, clienteRemover);
 					System.out.println("***************************************************************");
 				} else if (comando == telaCliente.getComando(atualizar)) {
 					// atualizar
 					System.out.println("***************************************************************");
-					Cliente clienteAtualizar = buscaCliente(corretor,getStringInput(scanner, "Digite o CPF do cliente que deseja atualizar: "));
-					
-					atualizarDadosCliente(clienteAtualizar);
+					Cliente clienteAtualizar = buscaCliente(corretor, getStringInput(scanner, "Digite o CPF do cliente que deseja atualizar: "));
+					if (clienteAtualizar != null) {
+						atualizarDadosCliente(clienteAtualizar);
+					} else {
+						System.out.println("Cliente com este CPF nao existe");
+					}
 					System.out.println("***************************************************************");
 				} else if (comando == telaCliente.getComando(listarTodos)) {
 					// listar todos
@@ -374,7 +383,6 @@ public class Main {
 				telaProprietario.show();
 				comando = telaProprietario.getInput();
 			
-				// TODO: create all the methods to show the auxiliar screen and perform the actions  
 				if (comando == telaProprietario.getComando(cadastrar)) {
 					// cadastrar proprietario
 					System.out.println("***************************************************************");
@@ -396,7 +404,6 @@ public class Main {
 							complemento, empresa);
 					System.out.println("***************************************************************");
 				} else if (comando == telaProprietario.getComando(remover)) {
-					
 					removerProprietario();
 					
 					System.out.println("***************************************************************");
@@ -424,6 +431,7 @@ public class Main {
 					} else {
 						System.out.println("Proprietario nao existe");
 					}
+				
 					System.out.println("***************************************************************");
 				} else if (comando == telaProprietario.getComando(voltar)) {
 					// voltar
@@ -803,8 +811,8 @@ public class Main {
 		return null;
 	}
 	
-	private static Imovel buscaImovel(Imobiliaria imobiliaria, int id) {
-		for (Imovel imovel : imobiliaria.getImoveis()) {
+	private static Imovel buscaImovel(Corretor corretor, int id) {
+		for (Imovel imovel : corretor.getImoveis()) {
 			if (imovel.getId() == id) {
 				return imovel;
 			}
