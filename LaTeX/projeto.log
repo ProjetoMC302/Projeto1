@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.24)  26 APR 2018 11:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.24)  26 APR 2018 14:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -608,44 +608,44 @@ Package babel Info: Redefining portuges shorthand "|
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 102.
+(babel)             in language  on input line 100.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 108.
+(babel)             in language  on input line 107.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 108.
+(babel)             in language  on input line 107.
  [2]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 117.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 119.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 121.
+(babel)             in language  on input line 137.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 139.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 139.
+(babel)             in language  on input line 137.
  [3]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 152.
+(babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 168.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 175.
+(babel)             in language  on input line 173.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 175.
+(babel)             in language  on input line 173.
  [4]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 177.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 192.
+(babel)             in language  on input line 190.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 204.
- <imagens/trello.png, id=126, 1363.0925pt x 615.29875pt>
+(babel)             in language  on input line 202.
+ <imagens/trello.png, id=124, 1363.0925pt x 615.29875pt>
 File: imagens/trello.png Graphic file (type png)
 
 <use imagens/trello.png>
-Package pdftex.def Info: imagens/trello.png used on input line 214.
+Package pdftex.def Info: imagens/trello.png used on input line 212.
 (pdftex.def)             Requested size: 408.93091pt x 184.59105pt.
 
-Overfull \hbox (48.93091pt too wide) in paragraph at lines 214--215
+Overfull \hbox (48.93091pt too wide) in paragraph at lines 212--213
  [] 
  []
 
@@ -653,73 +653,61 @@ Overfull \hbox (48.93091pt too wide) in paragraph at lines 214--215
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 221.
+(babel)             in language  on input line 219.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 221.
+(babel)             in language  on input line 219.
 [5]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 234.
+(babel)             in language  on input line 232.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 244.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 250.
+(babel)             in language  on input line 248.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 255.
+(babel)             in language  on input line 253.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 255.
+(babel)             in language  on input line 253.
  [6 <./imagens/trello.png>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 257.
+(babel)             in language  on input line 255.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 262.
+(babel)             in language  on input line 260.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 265.
+(Font)              <10.95> on input line 263.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 268.
- (./projeto.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 279.
+(babel)             in language  on input line 266.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 275.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 279.
+(babel)             in language  on input line 275.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 279.
+(babel)             in language  on input line 275.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 279.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 275.
  (./projeto.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 279.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 279.
-
-
-Package rerunfilecheck Warning: File `projeto.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `projeto.out':
-(rerunfilecheck)             Before: F4819A9A6BBF9D263FB410BD100AF2C9;1031
-(rerunfilecheck)             After:  56308B3F3563ECE66D5A51A02F01F2A0;1030.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 275.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 275.
+Package rerunfilecheck Info: File `projeto.out' has not changed.
+(rerunfilecheck)             Checksum: 56308B3F3563ECE66D5A51A02F01F2A0;1030.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 275.
  ) 
 Here is how much of TeX's memory you used:
- 6256 strings out of 494929
- 90576 string characters out of 6180142
- 183209 words of memory out of 5000000
- 9425 multiletter control sequences out of 15000+600000
- 9157 words of font info for 32 fonts, out of 8000000 for 9000
+ 6245 strings out of 494929
+ 90452 string characters out of 6180142
+ 183204 words of memory out of 5000000
+ 9424 multiletter control sequences out of 15000+600000
+ 8811 words of font info for 31 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 29i,7n,32p,302b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,7n,32p,302b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmti10.pfb>
-Output written on projeto.pdf (7 pages, 1192692 bytes).
+fonts/type1/public/amsfonts/cm/cmr8.pfb>
+Output written on projeto.pdf (7 pages, 1176730 bytes).
 PDF statistics:
- 190 PDF objects out of 1000 (max. 8388607)
- 170 compressed objects within 2 object streams
- 61 named destinations out of 1000 (max. 500000)
+ 179 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 55 named destinations out of 1000 (max. 500000)
  142 words of extra memory for PDF output out of 10000 (max. 10000000)
 
