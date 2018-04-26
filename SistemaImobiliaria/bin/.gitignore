@@ -10,5 +10,7 @@
 /Restricao.class
 /Terreno.class
 /TipoImovel.class
+/.gitignore
+/Entidades/
 /InterfaceConsole/
 /InterfaceGrafica/

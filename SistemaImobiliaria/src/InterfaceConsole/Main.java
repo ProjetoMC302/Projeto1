@@ -49,6 +49,7 @@ public class Main {
 		final String atualizar = "Atualizar";
 		final String listarTodos = "Listar Todos";
 		final String buscar = "Buscar";
+		final String buscarParaCliente = "Buscar Para Cliente";
 		final String voltar = "Voltar ao menu anterior";
 		
 		//telaImovel
@@ -58,7 +59,8 @@ public class Main {
 		imovelTela.adicionaComando(3, atualizar);
 		imovelTela.adicionaComando(4, listarTodos);
 		imovelTela.adicionaComando(5, buscar);
-		imovelTela.adicionaComando(6, voltar);
+		imovelTela.adicionaComando(6, buscarParaCliente);
+		imovelTela.adicionaComando(7, voltar);
 		
 		//telaCliente 
 		TelaConsole telaCliente = new TelaConsole(scanner);
@@ -301,13 +303,14 @@ public class Main {
 					//atualizar
 					System.out.println("***************************************************************");
 					Imovel imovel = buscaImovel(imobiliaria,getIntInput(scanner, "Digite o id do imovel que deseja atualizar: "));
-					switch (getIntInput(scanner, "Qual atributo deseja atualizar \n"
-												+ "1 - Restricoes"
-												+ "2 - Forma de PagamentoAceitas"
-												+ "3 - Diferenciais")) {
+					switch (getIntInput(scanner, "Qual atributo deseja atualizar: "
+												+ "\n1 - Restricoes"
+												+ "\n2 - Forma de PagamentoAceitas"
+												+ "\n3 - Diferenciais"
+												+ "\nDigite o que deseja atualizar: ")) {
 					case 1:
 						Restricao restricao;
-						if(getBooleanInput(scanner, "Qual restricao deseja adicionar (1- Residencial/ 0-Comercial)")) {
+						if(getBooleanInput(scanner, "Qual restricao deseja adicionar ? (1- Residencial/ 0-Comercial): ")) {
 							restricao = Restricao.RESIDENCIAL;
 						} else {
 							restricao = Restricao.COMERCIAL;
@@ -317,7 +320,7 @@ public class Main {
 					case 2:
 						//adiciona forma de pagamento
 						FormaPagamento formaPagamento = null;
-						int input = getIntInput(scanner, "Qual forma de pagamento deseja adicionar ?(1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
+						int input = getIntInput(scanner, "Qual forma de pagamento deseja adicionar ? (1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
 						if(input==1){
 							formaPagamento=FormaPagamento.AVISTA;
 						} else if(input==2) {
@@ -334,7 +337,7 @@ public class Main {
 						break;
 					case 3:
 						//Adiciona diferencias
-						imovel.adicionarDiferencial(getStringInput(scanner, "Difite o Diferencial: "));
+						imovel.adicionarDiferencial(getStringInput(scanner, "Digite o Diferencial do imovel: "));
 						break;
 					default:
 						break;
@@ -350,8 +353,28 @@ public class Main {
 				} else if(comando == imovelTela.getComando(buscar)) {
 					//buscar
 					System.out.println("***************************************************************");
-					Imovel imovel = buscaImovel(imobiliaria,getIntInput(scanner, "Digite o id do imovel que deseja acessar: "));
-					System.out.println(imovel);
+					int id = getIntInput(scanner, "Digite o id do imovel que deseja acessar: ");
+					Imovel imovel = buscaImovel(imobiliaria,id);
+					if(imovel!=null) {
+						System.out.println(imovel);
+					}else {
+						System.out.println("Imovel com id: "+id +" nao existe");
+					}
+					
+					System.out.println("***************************************************************");
+				}else if(comando == imovelTela.getComando(buscarParaCliente)) {
+					//buscar imoveis baseado nas preferencias docliente
+					System.out.println("***************************************************************");
+					Cliente cliente = buscaCliente(corretor, getStringInput(scanner, "Digite o CPF do cliente: "));
+					if(cliente!=null) {
+						ArrayList<Imovel> imoveis = buscaImovel(imobiliaria, cliente);
+						for (Imovel imovel : imoveis) {
+							System.out.println(imovel);
+						}
+					}else {
+						System.out.println("Cliente nao existe");
+					}
+					
 					System.out.println("***************************************************************");
 				} else if(comando == imovelTela.getComando(voltar)) {
 					//voltar
@@ -389,7 +412,6 @@ public class Main {
 					boolean esquina = getBooleanInput(scanner, "Voce busca um imovel em esquina ?(1-Sim /0-Nao): ");
 					boolean condominio = getBooleanInput(scanner, "Voce busca um imovel dentro de um condominio ?(1-Sim /0-Nao): ");
 					
-					System.out.print("Qual tipo de imovel voce procura ?(1-Casa /2-Apartamento/ 3-Terreno ): ");
 					TipoImovel tipoImovel=TipoImovel.CASA;
 					int input = getIntInput(scanner, "Qual tipo de imovel voce procura ?(1-Casa /2-Apartamento/ 3-Terreno ): ");
 					if(input==1){
@@ -403,7 +425,7 @@ public class Main {
 					double areaMinimaTerreno = getDoubleInput(scanner, "Qual a minima area do imovel: ");
 					
 					Restricao proposito = null;
-					boolean inputBool = getBooleanInput(scanner, "Qual o Proposito do imovel (1-Residencial/0-Comercial ");
+					boolean inputBool = getBooleanInput(scanner, "Qual o Proposito do imovel (1-Residencial/0-Comercial): ");
 					if(inputBool){
 						proposito=Restricao.RESIDENCIAL;
 					} else {
@@ -421,7 +443,6 @@ public class Main {
 				} else if(comando == telaCliente.getComando(remover)) {
 					//remover cliente
 					System.out.println("***************************************************************");
-					System.out.println("Digite o CPF do cliente que deseja remover: ");
 					Cliente clienteRemover = buscaCliente(corretor,getStringInput(scanner, "Digite o CPF do cliente que deseja remover: "));
 					if(clienteRemover!=null) {
 						corretor.removerCliente(clienteRemover);
@@ -440,7 +461,8 @@ public class Main {
 					
 					switch (getIntInput(scanner, "O que deseja: "
 												+ "\n1 - Adicionar forma de Pagameto"
-												+ "\n2 - Remover forma de Pagameto")) {
+												+ "\n2 - Remover forma de Pagameto"
+												+ "\nDigite o que deseja atualizar: ")) {
 					case 1: 
 						//adiciona forma de pagamento
 						input = getIntInput(scanner, "Qual forma de pagamento deseja adicionar ?(1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
@@ -457,7 +479,7 @@ public class Main {
 					break;
 					case 2: 
 						//remover forma de pagamento
-						input = getIntInput(scanner, "Qual forma de pagamento deseja adicionar ?(1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
+						input = getIntInput(scanner, "Qual forma de pagamento deseja remover ?(1-AVISTA /2-PERMUTA/ 3-FINANCIAMENTO): ");
 						if(input==1){
 							formaPagamento=FormaPagamento.AVISTA;
 						} else if(input==2) {
@@ -465,7 +487,7 @@ public class Main {
 						} else if(input==3) {
 							formaPagamento=FormaPagamento.FINANCIAMENTO;
 						}
-						
+						clienteAtualizar.removerFormaPagamentoDesejada(formaPagamento);
 						break;
 					default:
 						System.out.println("Comando invalido");
@@ -484,7 +506,12 @@ public class Main {
 					System.out.println("***************************************************************");
 					String documento = getStringInput(scanner, "Digite o CPF do cliente que deseja pesquisar: ");
 					Cliente cliente = buscaCliente(corretor, documento);
-					System.out.println(cliente);
+					if(cliente!=null) {
+						System.out.println(cliente);
+					}else {
+						System.out.println("Cliente com CPF: "+documento+" nao existe");
+					}
+					
 					System.out.println("***************************************************************");
 				} else if(comando == telaCliente.getComando(voltar)) {
 					//voltar
@@ -515,7 +542,7 @@ public class Main {
 					int numero = getIntInput(scanner, "Digite o numero do proprietario: ");
 					int cep = getIntInput(scanner, "Digite o cep do proprietario: ");
 					String complemento = getStringInput(scanner, "Digite o complemento do proprietario: ");
-					boolean empresa = getBooleanInput(scanner, "do proprietario � uma empresa ? ");
+					boolean empresa = getBooleanInput(scanner, "O proprietario eh representante de uma empresa ?(1- Sim/ 0-Nao): ");
 					
 					Endereco endereco = new Endereco(cep, estado, cidade, rua, bairro, numero, complemento);
 					Proprietario proprietario = new Proprietario(nome, telefone, documento, endereco, email, empresa);
@@ -538,12 +565,13 @@ public class Main {
 					Proprietario proprietario = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPF do proprietario que deseja atualizar: "));
 					switch (getIntInput(scanner, "O que deseja: "
 												+ "\n1 - Atualizar Email"
-												+ "\n2 - Atualizar Telefone")) {
+												+ "\n2 - Atualizar Telefone"
+												+ "\n Digite o que deseja atualizar: ")) {
 					case 1:
-						proprietario.setEmail(getStringInput(scanner, "Qaul novo email do proprietario ? "));
+						proprietario.setEmail(getStringInput(scanner, "Qual novo email do proprietario ? "));
 						break;
 					case 2:
-						proprietario.setTelefone(getStringInput(scanner, "Qaul novo telefone do Proprietario ? "));
+						proprietario.setTelefone(getStringInput(scanner, "Qual novo telefone do Proprietario ? "));
 						break;
 					default:
 						System.out.println("Comando invalido");
@@ -560,8 +588,7 @@ public class Main {
 				} else if(comando == telaProprietario.getComando(buscar)) {
 					//buscar
 					System.out.println("***************************************************************");
-					System.out.println("***************************************************************");
-					Proprietario proprietario = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPF do proprietario que deseja remover: "));
+					Proprietario proprietario = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPF do proprietario que deseja buscar: "));
 					if(proprietario!=null) {
 						System.out.println(proprietario);
 					} else {
@@ -656,6 +683,23 @@ public class Main {
 		}
 		return null;
 	}
+	
+	private static ArrayList<Imovel> buscaImovel(Imobiliaria imobiliaria, Cliente cliente) {
+		
+		ArrayList<Preferencia> preferencias = cliente.getPreferencias();
+		ArrayList<Imovel> imoveisProximos = new ArrayList<>(); 
+		for (Imovel imovel : imobiliaria.getImoveis()) {
+			for (Preferencia preferencia : preferencias) {
+				if(imovel.getPreco() <= cliente.getPrecoMax() || (imovel.getCondominio()!=null && preferencia.isCondominio())||
+						imovel.getTipoImovel() == preferencia.getTipoImovel() || imovel.isAluguel() == preferencia.isAluguel()||
+						!imovel.getRestricoes().contains(preferencia.getProposito())) {
+					imoveisProximos.add(imovel);
+				}
+			}
+		}
+		return imoveisProximos;
+	}
+	
 	private static int getIntInput(Scanner scanner,String mensagem) {
 		System.out.print(mensagem);
 		return Integer.parseInt(scanner.nextLine());
