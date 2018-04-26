@@ -235,7 +235,7 @@ public class Main {
 					if (imovel != null) {
 						atualizarImovel(imovel);
 					} else {
-						System.out.println("Imovel")
+						System.out.println("Imovel não existente ou eh de responsabilidade de outro corretor");
 					}
 					System.out.println("***************************************************************");
 				} else if (comando == telaImovel.getComando(listarTodos)) {
