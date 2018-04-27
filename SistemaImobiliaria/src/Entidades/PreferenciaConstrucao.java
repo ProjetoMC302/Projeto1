@@ -9,22 +9,31 @@ public class PreferenciaConstrucao extends Preferencia {
 	private int quantidadeSuites;
 	
 	// Construtores
-	public PreferenciaConstrucao(boolean esquina, boolean condominio, 
-							     Endereco endereco, double raio, 
-							     TipoImovel tipoImovel, double areaMinimaTerreno, 
-							     Restricao proposito) {
-		super(esquina, condominio, endereco, raio, tipoImovel, 
-			  areaMinimaTerreno, proposito);
+	public PreferenciaConstrucao(boolean aluguel, boolean esquina, boolean condominio, Endereco endereco, double raio,
+			TipoImovel tipoImovel, double areaMinimaTerreno, Restricao proposito) {
+		super(aluguel, esquina, condominio, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
+		this.areaMinimaConstruida = 0;
+		this.quantidadeBanheiros = 0;
+		this.quantidadeQuartos = 0;
+		this.quantidadeAndares = 0;
+		this.quantidadeSuites = 0;
 	}
-	
-	public PreferenciaConstrucao(boolean esquina, boolean condominio, 
-								 Endereco endereco, double raio, 
-								 TipoImovel tipoImovel, double areaMinimaTerreno, 
-								 Restricao proposito, double areaMinimaConstruida,
-								 int quantidadeBanheiros, int quantidadeQuartos, 
-								 int quantidadeAndares, int quantidadeSuites) {
-		this(esquina, condominio, endereco, raio, tipoImovel, 
-			 areaMinimaTerreno, proposito);
+
+	public PreferenciaConstrucao(boolean aluguel, boolean esquina, boolean condominio, TipoImovel tipoImovel,
+			double areaMinimaTerreno, Restricao proposito) {
+		super(aluguel, esquina, condominio, tipoImovel, areaMinimaTerreno, proposito);
+		this.areaMinimaConstruida = 0.0;
+		this.quantidadeBanheiros = 0;
+		this.quantidadeQuartos = 0;
+		this.quantidadeAndares = 0;
+		this.quantidadeSuites = 0;
+	}
+
+	public PreferenciaConstrucao(boolean aluguel, Endereco endereco, double raio, TipoImovel tipoImovel,
+			double areaMinimaTerreno, Restricao proposito, double areaMinimaConstruida,
+			 int quantidadeBanheiros, int quantidadeQuartos, 
+			 int quantidadeAndares, int quantidadeSuites) {
+		super(aluguel, endereco, raio, tipoImovel, areaMinimaTerreno, proposito);
 		this.areaMinimaConstruida = areaMinimaConstruida;
 		this.quantidadeBanheiros = quantidadeBanheiros;
 		this.quantidadeQuartos = quantidadeQuartos;
