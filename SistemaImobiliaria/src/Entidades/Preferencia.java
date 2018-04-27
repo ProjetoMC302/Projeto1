@@ -25,7 +25,7 @@ public class Preferencia {
 		}
 	}
 	
-	public Preferencia(boolean esquina, boolean condominio, Endereco endereco, 
+	public Preferencia(boolean aluguel,boolean esquina, boolean condominio, Endereco endereco, 
 					   double raio, TipoImovel tipoImovel, double areaMinimaTerreno,
 					   Restricao proposito) {
 		this.esquina = esquina;
@@ -35,16 +35,10 @@ public class Preferencia {
 		this.tipoImovel = tipoImovel;
 		this.areaMinimaTerreno = areaMinimaTerreno;
 		this.proposito = proposito;
+		this.aluguel = aluguel;
+		
 	}
 	
-	public Preferencia(boolean aluguel,boolean esquina, boolean condominio, 
-					   Endereco endereco, double raio, TipoImovel tipoImovel,
-					   double areaMinimaTerreno, Restricao proposito) {
-		
-		this(esquina, condominio, endereco, raio, 
-			 tipoImovel, areaMinimaTerreno, proposito);
-		this.aluguel = aluguel;
-	}
 
 	public Preferencia(boolean aluguel ,boolean esquina, boolean condominio, 
 					   TipoImovel tipoImovel, double areaMinimaTerreno, 
@@ -56,7 +50,9 @@ public class Preferencia {
 		this.tipoImovel = tipoImovel;
 		this.areaMinimaTerreno = areaMinimaTerreno;
 		this.proposito = proposito;
+		this.aluguel = aluguel;
 	}
+	
 	public boolean isEsquina() {
 		return esquina;
 	}
