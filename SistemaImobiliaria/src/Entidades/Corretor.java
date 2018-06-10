@@ -89,6 +89,14 @@ public class Corretor extends Pessoa {
 		return false;
 	}
 	
+	// Adiciona imovel ao banco de dados
+	public Imovel publicarImovel(Imovel imovel, Imobiliaria imobiliaria) {
+			imobiliaria.adicionarImovel(imovel);
+			this.adicionarImovel(imovel);
+			
+			return imovel;
+	}
+	
 	public String listarPropostasCorretor() {
 		String out = "***Propostas Em Aberto***\n";
 		for (Proposta propos : propostasEmAberto) {

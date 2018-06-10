@@ -1,7 +1,7 @@
 package Entidades;
 import java.util.ArrayList;
 
-public class Imovel {
+public abstract class Imovel {
 	private static int geradorId;
 	
 	private final int id;
