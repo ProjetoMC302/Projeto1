@@ -1,27 +1,23 @@
 package Entidades;
 import java.util.ArrayList;
 
-/** Essa classe simula um banco de dados que sera posteriomente implementado*/
-public class Imobiliaria {
+public class Imobiliaria{
 	
 	private ArrayList<Imovel> imoveis;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Corretor> corretores;
 	private ArrayList<Proprietario> proprietarios;
-	/* 
-	 * As propostas precisam ser registradas para nao perder
-	 * o endereco delas, que sao agregadas ao corretor
-	 */ 
-	private ArrayList<Proposta> propostasEmAbertoSemCorretor;
-	private ArrayList<Proposta> propostasFinalizadasSemCorretor;
+	private ArrayList<Gerente> gerentes;
+	private ArrayList<Proposta>propostas;
 	
-	public Imobiliaria(){
+	public Imobiliaria(Gerente gerenteDefault){
 		imoveis = new ArrayList<Imovel>();
 		clientes = new ArrayList<Cliente>();
 		corretores = new ArrayList<Corretor>();
 		proprietarios = new ArrayList<Proprietario>();
-		propostasEmAbertoSemCorretor = new ArrayList<Proposta>();
-		propostasFinalizadasSemCorretor = new ArrayList<Proposta>();
+		propostas = new ArrayList<Proposta>();
+		gerentes=new ArrayList<Gerente>();
+		gerentes.add(gerenteDefault);
 	}
 	
 	/**Metodos de adicao e remocao de infomacoes do banco de dados simulado*/
@@ -34,17 +30,43 @@ public class Imobiliaria {
 		}
 	}
 
-	public boolean removerImovel(int idImovel) {
+	public boolean removerImovel(int idImovel,Gerente gerente) {
 		for (Imovel i : imoveis) {
 			if(i.getId() == idImovel) { 
+				i.getCorretorResponsavel().getImoveis().remove(i);
 				return imoveis.remove(i);
 			}
 		}
 		return false;
 	}
 	
-	public boolean removerImovel(Imovel imovel) {
+	public boolean removerImovel(int idImovel,Corretor corretor) {
+		for (Imovel i : corretor.getImoveis()) {
+			if(i.getId() == idImovel) { 
+				if(corretor==i.getCorretorResponsavel())
+				{
+					imoveis.remove(i);
+					return corretor.getImoveis().remove(i);
+				}
+				
+			}
+		}
+		return false;
+	}
+	
+	public boolean removerImovel(Imovel imovel, Gerente gerente) {
+		imovel.getCorretorResponsavel().getImoveis().remove(imovel);
 		return imoveis.remove(imovel);
+	}
+	
+	public boolean removerImovel(Imovel imovel, Corretor corretor) {
+		if(imovel.getCorretorResponsavel()==corretor)
+		{
+			imoveis.remove(imovel);
+			return corretor.getImoveis().remove(imovel);
+		}
+		return false;
+		
 	}
 	
 	public boolean adicionarCliente(Cliente cliente) {
@@ -55,20 +77,46 @@ public class Imobiliaria {
 		}
 	}
 
-	public boolean removerCliente(int idCliente) {
+	public boolean removerCliente(int idCliente,Gerente gerente) {
 		for(Cliente cli : clientes) {
 			if (cli.getId() == idCliente) {
+				cli.getCorretor().getClientes().remove(cli);
 				return clientes.remove(cli);
 			}
 		}
 		return false;
 	}
 	
-	public boolean removerCliente(Cliente cli) {
+	public boolean removerCliente(int idCliente,Corretor corretor) {
+		for(Cliente cli : corretor.getClientes()) {
+			if (cli.getId() == idCliente) {
+				if(cli.getCorretor()==corretor)
+				{
+					corretor.getClientes().remove(cli);
+					return clientes.remove(cli);
+				}
+				
+			}
+		}
+		return false;
+	}
+	
+	public boolean removerCliente(Cliente cli,Gerente gerente) {
+		cli.getCorretor().getClientes().remove(cli);
 		return clientes.remove(cli);
 	}
 	
-	public boolean adicionarCorretor(Corretor corretor) {
+	public boolean removerCliente(Cliente cli,Corretor corretor) {
+		if(cli.getCorretor()==corretor)
+		{
+			cli.getCorretor().getClientes().remove(cli);
+			return clientes.remove(cli);
+		}
+		return false;
+		
+	}
+	
+	public boolean adicionarCorretor(Corretor corretor,Gerente gerente) {
 		if (corretores.contains(corretor)) {
 			//corretor ja existe no sistema
 			return false;
@@ -77,32 +125,25 @@ public class Imobiliaria {
 		}
 	}
 
-	/* Este metodo se mostrou necessario pois o corretor eh a unica classe com referencia para suas propostas,
-	 * e nao eh desejavel que as propostas se percam na remocao de um corretor*/
-	private void copiarPropostasCorretor(Corretor corretor) {
-		for (Proposta proposta : corretor.getPropostasEmAberto()) {
-			propostasEmAbertoSemCorretor.add(proposta);
-		}
-		for (Proposta proposta : corretor.getPropostasFinalizadas()) {
-			propostasFinalizadasSemCorretor.add(proposta);
-		}
-	}
+
 	
-	public boolean removerCorretor(int idCorretor) {
+	public boolean removerCorretor(int idCorretor,Gerente gerente) {
 		for (Corretor cor : corretores) {
 			if (cor.getId() == idCorretor) {
-				copiarPropostasCorretor(cor);
-				return corretores.remove(cor);
+				cor.desativarCorretor();
+				return true;
+	
 			}
 		}
 		return false;
 	}
 	
-	public boolean removerCorretor(Corretor corretor) {
+	public boolean removerCorretor(Corretor corretor,Gerente gerente) {
 		if (corretores.contains(corretor)) {
-			copiarPropostasCorretor(corretor);
+			corretor.desativarCorretor();
+			return true;
 		}
-		return corretores.remove(corretor);
+		return false;
 	}
 	
 	public boolean adicionarProprietario(Proprietario proprietario) {
@@ -113,29 +154,27 @@ public class Imobiliaria {
 		}
 	}
 	
-	public boolean removerProprietario(Proprietario proprietario) {
+
+	
+	public boolean removerProprietario(Proprietario proprietario,Gerente gerente) {
+		for(int i=0;i<proprietario.getImoveis().size();i++)
+		{
+			this.removerImovel(proprietario.getImoveis().get(i), gerente);
+		}
 		return proprietarios.remove(proprietario);
 	}
 	
-	public boolean removerProprietario(int idProprietario) {
+	public boolean removerProprietario(int idProprietario,Gerente gerente) {
 		for(Proprietario pro : proprietarios) {
 			if(pro.getId() == idProprietario) {
+				for(int i=0;i<pro.getImoveis().size();i++)
+				{
+					this.removerImovel(pro.getImoveis().get(i), gerente);
+				}
 				return proprietarios.remove(pro);
 			}
 		}
 		return false;
-	}
-	
-	public boolean designarPropostaCorretor(Corretor corretor,
-										    Proposta propostaEmAberto) {
-		if (propostasEmAbertoSemCorretor.contains(propostaEmAberto)) {
-			Proposta proposta = propostaEmAberto;
-			proposta.setCorretorResponsavel(corretor);
-			corretor.getPropostasEmAberto().add(proposta);
-			return propostasEmAbertoSemCorretor.remove(propostaEmAberto);
-		} else {
-			return false;
-		}
 	}
 	
 	public Imovel buscarImovel(Imovel imovel) {
@@ -184,38 +223,15 @@ public class Imobiliaria {
 		return null;
 	}
 	
-	public Proposta buscarProposta(Proposta proposta) {
-		for (Corretor cor : corretores) {
-			
-			if (cor.getPropostasEmAberto().contains(proposta)) {
-				return cor.getPropostasEmAberto()
-						  .get(cor.getPropostasEmAberto().indexOf(proposta));
-				
-			} if (cor.getPropostasFinalizadas().contains(proposta)) {
-				return cor.getPropostasFinalizadas()
-						  .get(cor.getPropostasFinalizadas().indexOf(proposta));
-			}
-		}
-		
-		return null;
-	}
+	
 	
 	public Proposta buscarProposta(int idProposta) {
-		for (Corretor cor : corretores) {
-			
-			for (Proposta pro : cor.getPropostasEmAberto()) {
+
+			for (Proposta pro : propostas) {
 				if (pro.getId() == idProposta) {
 					return pro;
 				}
 			}
-			
-			for (Proposta pro : cor.getPropostasFinalizadas()) {
-				if (pro.getId() == idProposta) {
-					return pro;
-				}
-			}
-			
-		}
 		
 		return null;
 	}
@@ -253,23 +269,6 @@ public class Imobiliaria {
 		this.proprietarios = proprietarios;
 	}
 
-	public ArrayList<Proposta> getPropostasEmAbertoSemCorretor() {
-		return propostasEmAbertoSemCorretor;
-	}
-
-	public void setPropostasEmAbertoSemCorretor(
-			ArrayList<Proposta> propostasEmAbertoSemCorretor) {
-		this.propostasEmAbertoSemCorretor = propostasEmAbertoSemCorretor;
-	}
-
-	public ArrayList<Proposta> getPropostasFinalizadasSemCorretor() {
-		return propostasFinalizadasSemCorretor;
-	}
-
-	public void setPropostasFinalizadasSemCorretor(
-			ArrayList<Proposta> propostasFinalizadasSemCorretor) {
-		this.propostasFinalizadasSemCorretor = propostasFinalizadasSemCorretor;
-	}
 	
 	private String auxiliadorToStringProprietarios() {
 		String out = "";
@@ -304,27 +303,7 @@ public class Imobiliaria {
 		return out;
 	}
 	
-	private String auxiliadorToStringPropostasEmAbertoSemCorretor() {
-		String out = "";
-		
-		for (Proposta propos : propostasEmAbertoSemCorretor) {
-			out += "****************";
-			out += propos;
-		}
-		
-		return out;
-	}
-	
-	private String auxiliadorToStringPropostasFinalizadasSemCorretor() {
-		String out = "";
-		
-		for (Proposta propos : propostasFinalizadasSemCorretor) {
-			out += "****************";
-			out += propos;
-		}
-		
-		return out;
-	}
+
 	
 	@Override
 	public String toString() {
@@ -332,8 +311,7 @@ public class Imobiliaria {
 		out += "*Proprietarios Cadastrados:\n" + auxiliadorToStringProprietarios();
 		out += "*Clientes Cadastrados:\n" + auxiliadorToStringClientes();
 		out += "*Corretores Cadastrados:\n" + auxiliadorToStringCorretores();
-		out += "*Propostas Em Aberto Sem Corretor:\n" + auxiliadorToStringPropostasEmAbertoSemCorretor();
-		out += "*Propostas Finalizadas Sem Corretor:\n" + auxiliadorToStringPropostasFinalizadasSemCorretor();
+		
 		
 		return out;
 	}

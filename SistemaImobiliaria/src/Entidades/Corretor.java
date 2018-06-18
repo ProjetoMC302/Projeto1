@@ -8,6 +8,7 @@ public class Corretor extends Pessoa {
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Proposta> propostasEmAberto;
 	private ArrayList<Proposta> propostasFinalizadas;
+	private boolean status;
 
 	public Corretor(String nome, String telefone, String email) {
 		super(nome, telefone, email);
@@ -15,6 +16,7 @@ public class Corretor extends Pessoa {
 		clientes = new ArrayList<Cliente>();
 		propostasEmAberto = new ArrayList<Proposta>();
 		propostasFinalizadas = new ArrayList<Proposta>();
+		status=true;
 	}
 
 	public Corretor(String nome, String telefone, String documento, Endereco endereco, String email, String senha ,String creci) {
@@ -25,8 +27,13 @@ public class Corretor extends Pessoa {
 		clientes = new ArrayList<Cliente>();
 		propostasEmAberto = new ArrayList<Proposta>();
 		propostasFinalizadas = new ArrayList<Proposta>();
+		status=true;
 	}
-
+	public void desativarCorretor()
+	{
+		status=false;
+	}
+	
 	public int numeroDeImoveis() {
 		return imoveis.size();
 	}
@@ -42,7 +49,6 @@ public class Corretor extends Pessoa {
 	public boolean removerImovel(Imovel imovel) {
 		return imoveis.remove(imovel);
 	}
-	
 	public boolean adicionarCliente(Cliente cliente) {
 		if (clientes.contains(cliente)) {
 			return false;
@@ -111,6 +117,10 @@ public class Corretor extends Pessoa {
 		return out;
 	}
 
+
+	public boolean isStatus() {
+		return status;
+	}
 
 	public String getSenha() {
 		return senha;
