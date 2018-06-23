@@ -20,6 +20,15 @@ public class Imobiliaria{
 		gerentes.add(gerenteDefault);
 	}
 	
+	public Imobiliaria() {
+		imoveis = new ArrayList<Imovel>();
+		clientes = new ArrayList<Cliente>();
+		corretores = new ArrayList<Corretor>();
+		proprietarios = new ArrayList<Proprietario>();
+		propostas = new ArrayList<Proposta>();
+		gerentes=new ArrayList<Gerente>();
+	}
+
 	/**Metodos de adicao e remocao de infomacoes do banco de dados simulado*/
 	
 	public boolean adicionarImovel(Imovel imovel) {

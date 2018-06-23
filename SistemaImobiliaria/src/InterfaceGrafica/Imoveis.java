@@ -23,6 +23,8 @@ import Entidades.TipoImovel;
 import javax.swing.JButton;
 
 public class Imoveis extends JFrame {
+	private static final long serialVersionUID = 1L;
+
 	Imobiliaria imobiliaria = new Imobiliaria();
 
 	private JPanel contentPane;
