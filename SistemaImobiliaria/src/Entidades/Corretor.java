@@ -10,15 +10,6 @@ public class Corretor extends Pessoa {
 	private ArrayList<Proposta> propostasFinalizadas;
 	private boolean status;
 
-	public Corretor(String nome, String telefone, String email) {
-		super(nome, telefone, email);
-		imoveis = new ArrayList<Imovel>();
-		clientes = new ArrayList<Cliente>();
-		propostasEmAberto = new ArrayList<Proposta>();
-		propostasFinalizadas = new ArrayList<Proposta>();
-		status=true;
-	}
-
 	public Corretor(String nome, String telefone, String documento, Endereco endereco, String email, String senha ,String creci) {
 		super(nome, telefone, documento, endereco, email);
 		this.senha = senha;
@@ -27,8 +18,9 @@ public class Corretor extends Pessoa {
 		clientes = new ArrayList<Cliente>();
 		propostasEmAberto = new ArrayList<Proposta>();
 		propostasFinalizadas = new ArrayList<Proposta>();
-		status=true;
+		status = true;
 	}
+	
 	public void desativarCorretor()
 	{
 		status=false;

@@ -26,7 +26,7 @@ public void setSenha(String senha) {
 
 public Corretor adicionarCorretor(String nome, String telefone, String documento, Endereco endereco, String email, String senha ,String creci)
 {
-	Corretor novo= new Corretor (nome,telefone, documento, endereco,email,senha,creci);
+	Corretor novo = new Corretor (nome, telefone, documento, endereco, email, senha, creci);
 	return novo;
 	
 }

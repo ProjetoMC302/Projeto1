@@ -8,7 +8,7 @@ public class Imobiliaria{
 	private ArrayList<Corretor> corretores;
 	private ArrayList<Proprietario> proprietarios;
 	private ArrayList<Gerente> gerentes;
-	private ArrayList<Proposta>propostas;
+	private ArrayList<Proposta> propostas;
 	
 	public Imobiliaria(Gerente gerenteDefault){
 		imoveis = new ArrayList<Imovel>();
