@@ -58,6 +58,8 @@ public class Main {
 
 		Corretor corretor = null; // Armazenara corretor logado
 		
+		Gerente admin = new Gerente("admin", "0", "admin@imobiliaria.com", "nimda");
+		
 		imobiliaria = new Imobiliaria(); // criar banco de dados simulado
 
 		// criando telas do sistema 
@@ -96,7 +98,7 @@ public class Main {
 					String email = getStringInput(scanner, "Digite o seu email: ");
 					String senha = getStringInput(scanner, "Digite a sua senha: ");
 					
-					Corretor cadastroCorretor = cadastrarCorretor(nome,
+					Corretor cadastroCorretor = cadastrarCorretor(admin, nome,
 							telefone, documento, estado, cidade, bairro, rua,
 							numero, cep, complemento, creci, email, senha);
 					
@@ -149,7 +151,7 @@ public class Main {
 					// deletar conta
 					System.out.println("***************************************************************");
 					if (getBooleanInput(scanner, "Certeza que deseja deletar seu usuario do sistema? (1-Sim/0-Nao): ")) {
-						deletarCorretor(corretor);
+						deletarCorretor(corretor, admin);
 					}
 					System.out.println("***************************************************************");
 				} else if (comando == dashboard.getComando(deslogarComando)) {
@@ -393,7 +395,7 @@ public class Main {
 							complemento, empresa);
 					System.out.println("***************************************************************");
 				} else if (comando == telaProprietario.getComando(remover)) {
-					removerProprietario();
+					removerProprietario(admin);
 					
 					System.out.println("***************************************************************");
 				} else if (comando == telaProprietario.getComando(atualizar)) {
@@ -527,7 +529,7 @@ public class Main {
 	private static void removerCliente(Corretor corretor, Cliente clienteRemover) {
 		if (clienteRemover != null) {
 			corretor.removerCliente(clienteRemover);
-			imobiliaria.removerCliente(clienteRemover);
+			imobiliaria.removerCliente(clienteRemover, corretor);
 		} else {
 			System.out.println("Cliente nao existe no sistema");
 		}
@@ -541,7 +543,7 @@ public class Main {
 			double areaMinimaTerreno, Restricao proposito, double precoMax) {
 		Preferencia preferencia = new Preferencia(aluguel, esquina, condominio, tipoImovel, areaMinimaTerreno, proposito);
 		Endereco endereco = new Endereco(cep, estado, cidade, rua, bairro, numero, complemento);
-		Cliente cliente = new Cliente(nome, telefone, documento, endereco, email, precoMax, preferencia);
+		Cliente cliente = new Cliente(nome, telefone, documento, endereco, email, precoMax, preferencia, corretor);
 		// adiciona cliente para corretor e para o banco de dados simulado
 		corretor.adicionarCliente(cliente);
 		imobiliaria.adicionarCliente(cliente);
@@ -592,7 +594,7 @@ public class Main {
 	private static void removerImovel(Corretor corretor, Imovel imovel) {
 		if (imovel != null) {
 			corretor.removerImovel(imovel);
-			imobiliaria.removerImovel(imovel);
+			imobiliaria.removerImovel(imovel, corretor);
 		} else {
 			System.out.println("Imovel nao existe");
 		}
@@ -665,12 +667,12 @@ public class Main {
 		}
 	}
 
-	private static void removerProprietario() {
+	private static void removerProprietario(Gerente gerente) {
 		// remover proprietario
 		System.out.println("***************************************************************");
 		Proprietario proprietario = buscaProprietario(imobiliaria, getStringInput(scanner, "Digite o CPFdo proprietario que deseja remover: "));
 		if (proprietario != null) {
-			imobiliaria.removerProprietario(proprietario);
+			imobiliaria.removerProprietario(proprietario, gerente);
 		} else {
 			System.out.println("Proprietario nao existe");
 		}
@@ -686,9 +688,9 @@ public class Main {
 		imobiliaria.adicionarProprietario(proprietario);
 	}
 	
-	private static void deletarCorretor(Corretor corretor) {
+	private static void deletarCorretor(Corretor corretor, Gerente gerente) {
 		// remove corretor
-		imobiliaria.removerCorretor(corretor);
+		imobiliaria.removerCorretor(corretor, gerente);
 		TelaConsole.replace(dashboard, telaLogin);
 	}
 	private static Corretor loginCorretor(String username, String senha) {
@@ -705,7 +707,7 @@ public class Main {
 		System.out.println("***************************************************************");
 		return corretor;
 	}
-	private static Corretor cadastrarCorretor(String nome, String telefone,
+	private static Corretor cadastrarCorretor(Gerente gerente, String nome, String telefone,
 			String documento, String estado, String cidade, String bairro,
 			String rua, int numero, int cep, String complemento, String creci,
 			String email, String senha) {
@@ -713,7 +715,7 @@ public class Main {
 		// cria corretor
 		Corretor cadastroCorretor = new Corretor(nome, telefone, documento, endereco, email, senha, creci);
 		// adiciona corretor no banco de dados
-		imobiliaria.adicionarCorretor(cadastroCorretor);
+		imobiliaria.adicionarCorretor(cadastroCorretor, gerente);
 		return cadastroCorretor;
 	}
 	private static void cadastrarComandosProposta() {
