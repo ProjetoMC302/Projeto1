@@ -35,7 +35,7 @@ public class Login extends JPanel implements Limpavel{
 	 */
 	protected Pessoa user;
 	
-	public Login(CardLayout aux,JPanel aux2,Telas aux3) {
+	public Login(CardLayout cardLayout,JPanel painel,Telas telas) {
 		
 		
 		setBackground(new Color(255, 255, 204));
@@ -96,8 +96,8 @@ public class Login extends JPanel implements Limpavel{
 								user=Main.imobiliaria.verificarLoginGerente(email, senha);
 								if(user==null)
 									throw new Exception();
-								aux3.setUserCompleto(user);
-								aux.show(aux2, "home2");
+								telas.setUserCompleto(user);
+								cardLayout.show(painel, "home2");
 							}
 							
 							if(botaoCorretor.isSelected())
@@ -108,14 +108,14 @@ public class Login extends JPanel implements Limpavel{
 								user=Main.imobiliaria.verificarLoginCorretor(email, senha);
 								if(user==null)
 									throw new Exception();
-								aux3.setUserCompleto(user);
-								aux.show(aux2, "home");
+								telas.setUserCompleto(user);
+								cardLayout.show(painel, "home");
 								
 							}
 							
-						}catch(Exception aux){
+						}catch(Exception cardLayout){
 							
-							JOptionPane.showMessageDialog(null,"Usuário inválido !",null,JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,"Usuï¿½rio invï¿½lido !",null,JOptionPane.ERROR_MESSAGE);
 						}
 						
 					
