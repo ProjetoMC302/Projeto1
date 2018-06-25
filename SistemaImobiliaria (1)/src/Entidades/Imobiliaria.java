@@ -233,6 +233,40 @@ public class Imobiliaria{
 		return null;
 	}
 	
+	public ArrayList<Imovel> buscarApartamento(Preferencia preferencia) {
+		ArrayList<Imovel> result = new ArrayList<>();
+		for (Imovel imv : imoveis) {
+			if(imv instanceof Apartamento && imv.isAluguel()==preferencia.isAluguel() && 
+					((Apartamento) imv).getAreaConstruida() >= preferencia.getAreaMinimaTerreno()) {
+				result.add(imv);
+			}
+		}
+
+		return result;
+	}
+	public ArrayList<Imovel> buscarCasa(Preferencia preferencia) {
+		ArrayList<Imovel> result = new ArrayList<>();
+		for (Imovel imv : imoveis) {
+			if(imv instanceof Casa && imv.isAluguel()==preferencia.isAluguel() && 
+					((Casa) imv).getAreaConstruida() >= preferencia.getAreaMinimaTerreno()&&
+					((Casa) imv).isEsquina() == preferencia.isEsquina()) {
+				result.add(imv);
+			}
+		}
+
+		return result;
+	}
+	public ArrayList<Imovel> buscarTerreno(Preferencia preferencia) {
+		ArrayList<Imovel> result = new ArrayList<>();
+		for (Imovel imv : imoveis) {
+			if(imv instanceof Terreno&& imv.isAluguel()==preferencia.isAluguel() && 
+					((Terreno) imv).getAreaTerreno()>= preferencia.getAreaMinimaTerreno()) {
+				result.add(imv);
+			}
+		}
+
+		return result;
+	}
 	public Cliente buscarCliente(String documento) {
 		for (Cliente clt : clientes) {
 			if(clt.getDocumento().equals(documento)) {

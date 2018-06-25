@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Entidades.Corretor;
 import java.awt.FlowLayout;
+import javax.swing.JTextField;
 
 public class TabelaCorretor extends JPanel {
 	private static final long serialVersionUID = 23L;
