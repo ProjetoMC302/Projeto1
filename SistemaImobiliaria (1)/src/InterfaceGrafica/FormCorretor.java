@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
-import Entidades.Corretor;
 import Entidades.Endereco;
+import Entidades.Gerente;
 import Excecoes.InvalidInputException;
 import Interface.Limpavel;
 
@@ -126,13 +126,12 @@ public class FormCorretor extends JPanel implements Limpavel {
 						throw new InvalidInputException("Existem campos obrigatorios que nao foram preenchidos");
 					}
 					
-					Corretor corretor = new Corretor(nome,telefone , documento, new Endereco(cep,estado,cidade,rua,bairro,numero,complemento),
-							email,senha ,creci);
-					
 					/**ADICIONA CORRETOR CRIADO NO BANCO DE DADOS*/
 					
 					//Simulando bando de dados
-					Main.imobiliaria.adicionarCorretor(corretor);
+					Gerente g = (Gerente)Telas.getUser();
+					g.adicionarCorretor(nome, telefone, documento, new Endereco(cep,estado,cidade,rua,bairro,numero,complemento), 
+							email, senha, creci, Main.imobiliaria);
 					JOptionPane.showMessageDialog(null,"Usuario cadastrado com sucesso",null,JOptionPane.INFORMATION_MESSAGE);
 					card.show(p, "home2");
 				}catch(NumberFormatException e) {
@@ -230,8 +229,19 @@ public class FormCorretor extends JPanel implements Limpavel {
 
 	@Override
 	public void LimparTodosOsCampos() {
-		// TODO Auto-generated method stub
-		
+		 textNome.setText("");
+		 textTelefone.setText("");
+		 textDocumento.setText("");
+		 textEmail.setText("");
+		 textSenha.setText("");
+		 textCresi.setText("");
+		 textCEP.setText("");
+		 textEstado.setText("");
+		 textCidade.setText("");
+		 textBairro.setText("");
+		 textRua.setText("");
+		 textNumero.setText("");
+		 textComplemento.setText("");
 	}
 }
 

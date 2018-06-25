@@ -149,7 +149,8 @@ public class Login extends JPanel implements Limpavel{
 
 	@Override
 	public void LimparTodosOsCampos() {
-		// TODO Auto-generated method stub
-		
+		field_email.setText("");
+		field_senha.setText("");
 	}
+
 }

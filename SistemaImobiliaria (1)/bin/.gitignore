@@ -10,10 +10,9 @@
 /Restricao.class
 /Terreno.class
 /TipoImovel.class
-/InterfaceConsole/
-<<<<<<< HEAD
+/.gitignore
+/Entidades/
 /Excecoes/
 /Interface/
-=======
+/InterfaceConsole/
 /InterfaceGrafica/
->>>>>>> 7b6f516c1e0df7cb12279138b2b25f1ccbbd51c4

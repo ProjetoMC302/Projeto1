@@ -8,18 +8,17 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 
-%\usepackage[shortlabels]{enumitem}
 
 
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 
-\title{Projeto Prático 1\\
+\title{Projeto Final\\
 Programação Orientada a Objetos - MC302}
 \author{Alunos: André Papoti, Bruno Falkenburg, Lucas Ramos, \\
 Nicolas França, Sophia Estrêla\\\\
 Professora: Esther Colombini\\\\
 Unicamp - Instituto de Computação\\}
-\date{Abril de 2018}
+\date{Junho de 2018}
 
 \begin{document}
 
@@ -28,7 +27,7 @@ Unicamp - Instituto de Computação\\}
 \begin{abstract}
 \noindent
 
-A intenção do projeto é ser um sistema interno de uma imobiliária, ou seja, é feito considerando os corretores como usuários e a imobiliária em sí como um administrador (root). Esses usuários gerenciam imóveis, clientes, proprietários e propostas.
+A intenção do projeto é ser um sistema interno de uma imobiliária, ou seja, é feito considerando os corretores como usuários e a imobiliária em sí como o administrador (root). Esses usuários gerenciam imóveis, clientes, proprietários e propostas e o adiministrador gerencia os corretores.
 
 É importante destacar que o usuário final são os corretores e outros possíveis funcionários da imobiliária (que é o caso do nosso administrador).
 
@@ -36,7 +35,7 @@ Queremos fazer buscas de imoveis do melhor agrado do cliente, assim como servir 
 
 Queremos enfatizar que o projeto não foi pensado para acesso direto de terceiros, como compradores e proprietários, pois a nossa regra de negócio diz que esses dados são sigilosos.
 
-A nossa ambição é que em sua etapa final o próprio sistema dê sugestões de imóveis do agrado do cliente, cruzando suas preferências com os imóveis disponíveis.
+Agora em sua etapa final o sistema da sugestões de imóveis do agrado do cliente, cruzando suas preferências com os imóveis disponíveis.
 
 O sistema foi pensado consultando uma corretora real, de forma que este se adapte as necessidades de um usuário do mundo real. Este também trará o benefício de tornar processos do dia-a-dia de uma imobiliaria, como a oficialização de uma proposta se tornar mais fácil e ágil.
 
@@ -52,52 +51,25 @@ O sistema foi pensado consultando uma corretora real, de forma que este se adapt
 Foram implementadas as seguintes funcionalidades nesta etapa do projeto:
 
 \begin{enumerate}
+    \item Adição de novos Corretores pelo Administrador;
     \item Adição de novos Imoveis;
     \item Adição de novos Corretores
     \item Adição de novos Clientes;
     \item Adição de Propostas;
     \item Adição de Proprietários dos imóveis;
+    \item Remoção de Corretores pelo Administrador;
     \item Remoção de Imoveis;
     \item Remoção de Corretores
     \item Remoção de Clientes;
-    \item Remoção de Propostas;
     \item Finalização de Propostas: propostas pode estar ativas ou não;
-    \item Listagem dos Imoveis cujo corretor responsável é o usuário;
-    \item Listagem das Propostas cujo o usuário (Corretor) foi intermediário;
+    \item Listagem dos Corretores pelo Adiministrador;
+    \item Listagem dos Imoveis relacionados as preferencias de um cliente;
+    \item Listagem das Propostas cujo o Corretor foi intermediário;
     \item Listagem dos Clientes cujo responsável é o Corretor;
     \item Listagem dos Proprietarios de todos os Imoveis disponíveis no sistema;
-    \item Alteração dos dados do Imovel;
-    \item Alteração dos dados do Corretor;
-    \item Alteração dos dados do Proprietario;
-    \item Busca por um Imovel dado sua respectiva id ou objeto;
-    \item Busca por um Proposta dado sua respectiva id ou objeto;
-    \item Busca por um Corretor dado seu respectivo id ou objeto ou creci;
+    \item Salvar dados no banco de dados;
+    \item Realizar buscas banco de dados;
 \end{enumerate}
-
-\subsection{Implementações Futuras}
-\label{ss:func-faltando}
-
-Pensamos em implementar as seguintes funcionalidades na segunda parte do projeto:
-
-\begin{enumerate}
-    \item Correlacione as preferências do cliente e as características dos imóveis para dar dicas para o corretor automaticamente com a adição de um novo cliente;
-    \item Possua a funcionalidade Visita, para agendamento de visitas a imóveis;
-    \item Possua uma classe Administrador (administrador da imobiliária com maior acesso que o Corretor);
-    \item Tenha a lista de imóveis ordenada conforme o número de visitas agendadas de forma que os mais visitados tenham destaque;
-    \item Tenha um banco de dados a fim de que os dados não sejam perdidos;
-    \item Possua algoritmos mais avançados em termos de busca;
-    \item Utilize uma API de mapas para busca de imóveis no raio de preferência do cliente;
-    \item Esteja disponível na nuvem (tenha um site);
-    \item Tenha um mecanismo de login seguro;
-\end{enumerate}
-
-\begin{figure}[h!]
-  \begin{center}
-    \includegraphics[scale=0.35]{imagens/interface-grafica.png}
-  \end{center}
-  \caption{Desenho esquemático de como pensamos em implementar a GUI para as entidades}
-  \label{f:interface-grafica}
-\end{figure}
 
 \section{Ferramentas Utilizadas}
 \label{s:ferramentas}
@@ -132,24 +104,6 @@ No momento, há escrito um conjunto de instruções básicas sobre as funcionali
  O texto está disponível no arquivo "DocumentacaoLagom.pdf" localizado no diretório raiz do primeiro projeto ("Projeto1/Documentacao/Lagom/").
 
 Por enquanto as classes relacionadas ao Lagom estão com algum defeito, mas como não é o foco nesse momento, decidimos adiar o tratamento dos erros.
-
-\subsection{APIs do Google Maps}
-\label{ss:maps}
-
-A Google oferece alguns serviços para utilização do Maps por outros desenvolvedores. Dentre as APIs oferecidas, constam a Directions API,
- cuja finalidade principal é a de encontrar direções entre diferentes localidades; a Distance Matrix API, que calcula tempo e distância entre
-  pontos em uma rota, e a Geocoding API, que transforma um endereço em coordenadas e vice-versa.
-
-Para facilitar o uso dessas APIs no código Java, está sendo utilizado o Java Client for Google Maps Services, uma biblioteca desenvolvida pela equipe do
- Google Maps.
-
-Os serviços que a Google oferece serão utilizados para calcular, sob demanda do corretor, uma boa rota entre diversos imóveis que ele deseja mostrar ao
- cliente.
-
- Até o momento, foi utilizado o cliente Java do Google Maps para calcular uma rota entre dois endereços, e retornar as etapas do movimento em formato
-  JSON, para que o resultado possa ser facilmente utilizado em outras aplicações, como numa interface gráfica. Utilizou-se a Directions API, que possibilita
-   encontrar mais de uma rota para diversos meios de transporte. Entretanto, no exemplo optou-se por buscar apenas uma rota de carro, configuração que mais se assemelha
-    com o futuro uso dos serviços no sistema. Os códigos fonte podem ser encontrados em "Projeto1/Lagom/maps-sem-lagom/maps-testes/src/".
 
 \subsection{PostgreSQL}
 \label{ss:postgre}
