@@ -2,7 +2,7 @@ package Entidades;
 
 public class Pessoa {
 	private static int geradorId;
-	private final int id;
+	private int id;
 	private String nome;
 	private String telefone;
 	private String documento;
@@ -24,6 +24,10 @@ public class Pessoa {
 		this.documento = documento;
 		this.endereco = endereco;
 		this.email = email;
+	}
+	
+	public static void setGeradorId(int novoId) {
+		geradorId = novoId;
 	}
 	
 	public static int getGeradorId() {
@@ -65,6 +69,9 @@ public class Pessoa {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	@Override

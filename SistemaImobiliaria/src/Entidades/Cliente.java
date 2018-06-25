@@ -24,7 +24,7 @@ public class Cliente extends Pessoa {
 	}
 
 	public Cliente(String nome, String telefone,String documento, Endereco endereco, 
-				   String email, double precoMax, Preferencia preferencia,Corretor corretor) {
+				   String email, double precoMax, Preferencia preferencia, Corretor corretor) {
 		super(nome, telefone,documento,endereco, email);
 		this.precoMax = precoMax;
 		formasPagamentoDesejadas = new ArrayList<FormaPagamento>();

@@ -50,9 +50,10 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 	
-	/* bloco de getters e setters. Nao ha setters para atributos
-	 * 	referentes a id, pois eles nao devem ser alterados por outras
-	 * 	classes */
+	public static void setGeradorId(int novoId) {
+		geradorId = novoId;
+	}
+	
 	public static int getGeradorId() {
 		return geradorId;
 	}

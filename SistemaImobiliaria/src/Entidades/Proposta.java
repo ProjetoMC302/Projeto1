@@ -34,6 +34,10 @@ public class Proposta {
 		return geradorId;
 	}
 	
+	public static void setGeradorId(int novoId) {
+		geradorId = novoId;
+	}
+	
 	public int getId() {
 		return id;
 	}
