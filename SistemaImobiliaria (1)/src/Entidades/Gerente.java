@@ -24,9 +24,10 @@ public void setSenha(String senha) {
 }
 
 
-public Corretor adicionarCorretor(String nome, String telefone, String documento, Endereco endereco, String email, String senha ,String creci)
+public Corretor adicionarCorretor(String nome, String telefone, String documento, Endereco endereco, String email, String senha ,String creci,Imobiliaria imobiliaria)
 {
 	Corretor novo = new Corretor (nome, telefone, documento, endereco, email, senha, creci);
+	imobiliaria.adicionarCorretor(novo);
 	return novo;
 	
 }
