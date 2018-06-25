@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
-import Entidades.Corretor;
 import Entidades.Endereco;
 import Entidades.Gerente;
 import Excecoes.InvalidInputException;
