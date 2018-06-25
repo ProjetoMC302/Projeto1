@@ -328,7 +328,19 @@ public class FormCliente extends JPanel implements Limpavel{
 
 	@Override
 	public void LimparTodosOsCampos() {
-		
+		 textEmail.setText("");
+		 textCEP.setText("");
+		 textEstado.setText("");
+		 textCidade.setText("");
+		 textBairro.setText("");
+		 textRua.setText("");
+		 textNumero.setText("");
+		 textComplemento.setText("");
+		 textTelefone.setText("");
+		 textNome.setText("");
+		 textDocumento.setText("");
+		 textPrecoMAX.setText("");
+		 textAreaMinima.setText("");
 		
 	}
 }

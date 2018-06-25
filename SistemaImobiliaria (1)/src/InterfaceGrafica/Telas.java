@@ -44,6 +44,11 @@ public class Telas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
+		//Adicionamos  o login ao card
+		CardLayout aux = (CardLayout) (contentPane.getLayout());
+		login=new Login(aux,contentPane,this);
+		contentPane.add(login, "login");
+		aux.show(contentPane, "login");
 		
 		//Home do corretor
 		Panel home = new Panel();
@@ -86,7 +91,7 @@ public class Telas extends JFrame {
 		home.add(botao_buscar);
 		
 		JButton btnLogOut = new JButton("Log out");
-		btnLogOut.addActionListener(new TrocaPainelLimpavel("login",login));
+		btnLogOut.addActionListener(new TrocaPainelLimpavel("login",(Limpavel)login));
 		btnLogOut.setBounds(10, 217, 89, 23);
 		home.add(btnLogOut);
 		
@@ -133,15 +138,11 @@ public class Telas extends JFrame {
 		home2.add(botao_buscar6);
 		
 		JButton btnLogOut_1 = new JButton("Log out");
-		btnLogOut_1.addActionListener(new TrocaPainelLimpavel("login",login));
+		btnLogOut_1.addActionListener(new TrocaPainelLimpavel("login",(Limpavel)login));
 		btnLogOut_1.setBounds(10, 217, 89, 23);
 		home2.add(btnLogOut_1);
 			
-		//Adicionamos  o login ao card
-		CardLayout aux = (CardLayout) (contentPane.getLayout());
-		login=new Login(aux,contentPane,this);
-		contentPane.add(login, "login");
-		aux.show(contentPane, "login");
+		
 		
 		//Adicionamos  os forms ao card
 		FormCliente formCliente = new FormCliente(aux,contentPane);
@@ -213,27 +214,27 @@ public class Telas extends JFrame {
 		botaoImovel.setFont(new Font("Cambria", Font.BOLD, 15));
 		botaoImovel.setBackground(Color.WHITE);
 		botaoImovel.setBounds(119, 106, 144, 23);
-		botaoImovel.addActionListener(new TrocaPainelLimpavel("formImovel",formImovel));
+		botaoImovel.addActionListener(new TrocaPainelLimpavel("formImovel",(Limpavel)formImovel));
 		adicionar.add(botaoImovel);
 		
 		JButton botaoCliente = new JButton("Cliente");
 		botaoCliente.setFont(new Font("Cambria", Font.BOLD, 15));
 		botaoCliente.setBackground(Color.WHITE);
 		botaoCliente.setBounds(119, 132, 144, 23);
-		botaoCliente.addActionListener(new TrocaPainelLimpavel("formCliente",formCliente));
+		botaoCliente.addActionListener(new TrocaPainelLimpavel("formCliente",(Limpavel)formCliente));
 		adicionar.add(botaoCliente);
 		
 		JButton botaoProprietario1 = new JButton("Proprietario");
 		botaoProprietario1.setBackground(Color.WHITE);
 		botaoProprietario1.setFont(new Font("Cambria", botaoProprietario1.getFont().getStyle() | Font.BOLD, botaoProprietario1.getFont().getSize() + 4));
-		botaoProprietario1.addActionListener(new TrocaPainelLimpavel("formProprietario",formProprietario));
+		botaoProprietario1.addActionListener(new TrocaPainelLimpavel("formProprietario",(Limpavel)formProprietario));
 		botaoProprietario1.setBounds(119, 160, 144, 23);
 		adicionar.add(botaoProprietario1);
 		
 		JButton botaoProposta1 = new JButton("Proposta");
 		botaoProposta1.setFont(new Font("Cambria", Font.BOLD, 15));
 		botaoProposta1.setBackground(Color.WHITE);
-		botaoProposta1.addActionListener(new TrocaPainelLimpavel("formProposta", formProposta));
+		botaoProposta1.addActionListener(new TrocaPainelLimpavel("formProposta", (Limpavel)formProposta));
 		botaoProposta1.setBounds(119, 187, 144, 23);
 		adicionar.add(botaoProposta1);
 		
@@ -410,7 +411,7 @@ public class Telas extends JFrame {
 		BCorretor7.setFont(new Font("Cambria", Font.BOLD, 15));
 		BCorretor7.setBackground(Color.WHITE);
 		BCorretor7.setBounds(104, 88, 177, 23);
-		BCorretor7.addActionListener(new TrocaPainelLimpavel("formCorretor",formCorretor));
+		BCorretor7.addActionListener(new TrocaPainelLimpavel("formCorretor",(Limpavel)formCorretor));
 		adicionar2.add(BCorretor7);
 		
 		
@@ -446,7 +447,7 @@ public class Telas extends JFrame {
 		Bcorretor10.setBackground(Color.WHITE);
 		Bcorretor10.setFont(new Font("Cambria", Font.BOLD, 15));
 		Bcorretor10.setBounds(98, 84, 185, 23);
-		Bcorretor10.addActionListener(new TrocaPainelLimpavel("formCorretorBuscar",formCorretorBuscar));
+		Bcorretor10.addActionListener(new TrocaPainelLimpavel("formCorretorBuscar",(Limpavel)formCorretorBuscar));
 		buscar2.add(Bcorretor10);
 		
 		JButton Bvolta10 = new JButton("Voltar");
@@ -512,14 +513,7 @@ public class Telas extends JFrame {
 		{
 			CardLayout cl = (CardLayout) (contentPane.getLayout());
 			cl.show(contentPane, novo);
-			try {
-				if(limpador!=null) {
-					limpador.LimparTodosOsCampos();
-				}
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			
+			limpador.LimparTodosOsCampos();
 		}
 	}
 }
