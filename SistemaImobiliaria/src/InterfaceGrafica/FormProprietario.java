@@ -12,9 +12,12 @@ import Excecoes.InvalidInputException;
 import Interface.Limpavel;
 
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
+import java.sql.PreparedStatement;
+
 import javax.swing.JCheckBox;
 
 public class FormProprietario extends JPanel implements Limpavel{
@@ -174,7 +177,44 @@ public class FormProprietario extends JPanel implements Limpavel{
 					Proprietario proprietario = new Proprietario(nome, telefone, documento, 
 							new Endereco(cep,estado,cidade,rua,bairro,numero,complemento), email, empresa);
 					
-					/*TODO: ADICONAR PROPRIETARIO NO BANCO DE DADOS*/
+					PreparedStatement psEndereco = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO enderecos (endereco_id, cep, estado, "
+							   + " cidade, rua, bairro, numero, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+					
+					psEndereco.setInt(1, corretor.getEndereco().getId());
+					psEndereco.setInt(2, corretor.getEndereco().getCep());
+					psEndereco.setString(3, corretor.getEndereco().getEstado());
+					psEndereco.setString(4, corretor.getEndereco().getCidade());
+					psEndereco.setString(5, corretor.getEndereco().getRua());
+					psEndereco.setString(6, corretor.getEndereco().getBairro());
+					psEndereco.setInt(7, corretor.getEndereco().getNumero());
+					psEndereco.setString(8, corretor.getEndereco().getComplemento());
+					
+					psEndereco.executeUpdate();
+					
+					PreparedStatement psPessoa = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO pessoas (pessoa_id," 
+							   					 + " endereco_id, nome, telefone, documento, email) VALUES (?, ?, ?, ?, ?, ?)");
+					
+					psPessoa.setInt(1, proprietario.getId());
+					psPessoa.setInt(2, proprietario.getEndereco().getId());
+					psPessoa.setString(3, proprietario.getNome());
+					psPessoa.setString(4, proprietario.getTelefone());
+					psPessoa.setString(5, proprietario.getDocumento());
+					psPessoa.setString(6, proprietario.getEmail());
+					
+					psPessoa.executeUpdate();
+					
+					PreparedStatement psCorretor = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO corretores (pessoa_id," 
+		   					 + " senha, creci, status) VALUES (?, ?, ?, ?)");
+					
+					psCorretor.setInt(1, corretor.getId());
+					psCorretor.setString(2, corretor.getSenha());
+					psCorretor.setString(3, corretor.getCreci());
+					psCorretor.setBoolean(4, corretor.getStatus());
+
+					psCorretor.executeUpdate();
+					
+					
 					Main.imobiliaria.adicionarProprietario(proprietario);
 					JOptionPane.showMessageDialog(null,"Proprietario cadastrado com sucesso",null,JOptionPane.INFORMATION_MESSAGE);
 					card.show(p, "home");

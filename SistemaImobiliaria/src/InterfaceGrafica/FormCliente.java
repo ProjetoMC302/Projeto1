@@ -29,7 +29,6 @@ import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 
 import javax.swing.JRadioButton;
@@ -106,7 +105,7 @@ public class FormCliente extends JPanel implements Limpavel {
 		label_6.setBounds(10, 146, 96, 14);
 		panel.add(label_6);
 		
-		JLabel label_7 = new JLabel("Complementop :");
+		JLabel label_7 = new JLabel("Complemento :");
 		label_7.setBounds(10, 171, 96, 14);
 		panel.add(label_7);
 		
@@ -367,13 +366,24 @@ public class FormCliente extends JPanel implements Limpavel {
 
 					psCliente.executeUpdate();
 					
+					ResultSet cliente_id;
 					PreparedStatement psPreferencia = null;
+					
+					psCliente = Main.imobiliaria.getBanco().getConexao().prepareStatement("SELECT "
+							+ "cliente_id FROM clientes WHERE clientes.pessoa_id = ?");
+					psCliente.setInt(1, cliente.getId());
+					cliente_id = psCliente.executeQuery();
+					cliente_id.next();
 					for (int i = 0; i < tipos.size(); i++) {
+						
+						
 						if (proposito != null) {
 							psPreferencia = Main.imobiliaria.getBanco().getConexao()
 									.prepareStatement("INSERT INTO preferencias (cliente_id, tipo_imovel_id, restricao_id,"
 											+ " endereco_id, aluguel, esquina, condominio, area_minima_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-							psPreferencia.setInt(1, cliente.getId());
+							
+							
+							psPreferencia.setInt(1, cliente_id.getInt(1));
 							psPreferencia.setInt(2, tipos.get(i));
 						
 							if (Restricao.COMERCIAL == proposito)
@@ -390,7 +400,8 @@ public class FormCliente extends JPanel implements Limpavel {
 							psPreferencia = Main.imobiliaria.getBanco().getConexao()
 									.prepareStatement("INSERT INTO preferencias (cliente_id, tipo_imovel_id, "
 											+ " endereco_id, aluguel, esquina, condominio, area_minima_terreno) VALUES (?, ?, ?, ?, ?, ?, ?");
-							psPreferencia.setInt(1, cliente.getId());
+														
+							psPreferencia.setInt(1, cliente_id.getInt(1));
 							psPreferencia.setInt(2, tipos.get(i));
 						
 							psPreferencia.setInt(3, cliente.getEndereco().getId());				
@@ -401,6 +412,23 @@ public class FormCliente extends JPanel implements Limpavel {
 						}
 						
 						psPreferencia.executeUpdate();
+					}
+					
+					ArrayList<Integer> formas = new ArrayList<Integer>();
+					if(chckbxFinanciamento.isSelected()) {
+						formas.add(1);
+					}else if(chckbxPermuta.isSelected()) {
+						formas.add(2);
+					}else if (chckbxAvista.isSelected()) {
+						formas.add(3);
+					}
+					
+					for (int i = 0; i < formas.size(); i++) {
+						PreparedStatement psFP = Main.imobiliaria.getBanco().getConexao()
+								.prepareStatement("INSERT INTO cliente_forma_pagamentos "
+										+ "(cliente_id, forma_pagamento_id) VALUES (?, ?)");
+						psFP.setInt(1, cliente_id.getInt(1));
+						psFP.setInt(2, formas.get(i));
 					}
 					
 					Main.imobiliaria.adicionarCliente(cliente);
