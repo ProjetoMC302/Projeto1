@@ -68,42 +68,10 @@ Foram implementadas as seguintes funcionalidades nesta etapa do projeto:
     \item Listagem dos Clientes cujo responsável é o Corretor;
     \item Listagem dos Proprietarios de todos os Imoveis disponíveis no sistema;
     \item Salvar dados no banco de dados;
-    \item Realizar buscas banco de dados;
 \end{enumerate}
 
 \section{Ferramentas Utilizadas}
 \label{s:ferramentas}
-\subsection{Lagom}
-\label{ss:lagom}
-O Lagom Framework será utilizado para desenvolver serviços que serão consumidos pelo sistema.
- Entende-se Framework como uma coletânea de códigos genéricos - ou seja, que podem ser utilizados em diversos
-  projetos - que têm por finalidade auxiliar o programador no desenvolvimento, servindo de esqueleto
-   para o código que será escrito. Ao contrário de bibliotecas, frameworks ditam o fluxo de controle da aplicação.
-
-
-O framework contém um conjunto de APIs que facilitam ao desenvolvedor o trabalho de escrever microserviços em Java, que
- podem fazer uso de ferramentas já incluídas no Lagom, como servidores para permanência dos dados e compartilhamento de informações
-  com outros serviços. Todas as ferramentas utilizadas e os serviços desenvolvidos podem ser inicializados com um único
-   comando, ou separadamente.
-
-Microserviço é uma abordagem que visa construir um sistema como um conjunto de pequenos serviços, com funcionalidades
- específicas e completas, e que se comunicam por meios leves, havendo baixa dependência entre os módulos. Este tipo
-  de arquitetura colabora com a manutenção da modularidade, permitindo que alterações em serviços específicos não alterem o resultado
-   do sistema como um todo. A estrutura dos serviços Lagom segue firmemente este modelo, fortalecido pela separação entre a declaração da interface do
-    serviço e a implementação em si.
-
-O Lagom oferece também a possibilidade dos microserviços nele construídos consumirem serviços externos, que não
- precisam seguir a estrutura dos microserviços Lagom. Isto será utilizado, por exemplo, quando for preciso extrair dados de rotas utilizando a API do Google Maps
-  para descobrir uma boa rota entre os imóveis que um corretor deseja mostrar a um cliente.
-
-Das APIs que o Lagom fornece, podem-se destacar a Service API, útil para as declarações das interfaces dos serviços desenvolvidos, bem como sua
- implementação, e a Persistence API, que auxilia no controle da persistência de dados. Apesar de não ser o banco de dados padrão, o Lagom
-  tem suporte ao PostgreSQL, que será futuramente utilizado.
-
-No momento, há escrito um conjunto de instruções básicas sobre as funcionalidades do Lagom, bem como instruções de instalação e configuração.
- O texto está disponível no arquivo "DocumentacaoLagom.pdf" localizado no diretório raiz do primeiro projeto ("Projeto1/Documentacao/Lagom/").
-
-Por enquanto as classes relacionadas ao Lagom estão com algum defeito, mas como não é o foco nesse momento, decidimos adiar o tratamento dos erros.
 
 \subsection{PostgreSQL}
 \label{ss:postgre}
@@ -111,20 +79,48 @@ Por enquanto as classes relacionadas ao Lagom estão com algum defeito, mas como
 PostgreSQL é um SGBD (Sistema Gerenciador de Banco de Dados) objeto-relacional. Isso significa que os dados no banco são modelados como entidades relacionadas, semelhantes
  a tabelas, acrescidos de estruturas típicas de orientação a objetos. A linguagem utilizada no PostgreSQL é a SQL.
 
- Será utilizado para criação e gerenciamento de um banco de dados que armazenará os dados referentes às entidades do sistema.
+ Foi utilizado para criação e gerenciamento de um banco de dados que armazenará os dados referentes às entidades do sistema.
 
+ Nós precisamos criar um Diagrama de Entidade e Relacionamento baseado no nosso Diagrama UML. Já ter o UML de antemão nos ajudou bastante, mas ainda assim foi
+bastante desafiante a criação desse DER, pois tivemos que fazer um mapeamento de PK (Primary Key: Chave Primária) e FK (Foregin Key: Chave Estrangeira) que durante
+o tempo passou a dar bastante dor de cabeça. A vantagem de tudo isso foi a experiência que ganhamos em tão pouco tempo.
 
-\subsection{React}
-\label{ss:react}
+ O código sql esta no arquivo sqlAtual.sql, usando a versão 9.6 do PostgreSQL.
 
-Durante a conclusão do nosso projeto, além do Lagom/Maps/PostgreSQL, queremos montar uma página web baseada no Framework Javascript chamado React.
-  O React foi criado pelo facebook principalmente para facilitar a criação de páginas que se atualizam a todo momento e que utilizam APIs externas a todo momento. Esse
-    tipo de trabalho sem o React precisa de tratamento de DOM e Ajax, que não é uma tarefa muito trivial.
+\begin{enumerate}
+    \item\texttt{apartamentos}
+    \item\texttt{casas}
+    \item\texttt{cliente\_formas\_pagamento}
+    \item\texttt{clientes}
+    \item\texttt{condominio\_lazeres}
+    \item\texttt{condominios}
+    \item\texttt{corretores}
+    \item\texttt{enderecos}
+    \item\texttt{formas\_pagamento}
+    \item\texttt{gerentes}
+    \item\texttt{imoveis}
+    \item\texttt{imoveis\_construidos}
+    \item\texttt{imovel\_formas\_pagamento}
+    \item\texttt{imovel\_restricoes}
+    \item\texttt{lazeres}
+    \item\texttt{pagamentos}
+    \item\texttt{pessoas}
+    \item\texttt{preferencias}
+    \item\texttt{preferencias\_construcao}
+    \item\texttt{propostas}
+    \item\texttt{proprietarios}
+    \item\texttt{restricoes}
+    \item\texttt{terrenos}
+    \item\texttt{tipos\_imovel}
+\end{enumerate}
 
-Dessa forma, o nosso Front-end vai utilizar um serviço externo, o Lagom vai gerar a API do Backend e o React vai consumir essa API e mostrar para o usuário final
-  através do navegador. Dessa forma, o cliente do nosso projeto vai usar um programa Backend em Java sem necessariamente precisar ter o Java instalado, trazendo
-    maior flexibilidade para o sistema.
-
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[scale=0.4]{imagens/der.png}
+  \end{center}
+  \caption{Como foi projetado o nosso Diagrama de Entidades e Relacionamentos (DER)}
+  \label{f:trello}
+\end{figure}
 
 
 \subsection{Git e GitHub}
