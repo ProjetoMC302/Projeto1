@@ -1,4 +1,0 @@
-com/example/hello/hello/api/HelloService.class
-com/example/hello/hello/api/GreetingMessage.class
-com/example/hello/hello/api/HelloEvent.class
-com/example/hello/hello/api/HelloEvent$GreetingMessageChanged.class

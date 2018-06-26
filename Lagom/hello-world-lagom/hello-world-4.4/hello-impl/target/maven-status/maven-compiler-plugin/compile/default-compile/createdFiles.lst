@@ -1,9 +1,0 @@
-com/example/hello/hello/impl/HelloServiceImpl.class
-com/example/hello/hello/impl/HelloCommand.class
-com/example/hello/hello/impl/HelloCommand$Hello.class
-com/example/hello/hello/impl/HelloEvent$GreetingMessageChanged.class
-com/example/hello/hello/impl/HelloEntity.class
-com/example/hello/hello/impl/HelloCommand$UseGreetingMessage.class
-com/example/hello/hello/impl/HelloEvent.class
-com/example/hello/hello/impl/HelloModule.class
-com/example/hello/hello/impl/HelloState.class
