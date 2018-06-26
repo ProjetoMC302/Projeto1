@@ -20,14 +20,20 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.JRadioButton;
 
-public class FormCliente extends JPanel implements Limpavel{
+public class FormCliente extends JPanel implements Limpavel {
 	private static final long serialVersionUID = 31L;
 	private JTextField textEmail;
 	private JTextField textCEP;
@@ -55,8 +61,7 @@ public class FormCliente extends JPanel implements Limpavel{
 		
 		JButton button_1 = new JButton("Cancelar");
 		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
+			public void actionPerformed(ActionEvent arg0) { }
 		});
 		button_1.setBounds(565, 653, 89, 23);
 		add(button_1);
@@ -100,7 +105,7 @@ public class FormCliente extends JPanel implements Limpavel{
 		label_6.setBounds(10, 146, 96, 14);
 		panel.add(label_6);
 		
-		JLabel label_7 = new JLabel("Complementop :");
+		JLabel label_7 = new JLabel("Complemento :");
 		label_7.setBounds(10, 171, 96, 14);
 		panel.add(label_7);
 		
@@ -264,7 +269,6 @@ public class FormCliente extends JPanel implements Limpavel{
 		JButton button = new JButton("Criar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				try {
 					int cep = Integer.parseInt(textCEP.getText());
 					String estado = textEstado.getText();
@@ -283,16 +287,9 @@ public class FormCliente extends JPanel implements Limpavel{
 					double precoMax = Double.parseDouble(textPrecoMAX.getText());
 					double areaMinimaTerreno = Double.parseDouble(textAreaMinima.getText());
 					
-					TipoImovel tipoImovel =null;
-					if(chckbxCasa.isSelected()) {
-						tipoImovel=TipoImovel.CASA;
-					}else if(chckbxApartamento.isSelected()) {
-						tipoImovel=TipoImovel.APARTAMENTO;
-					}else if (chckbxTerreno.isSelected()) {
-						tipoImovel=TipoImovel.TERRENO;
-					}
+					
 
-					Restricao proposito=null;
+					Restricao proposito = null;
 					if(rdbtnComercialResisdencial.isSelected()) {
 						proposito = null;
 					}else if(rdbtnComercial.isSelected()) {
@@ -300,8 +297,22 @@ public class FormCliente extends JPanel implements Limpavel{
 					}else if (rdbtnResidencial.isSelected()) {
 						proposito = Restricao.RESIDENCIAL;
 					}
-					if(estado.isEmpty()||cidade.isEmpty()||rua.isEmpty()||bairro.isEmpty()||nome.isEmpty()||telefone.isEmpty()
-							||documento.isEmpty()) {
+					
+					ArrayList<Integer> tipos = new ArrayList<Integer>();
+					TipoImovel tipoImovel = null;
+					if(chckbxCasa.isSelected()) {
+						tipoImovel=TipoImovel.CASA;
+						tipos.add(1);
+					}else if(chckbxApartamento.isSelected()) {
+						tipoImovel=TipoImovel.APARTAMENTO;
+						tipos.add(2);
+					}else if (chckbxTerreno.isSelected()) {
+						tipoImovel=TipoImovel.TERRENO;
+						tipos.add(3);
+					}
+					
+					if((estado.isEmpty()||cidade.isEmpty()||rua.isEmpty()||bairro.isEmpty()||nome.isEmpty()||telefone.isEmpty()
+							||documento.isEmpty()) || (!(chckbxCasa.isSelected()) && !(chckbxApartamento.isSelected()) && !(chckbxTerreno.isSelected()))) {
 						throw new InvalidInputException("Existem campos obrigatorios que nao foram preenchidos");
 					}
 					Corretor corretor = (Corretor)Telas.getUser();
@@ -311,15 +322,127 @@ public class FormCliente extends JPanel implements Limpavel{
 							corretor);
 					
 					/*TODO: ADICONAR CLIENTE NO BANCO DE DADOS*/
+					
+					PreparedStatement psEndereco = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO enderecos (endereco_id, cep, estado, "
+							   + " cidade, rua, bairro, numero, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+					
+					psEndereco.setInt(1, cliente.getEndereco().getId());
+					psEndereco.setInt(2, cliente.getEndereco().getCep());
+					psEndereco.setString(3, cliente.getEndereco().getEstado());
+					psEndereco.setString(4, cliente.getEndereco().getCidade());
+					psEndereco.setString(5, cliente.getEndereco().getRua());
+					psEndereco.setString(6, cliente.getEndereco().getBairro());
+					psEndereco.setInt(7, cliente.getEndereco().getNumero());
+					psEndereco.setString(8, cliente.getEndereco().getComplemento());
+					
+					psEndereco.executeUpdate();
+					
+					PreparedStatement psPessoa = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO pessoas (pessoa_id," 
+							   					 + " endereco_id, nome, telefone, documento, email) VALUES (?, ?, ?, ?, ?, ?)");
+					
+					psPessoa.setInt(1, cliente.getId());
+					psPessoa.setInt(2, cliente.getEndereco().getId());
+					psPessoa.setString(3, cliente.getNome());
+					psPessoa.setString(4, cliente.getTelefone());
+					psPessoa.setString(5, cliente.getDocumento());
+					psPessoa.setString(6, cliente.getEmail());
+					
+					psPessoa.executeUpdate();
+					
+					PreparedStatement psCliente = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO clientes (pessoa_id," 
+		   					 + " corretor_id, preco_max) VALUES (?, ?, ?)");
+					
+					psCliente.setInt(1, cliente.getId());
+					
+					PreparedStatement psCorretor = Main.imobiliaria.getBanco().getConexao().prepareStatement("SELECT "
+							+ "corretor_id FROM corretores WHERE corretores.pessoa_id = ?");
+					psCorretor.setInt(1, corretor.getId());
+					ResultSet corretor_id = psCorretor.executeQuery();
+					corretor_id.next();
+					
+					psCliente.setInt(2, corretor_id.getInt(1));
+					psCliente.setDouble(3, cliente.getPrecoMax());
+
+					psCliente.executeUpdate();
+					
+					ResultSet cliente_id;
+					PreparedStatement psPreferencia = null;
+					
+					psCliente = Main.imobiliaria.getBanco().getConexao().prepareStatement("SELECT "
+							+ "cliente_id FROM clientes WHERE clientes.pessoa_id = ?");
+					psCliente.setInt(1, cliente.getId());
+					cliente_id = psCliente.executeQuery();
+					cliente_id.next();
+					for (int i = 0; i < tipos.size(); i++) {
+						
+						
+						if (proposito != null) {
+							psPreferencia = Main.imobiliaria.getBanco().getConexao()
+									.prepareStatement("INSERT INTO preferencias (cliente_id, tipo_imovel_id, restricao_id,"
+											+ " endereco_id, aluguel, esquina, condominio, area_minima_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+							
+							
+							psPreferencia.setInt(1, cliente_id.getInt(1));
+							psPreferencia.setInt(2, tipos.get(i));
+						
+							if (Restricao.COMERCIAL == proposito)
+								psPreferencia.setInt(3, 2);
+							if (Restricao.RESIDENCIAL == proposito)
+								psPreferencia.setInt(3, 1);
+						
+							psPreferencia.setInt(4, cliente.getEndereco().getId());				
+							psPreferencia.setBoolean(5, aluguel);
+							psPreferencia.setBoolean(6, esquina);
+							psPreferencia.setBoolean(7, condominio);
+							psPreferencia.setDouble(8, precoMax);
+						} else {
+							psPreferencia = Main.imobiliaria.getBanco().getConexao()
+									.prepareStatement("INSERT INTO preferencias (cliente_id, tipo_imovel_id, "
+											+ " endereco_id, aluguel, esquina, condominio, area_minima_terreno) VALUES (?, ?, ?, ?, ?, ?, ?");
+														
+							psPreferencia.setInt(1, cliente_id.getInt(1));
+							psPreferencia.setInt(2, tipos.get(i));
+						
+							psPreferencia.setInt(3, cliente.getEndereco().getId());				
+							psPreferencia.setBoolean(4, aluguel);
+							psPreferencia.setBoolean(5, esquina);
+							psPreferencia.setBoolean(6, condominio);
+							psPreferencia.setDouble(7, precoMax);
+						}
+						
+						psPreferencia.executeUpdate();
+					}
+					
+					ArrayList<Integer> formas = new ArrayList<Integer>();
+					if(chckbxFinanciamento.isSelected()) {
+						formas.add(1);
+					}else if(chckbxPermuta.isSelected()) {
+						formas.add(2);
+					}else if (chckbxAvista.isSelected()) {
+						formas.add(3);
+					}
+					
+					for (int i = 0; i < formas.size(); i++) {
+						PreparedStatement psFP = Main.imobiliaria.getBanco().getConexao()
+								.prepareStatement("INSERT INTO cliente_forma_pagamentos "
+										+ "(cliente_id, forma_pagamento_id) VALUES (?, ?)");
+						psFP.setInt(1, cliente_id.getInt(1));
+						psFP.setInt(2, formas.get(i));
+					}
+					
 					Main.imobiliaria.adicionarCliente(cliente);
-					JOptionPane.showMessageDialog(null,"Cliente cadastrado com sucesso",null,JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Cliente cadastrado com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
 					card.show(p, "home");
 					
-				}catch(NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null,"Existem campos invalidos ! ",null,JOptionPane.ERROR_MESSAGE);
-				}catch(InvalidInputException e1) {
-					JOptionPane.showMessageDialog(null,e1.getUserMessage(),null,JOptionPane.ERROR_MESSAGE);
-				}		
+				} catch(NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, "Existem campos invalidos ! ", null, JOptionPane.ERROR_MESSAGE);
+				} catch(InvalidInputException e1) {
+					JOptionPane.showMessageDialog(null,e1.getUserMessage(), null, JOptionPane.ERROR_MESSAGE);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null,  "Erro com o BD", null, JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
 			}
 		});
 		button.setBounds(466, 653, 89, 23);

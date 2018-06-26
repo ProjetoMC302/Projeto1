@@ -1,7 +1,13 @@
 package Entidades;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import BancoDeDados.Banco;
+
 public class Imobiliaria{
+	private static Banco banco;
 	
 	private ArrayList<Imovel> imoveis;
 	private ArrayList<Cliente> clientes;
@@ -19,17 +25,23 @@ public class Imobiliaria{
 		gerentes=new ArrayList<Gerente>();
 		Gerente gerente_default= new Gerente("0","0","0","0");
 		gerentes.add(gerente_default);
+		banco = new Banco();
+	}
+	
+	public Banco getBanco() {
+		return banco;
 	}
 	
 	/**Metodos de adicao e remocao de infomacoes do banco de dados simulado*/
 	
 	public Gerente verificarLoginGerente(String email,String senha)
-	{
-		for(int i=0;i< gerentes.size();i++)
+	{	
+
+		for(int i = 0;i < gerentes.size(); i++)
 		{
 			if(gerentes.get(i).getEmail().intern() == email.intern())
 			{
-				if(gerentes.get(i).getSenha().intern() ==senha.intern())
+				if(gerentes.get(i).getSenha().intern() == senha.intern())
 				{
 					return gerentes.get(i);
 				}
@@ -38,19 +50,36 @@ public class Imobiliaria{
 		return null;
 	}
 	
-	public Corretor verificarLoginCorretor(String email,String senha)
+	public Pessoa verificarLoginCorretor(String email,String senha)
 	{
-		for(int i=0;i< corretores.size();i++)
+		
+		try {
+			PreparedStatement query = banco.getConexao().prepareStatement("SELECT corretores.pessoa_id FROM corretores JOIN pessoas ON (pessoas.pessoa_id = corretores.pessoa_id) WHERE pessoas.email = ?"
+							 + " AND corretores.senha = ?");
+			
+			query.setString(1, email);
+			query.setString(2, senha);
+			
+			ResultSet resultado = query.executeQuery();
+			
+			Pessoa corretor = null;
+			
+			if(resultado.next())
+				corretor = Banco.encontrarCorretor(resultado.getInt(1));
+			return corretor;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	/*	for(int i = 0;i< corretores.size();i++)
 		{
 			if(corretores.get(i).getEmail().intern()==email.intern())
 			{
 				if(corretores.get(i).getSenha().intern()==senha.intern())
 					return corretores.get(i);
 			}
-		}
+		}*/
 		return null;
 	}
-	
 	
 	public Proprietario buscaProprietario(String documento) {
 		for (Proprietario proprietario : getProprietarios()) {

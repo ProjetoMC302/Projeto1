@@ -21,6 +21,20 @@ public class Corretor extends Pessoa {
 		status = true;
 	}
 	
+	// sera utilizado apenas para facilitar a manipulacao dos dados. Nao armazena todos os dados, mas estes estarao
+	// no BD.
+	public Corretor(int id, String nome, String telefone, String email, boolean bancoDeDados) {
+		super(nome, telefone, email);
+		if (bancoDeDados == false)
+			return;
+		imoveis = new ArrayList<Imovel>();
+		clientes = new ArrayList<Cliente>();
+		propostasEmAberto = null;
+		propostasFinalizadas = null;
+		status = true;
+		this.setId(id);
+	}
+	
 	public void desativarCorretor()
 	{
 		status=false;
@@ -160,6 +174,10 @@ public class Corretor extends Pessoa {
 
 	public void setPropostasFinalizadas(ArrayList<Proposta> propostasFinalizadas) {
 		this.propostasFinalizadas = propostasFinalizadas;
+	}
+	
+	public boolean getStatus() {
+		return status;
 	}
 	
 	private String auxiliadorToStringImoveis() {

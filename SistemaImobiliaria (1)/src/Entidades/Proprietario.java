@@ -23,6 +23,11 @@ public class Proprietario extends Pessoa {
 		imoveis = new ArrayList<Imovel>();
 		this.empresa = empresa;
 	}
+
+	public Proprietario(int id, String nome, String telefone, String email, boolean bancoDeDados) {
+		super(nome, telefone, email);
+		setId(id);
+	}
 	
 	public boolean adicionarImovel(Imovel imovel) {
 		if (!imoveis.contains(imovel)) {

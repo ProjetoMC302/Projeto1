@@ -152,7 +152,8 @@ public class FormProposta extends JPanel implements Limpavel{
 
 	@Override
 	public void LimparTodosOsCampos() {
-		// TODO Auto-generated method stub
-		
+		textClienteId.setText("");
+		textImovelId.setText("");
+		textPropostaPreco.setText("");		
 	}
 }

@@ -1,5 +1,4 @@
 package Entidades;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 import BancoDeDados.Banco;
 
 public class Imobiliaria{
-	private static Banco banco = new Banco();
+	private static Banco banco;
 	
 	private ArrayList<Imovel> imoveis;
 	private ArrayList<Cliente> clientes;
@@ -26,6 +25,11 @@ public class Imobiliaria{
 		gerentes=new ArrayList<Gerente>();
 		Gerente gerente_default= new Gerente("0","0","0","0");
 		gerentes.add(gerente_default);
+		banco = new Banco();
+	}
+	
+	public Banco getBanco() {
+		return banco;
 	}
 	
 	/**Metodos de adicao e remocao de infomacoes do banco de dados simulado*/
@@ -77,7 +81,6 @@ public class Imobiliaria{
 		return null;
 	}
 	
-	
 	public Proprietario buscaProprietario(String documento) {
 		for (Proprietario proprietario : getProprietarios()) {
 			if (proprietario.getDocumento().equals(documento)) {
@@ -105,7 +108,7 @@ public class Imobiliaria{
 		return false;
 	}
 	
-	public boolean removerImovelcorretores(int idImovel,Corretor corretor) {
+	public boolean removerImovel(int idImovel,Corretor corretor) {
 		for (Imovel i : corretor.getImoveis()) {
 			if(i.getId() == idImovel) { 
 				if(corretor==i.getCorretorResponsavel())
@@ -259,6 +262,40 @@ public class Imobiliaria{
 		return null;
 	}
 	
+	public ArrayList<Imovel> buscarApartamento(Preferencia preferencia) {
+		ArrayList<Imovel> result = new ArrayList<>();
+		for (Imovel imv : imoveis) {
+			if(imv instanceof Apartamento && imv.isAluguel()==preferencia.isAluguel() && 
+					((Apartamento) imv).getAreaConstruida() >= preferencia.getAreaMinimaTerreno()) {
+				result.add(imv);
+			}
+		}
+
+		return result;
+	}
+	public ArrayList<Imovel> buscarCasa(Preferencia preferencia) {
+		ArrayList<Imovel> result = new ArrayList<>();
+		for (Imovel imv : imoveis) {
+			if(imv instanceof Casa && imv.isAluguel()==preferencia.isAluguel() && 
+					((Casa) imv).getAreaConstruida() >= preferencia.getAreaMinimaTerreno()&&
+					((Casa) imv).isEsquina() == preferencia.isEsquina()) {
+				result.add(imv);
+			}
+		}
+
+		return result;
+	}
+	public ArrayList<Imovel> buscarTerreno(Preferencia preferencia) {
+		ArrayList<Imovel> result = new ArrayList<>();
+		for (Imovel imv : imoveis) {
+			if(imv instanceof Terreno&& imv.isAluguel()==preferencia.isAluguel() && 
+					((Terreno) imv).getAreaTerreno()>= preferencia.getAreaMinimaTerreno()) {
+				result.add(imv);
+			}
+		}
+
+		return result;
+	}
 	public Cliente buscarCliente(String documento) {
 		for (Cliente clt : clientes) {
 			if(clt.getDocumento().equals(documento)) {
@@ -383,10 +420,8 @@ public class Imobiliaria{
 		
 		return out;
 	}
+	
 
-	public Banco getBanco() {
-		return banco;
-	}
 	
 	@Override
 	public String toString() {

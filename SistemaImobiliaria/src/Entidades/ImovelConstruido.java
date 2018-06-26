@@ -1,6 +1,6 @@
 package Entidades;
 /**ImovelConstruido - essa classe representa a estrutura de um imovel: imovel que tem em seu terreno alguma construcao habitavel*/
-public class ImovelConstruido extends Imovel {
+public abstract class ImovelConstruido extends Imovel {
 	//numero de vagas para automoveis ou motocicletas
 	private int vagasAutomovel;
 	private int quantidadeBanheiros;

@@ -13,10 +13,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
+import Entidades.Corretor;
 import Entidades.Endereco;
-import Entidades.Gerente;
 import Excecoes.InvalidInputException;
 import Interface.Limpavel;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class FormCorretor extends JPanel implements Limpavel {
 	private static final long serialVersionUID = 88L;
@@ -126,18 +129,64 @@ public class FormCorretor extends JPanel implements Limpavel {
 						throw new InvalidInputException("Existem campos obrigatorios que nao foram preenchidos");
 					}
 					
+					Corretor corretor = new Corretor(nome,telefone , documento, new Endereco(cep,estado,cidade,rua,bairro,numero,complemento),
+							email,senha ,creci);
+					
 					/**ADICIONA CORRETOR CRIADO NO BANCO DE DADOS*/
 					
+					PreparedStatement psEndereco = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO enderecos (endereco_id, cep, estado, "
+							   + " cidade, rua, bairro, numero, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+					
+					psEndereco.setInt(1, corretor.getEndereco().getId());
+					psEndereco.setInt(2, corretor.getEndereco().getCep());
+					psEndereco.setString(3, corretor.getEndereco().getEstado());
+					psEndereco.setString(4, corretor.getEndereco().getCidade());
+					psEndereco.setString(5, corretor.getEndereco().getRua());
+					psEndereco.setString(6, corretor.getEndereco().getBairro());
+					psEndereco.setInt(7, corretor.getEndereco().getNumero());
+					psEndereco.setString(8, corretor.getEndereco().getComplemento());
+					
+					psEndereco.executeUpdate();
+					
+					PreparedStatement psPessoa = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO pessoas (pessoa_id," 
+							   					 + " endereco_id, nome, telefone, documento, email) VALUES (?, ?, ?, ?, ?, ?)");
+					
+					psPessoa.setInt(1, corretor.getId());
+					psPessoa.setInt(2, corretor.getEndereco().getId());
+					psPessoa.setString(3, corretor.getNome());
+					psPessoa.setString(4, corretor.getTelefone());
+					psPessoa.setString(5, corretor.getDocumento());
+					psPessoa.setString(6, corretor.getEmail());
+					
+					psPessoa.executeUpdate();
+					
+					PreparedStatement psCorretor = Main.imobiliaria.getBanco().getConexao().prepareStatement("INSERT INTO corretores (pessoa_id," 
+		   					 + " senha, creci, status) VALUES (?, ?, ?, ?)");
+					
+					psCorretor.setInt(1, corretor.getId());
+					psCorretor.setString(2, corretor.getSenha());
+					psCorretor.setString(3, corretor.getCreci());
+					psCorretor.setBoolean(4, corretor.getStatus());
+
+					psCorretor.executeUpdate();
+					
 					//Simulando bando de dados
-					Gerente g = (Gerente)Telas.getUser();
-					g.adicionarCorretor(nome, telefone, documento, new Endereco(cep,estado,cidade,rua,bairro,numero,complemento), 
-							email, senha, creci, Main.imobiliaria);
+					Main.imobiliaria.adicionarCorretor(corretor);
 					JOptionPane.showMessageDialog(null,"Usuario cadastrado com sucesso",null,JOptionPane.INFORMATION_MESSAGE);
 					card.show(p, "home2");
+					
+										
+					
+					
+					
 				}catch(NumberFormatException e) {
 					JOptionPane.showMessageDialog(null,"Existem campos invalidos ! ",null,JOptionPane.ERROR_MESSAGE);
 				}catch(InvalidInputException e) {
 					JOptionPane.showMessageDialog(null,e.getUserMessage(),null,JOptionPane.ERROR_MESSAGE);
+				}catch (SQLException e) {
+					JOptionPane.showMessageDialog(null,  "Erro com o BD", null, JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
 				}
 			}
 		});
@@ -221,8 +270,7 @@ public class FormCorretor extends JPanel implements Limpavel {
 		textComplemento.setBounds(130, 168, 144, 20);
 		panel.add(textComplemento);
 		
-	}
-	
+	}	
 	public void limparTodosCampos() {
 		
 	}

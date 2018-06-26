@@ -612,7 +612,27 @@ public class FormImovel extends JPanel implements Limpavel {
 
 	@Override
 	public void LimparTodosOsCampos() {
-		// TODO Auto-generated method stub
-		
+		textCEP.setText("");
+		textEstado.setText("");
+		textCidade.setText("");
+		textBairro.setText("");
+		textRua.setText("");
+		textNumero.setText("");
+		textComplemento.setText("");
+		textProprietarioId.setText("");
+		textDescricao.setText("");
+		textPreco.setText("");
+		textIPTU.setText("");
+		textValorCondominio.setText("");
+		textVagasAutomovel.setText("");
+		textNumBanheiro.setText("");
+		textNumQuarto.setText("");
+		textNumAndar.setText("");
+		textNumSuite.setText("");
+		textAreaConstruida.setText("");
+		textAreaCasa.setText("");
+		textNumTerraco.setText("");
+		textNumAndarAp.setText("");
+		textAreaTerreno.setText("");
 	}
 }

@@ -41,6 +41,14 @@ public abstract class Imovel {
 		this.tipoImovel = tipoImovel;
 	}
 	
+	public static int getGeradorId() {
+		return geradorId;
+	}
+	
+	public static void setGeradorId(int novoId) {
+		geradorId = novoId;
+	}
+	
 	public boolean adicionarFormaPagamento(FormaPagamento fp) {
 		if (!formasPagamentoAceitas.contains(fp)) {
 			return formasPagamentoAceitas.add(fp);

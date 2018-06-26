@@ -35,7 +35,7 @@ public class Login extends JPanel implements Limpavel{
 	 */
 	protected Pessoa user;
 	
-	public Login(CardLayout cardLayout,JPanel painel,Telas telas) {
+	public Login(CardLayout aux,JPanel aux2,Telas aux3) {
 		
 		
 		setBackground(new Color(255, 255, 204));
@@ -96,8 +96,8 @@ public class Login extends JPanel implements Limpavel{
 								user=Main.imobiliaria.verificarLoginGerente(email, senha);
 								if(user==null)
 									throw new Exception();
-								telas.setUserCompleto(user);
-								cardLayout.show(painel, "home2");
+								aux3.setUserCompleto(user);
+								aux.show(aux2, "home2");
 							}
 							
 							if(botaoCorretor.isSelected())
@@ -108,14 +108,14 @@ public class Login extends JPanel implements Limpavel{
 								user=Main.imobiliaria.verificarLoginCorretor(email, senha);
 								if(user==null)
 									throw new Exception();
-								telas.setUserCompleto(user);
-								cardLayout.show(painel, "home");
+								aux3.setUserCompleto(user);
+								aux.show(aux2, "home");
 								
 							}
 							
-						}catch(Exception cardLayout){
+						}catch(Exception aux){
 							
-							JOptionPane.showMessageDialog(null,"Usuï¿½rio invï¿½lido !",null,JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,"Usuário inválido !",null,JOptionPane.ERROR_MESSAGE);
 						}
 						
 					
@@ -149,7 +149,8 @@ public class Login extends JPanel implements Limpavel{
 
 	@Override
 	public void LimparTodosOsCampos() {
-		// TODO Auto-generated method stub
-		
+		field_email.setText("");
+		field_senha.setText("");
 	}
+
 }

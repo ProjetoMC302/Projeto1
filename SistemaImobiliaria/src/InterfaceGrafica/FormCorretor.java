@@ -270,16 +270,26 @@ public class FormCorretor extends JPanel implements Limpavel {
 		textComplemento.setBounds(130, 168, 144, 20);
 		panel.add(textComplemento);
 		
-	}
-	
+	}	
 	public void limparTodosCampos() {
 		
 	}
 
 	@Override
 	public void LimparTodosOsCampos() {
-		// TODO Auto-generated method stub
-		
+		 textNome.setText("");
+		 textTelefone.setText("");
+		 textDocumento.setText("");
+		 textEmail.setText("");
+		 textSenha.setText("");
+		 textCresi.setText("");
+		 textCEP.setText("");
+		 textEstado.setText("");
+		 textCidade.setText("");
+		 textBairro.setText("");
+		 textRua.setText("");
+		 textNumero.setText("");
+		 textComplemento.setText("");
 	}
 }
 
