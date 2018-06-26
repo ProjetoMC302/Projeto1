@@ -2,7 +2,8 @@
 -- DROP DATABASE postgres
 
 -- primeiramente, inicie o psql com o usuario postgres. Para isso, no Debian, o comando eh sudo -u postgres psql
--- depois, copie o código daqui e digite enter
+-- depois, copie o código daqui e digite enter.
+-- eh necessario configurar o usuario postgres com a senha 123456, definida como padrão no projeto.
 
 CREATE DATABASE postgres
   WITH OWNER = postgres
